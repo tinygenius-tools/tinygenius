@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TinyGenius provides simple, free online calculators and tools to make everyday decisions easier.">
+  <title>TinyGenius — Small Tools. Big Answers.</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #20243a;
+      background: #f8f9ff;
+    }
+    header {
+      padding: 22px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      border-bottom: 1px solid #e9eaf2;
+    }
+    .logo { font-size: 25px; font-weight: 800; color: #5145cd; }
+    nav a {
+      color: #555b70;
+      text-decoration: none;
+      margin-left: 22px;
+      font-size: 14px;
+    }
+    .hero {
+      text-align: center;
+      padding: 85px 20px 65px;
+      background: linear-gradient(135deg,#eeedff,#f5f8ff);
+    }
+    .hero h1 {
+      font-size: clamp(38px,6vw,62px);
+      margin: 0 0 16px;
+      letter-spacing: -2px;
+    }
+    .hero h1 span { color: #6355d9; }
+    .hero p {
+      color: #687087;
+      font-size: 18px;
+      line-height: 1.7;
+      max-width: 570px;
+      margin: 0 auto 28px;
+    }
+    .search {
+      width: min(520px,90%);
+      padding: 16px 20px;
+      border: 1px solid #dddff0;
+      border-radius: 12px;
+      font-size: 16px;
+      outline-color: #6355d9;
+    }
+    main { max-width: 1050px; margin: auto; padding: 55px 20px; }
+    .section-title { font-size: 27px; margin-bottom: 8px; }
+    .section-subtitle { color: #747b90; margin-bottom: 28px; }
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      padding: 25px;
+      border: 1px solid #e9eaf2;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(40,40,90,.035);
+    }
+    .card .emoji { font-size: 30px; }
+    .card h3 { margin: 15px 0 9px; }
+    .card p { color: #73798c; line-height: 1.6; font-size: 14px; }
+    .card a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #5b50ce;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .calculator {
+      margin-top: 65px;
+      background: white;
+      border: 1px solid #e9eaf2;
+      border-radius: 18px;
+      padding: 30px;
+      max-width: 650px;
+    }
+    label { display: block; margin: 18px 0 8px; font-weight: 600; }
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #dfe1ec;
+      border-radius: 9px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 22px;
+      background: #6355d9;
+      color: white;
+      border: 0;
+      border-radius: 9px;
+      padding: 14px 23px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    button:hover { background: #493db5; }
+    #result {
+      display: none;
+      margin-top: 22px;
+      background: #f0efff;
+      padding: 20px;
+      border-radius: 12px;
+      line-height: 1.7;
+    }
+    footer {
+      text-align: center;
+      padding: 35px 15px;
+      color: #85899b;
+      background: white;
+      margin-top: 55px;
+      font-size: 14px;
+    }
+    @media(max-width:600px) {
+      nav a { margin-left: 10px; font-size: 12px; }
+      .hero { padding-top: 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">TinyGenius.</div>
+  <nav>
+    <a href="#tools">Explore tools</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Small tools.<br><span>Big answers.</span></h1>
+  <p>Useful online tools that simplify everyday decisions.
+     Calculate, discover and make smarter choices in seconds.</p>
+  <input class="search" id="search"
+    placeholder="Search for a tool..." oninput="filterTools()">
+</section>
+
+<main>
+  <h2 class="section-title" id="tools">Explore our tools</h2>
+  <p class="section-subtitle">Simple solutions to everyday problems.</p>
+
+  <div class="tools" id="toolGrid">
+    <div class="card" data-name="freelance hourly rate pricing">
+      <div class="emoji">💼</div>
+      <h3>Freelance Rate Calculator</h3>
+      <p>Discover how much to charge clients for your time and expertise.</p>
+      <a href="#calculator">Calculate now →</a>
+    </div>
+
+    <div class="card" data-name="profit margin business money">
+      <div class="emoji">📈</div>
+      <h3>Profit Margin Calculator</h3>
+      <p>Understand the relationship between your costs, selling price and profit.</p>
+      <a href="#calculator">Coming soon →</a>
+    </div>
+
+    <div class="card" data-name="youtube creator earnings revenue">
+      <div class="emoji">🎥</div>
+      <h3>YouTube Earnings Estimator</h3>
+      <p>Explore estimated creator revenue based on views and assumptions.</p>
+      <a href="#calculator">Coming soon →</a>
+    </div>
+  </div>
+
+  <section class="calculator" id="calculator">
+    <h2>Freelance Rate Calculator</h2>
+    <p>Estimate an hourly rate based on your income goal and working time.</p>
+
+    <label for="income">Desired annual income ($)</label>
+    <input type="number" id="income" value="60000" min="1">
+
+    <label for="expenses">Annual business expenses ($)</label>
+    <input type="number" id="expenses" value="6000" min="0">
+
+    <label for="hours">Billable working hours per week</label>
+    <input type="number" id="hours" value="25" min="1" max="80">
+
+    <label for="weeks">Working weeks per year</label>
+    <input type="number" id="weeks" value="48" min="1" max="52">
+
+    <button onclick="calculateRate()">Calculate my rate</button>
+
+    <div id="result" aria-live="polite"></div>
+    <p style="font-size:12px;color:#85899b">
+      Estimates are illustrative and exclude personal taxes and other individual circumstances.
+    </p>
+  </section>
+
+  <section id="about" style="margin-top:65px">
+    <h2 class="section-title">Why TinyGenius?</h2>
+    <p style="color:#73798c;line-height:1.8">
+      We believe useful tools should be simple, accessible and easy to use.
+      Our mission is to turn everyday questions into clear answers,
+      without unnecessary complexity.
+    </p>
+  </section>
+</main>
+
+<footer>
+  © 2026 TinyGenius. Small tools. Big answers.
+</footer>
+
+<script>
+function calculateRate() {
+  const income = Number(document.getElementById("income").value);
+  const expenses = Number(document.getElementById("expenses").value);
+  const hours = Number(document.getElementById("hours").value);
+  const weeks = Number(document.getElementById("weeks").value);
+  const result = document.getElementById("result");
+
+  if (!Number.isFinite(income) || !Number.isFinite(expenses) ||
+      !Number.isFinite(hours) || !Number.isFinite(weeks) ||
+      income <= 0 || expenses < 0 || hours <= 0 ||
+      hours > 80 || weeks < 1 || weeks > 52) {
+    result.style.display = "block";
+    result.textContent = "Please enter valid numbers. Hours must be 1–80 and weeks 1–52.";
+    return;
+  }
+
+  const annualTarget = income + expenses;
+  const hourlyRate = annualTarget / (hours * weeks);
+  const monthlyTarget = annualTarget / 12;
+
+  result.style.display = "block";
+  result.innerHTML =
+    "<strong>Your estimated minimum hourly rate:</strong><br>" +
+    "<span style='font-size:30px;color:#5145cd;font-weight:bold'>$" +
+    hourlyRate.toFixed(2) + "</span><br>" +
+    "Annual income and expenses target: $" +
+    annualTarget.toLocaleString("en-US", {maximumFractionDigits:2}) +
+    "<br>Monthly target: $" +
+    monthlyTarget.toLocaleString("en-US", {maximumFractionDigits:2}) +
+    "<br><small>This is a planning estimate, not a guaranteed market rate.</small>";
+}
+
+function filterTools() {
+  const query = document.getElementById("search").value.toLowerCase();
+  document.querySelectorAll(".card").forEach(card => {
+    card.style.display = card.dataset.name.includes(query) ? "" : "none";
+  });
+}
+</script>
+
+</body>
+</html>
