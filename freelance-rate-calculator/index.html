@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Freelance Rate Calculator – Calculate Your Hourly Rate | TinyGenius</title>
+
+  <meta name="description" content="Calculate your ideal freelance hourly rate using your income goal, business expenses and billable hours. Free freelance rate calculator by TinyGenius.">
+
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tinygenius-tools.github.io/tinygenius/freelance-rate-calculator/">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8ff;
+      color: #20243a;
+      line-height: 1.7;
+    }
+
+    header {
+      background: white;
+      padding: 20px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .logo {
+      color: #6254df;
+      font-size: 25px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    header a.back {
+      color: #454b64;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 65px 20px 35px;
+      background: linear-gradient(135deg, #f0efff, #f8f8ff);
+    }
+
+    h1 {
+      font-size: clamp(30px, 5vw, 45px);
+      line-height: 1.2;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: auto;
+      color: #626982;
+      font-size: 17px;
+    }
+
+    .calculator {
+      background: white;
+      max-width: 650px;
+      margin: 35px auto;
+      padding: 32px;
+      border-radius: 18px;
+      box-shadow: 0 5px 25px rgba(30, 35, 80, 0.07);
+    }
+
+    .calculator h2 {
+      margin-bottom: 22px;
+      font-size: 23px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 17px 0 7px;
+      font-size: 14px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #dce0ed;
+      border-radius: 9px;
+      font-size: 16px;
+      background: white;
+      color: #20243a;
+    }
+
+    input:focus, select:focus {
+      outline: 2px solid #8d80ff;
+      border-color: #6254df;
+    }
+
+    button {
+      width: 100%;
+      background: #6254df;
+      color: white;
+      padding: 15px;
+      border: none;
+      border-radius: 9px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 25px;
+    }
+
+    button:hover {
+      background: #5042c5;
+    }
+
+    .result {
+      display: none;
+      margin-top: 25px;
+      padding: 22px;
+      border-radius: 12px;
+      background: #f0efff;
+      text-align: center;
+    }
+
+    .result strong {
+      display: block;
+      font-size: 35px;
+      color: #6254df;
+      margin: 8px 0;
+    }
+
+    .result p {
+      margin-top: 7px;
+      color: #555d78;
+    }
+
+    .content {
+      max-width: 850px;
+      margin: 55px auto;
+      padding: 0 22px;
+    }
+
+    .content h2 {
+      font-size: 25px;
+      margin: 30px 0 12px;
+    }
+
+    .content p {
+      color: #555d78;
+      margin-bottom: 15px;
+    }
+
+    .content ul {
+      padding-left: 25px;
+      color: #555d78;
+      margin-bottom: 20px;
+    }
+
+    .faq {
+      border-bottom: 1px solid #e2e4ee;
+      padding: 18px 0;
+    }
+
+    .faq h3 {
+      font-size: 17px;
+      margin-bottom: 7px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 15px;
+      background: white;
+      color: #747b91;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #6254df;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .calculator {
+        margin: 20px 14px;
+        padding: 23px;
+      }
+
+      .hero {
+        padding-top: 45px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <a class="logo" href="../">TinyGenius.</a>
+  <a class="back" href="../">Explore all tools →</a>
+</header>
+
+<section class="hero">
+  <h1>Freelance Rate Calculator</h1>
+  <p>
+    Find out how much to charge per hour as a freelancer.
+    Calculate your ideal rate using your income goal,
+    expenses and available working hours.
+  </p>
+</section>
+
+<section class="calculator">
+  <h2>Calculate Your Freelance Rate</h2>
+
+  <label for="currency">Choose currency</label>
+  <select id="currency">
+    <option value="USD">USD ($)</option>
+    <option value="INR">INR (₹)</option>
+    <option value="GBP">GBP (£)</option>
+    <option value="EUR">EUR (€)</option>
+    <option value="CAD">CAD ($)</option>
+    <option value="AUD">AUD ($)</option>
+    <option value="AED">AED (د.إ)</option>
+  </select>
+
+  <label for="income">Desired annual income</label>
+  <input id="income" type="number" min="0" value="60000">
+
+  <label for="expenses">Annual business expenses</label>
+  <input id="expenses" type="number" min="0" value="6000">
+
+  <label for="hours">Billable hours per week</label>
+  <input id="hours" type="number" min="0.1" max="168" step="0.5" value="25">
+
+  <label for="weeks">Working weeks per year</label>
+  <input id="weeks" type="number" min="1" max="52" value="48">
+
+  <button onclick="calculateRate()">Calculate My Hourly Rate</button>
+
+  <div class="result" id="result" aria-live="polite">
+    <p>Your recommended minimum hourly rate</p>
+    <strong id="hourlyRate"></strong>
+    <p id="annualDetails"></p>
+    <p id="weeklyDetails"></p>
+    <p>Use this as a starting estimate when setting your freelance prices.</p>
+  </div>
+</section>
+
+<main class="content">
+
+  <h2>What is a freelance rate calculator?</h2>
+
+  <p>
+    A freelance rate calculator helps independent professionals
+    estimate how much they should charge clients for their work.
+    It considers your desired income, business expenses and
+    the number of hours you can realistically bill.
+  </p>
+
+  <p>
+    Whether you are a graphic designer, writer, developer,
+    consultant or digital marketer, knowing your minimum
+    hourly rate can help you price your services more confidently.
+  </p>
+
+  <h2>How is your freelance hourly rate calculated?</h2>
+
+  <p>
+    The calculator uses a simple formula:
+  </p>
+
+  <p>
+    <strong>Hourly rate = (Desired annual income + Annual expenses)
+    ÷ Annual billable hours</strong>
+  </p>
+
+  <p>
+    Annual billable hours are calculated by multiplying
+    your billable hours per week by your working weeks per year.
+  </p>
+
+  <h2>Why should freelancers calculate their rates?</h2>
+
+  <ul>
+    <li>Set prices that account for business expenses.</li>
+    <li>Plan income goals more realistically.</li>
+    <li>Avoid undercharging for professional services.</li>
+    <li>Understand how available working hours affect pricing.</li>
+    <li>Build a more sustainable freelance business.</li>
+  </ul>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq">
+    <h3>How much should I charge as a freelancer?</h3>
+    <p>
+      Your rate depends on your desired income, business expenses,
+      experience, skills and available billable hours.
+      Use this calculator to estimate your minimum starting rate.
+    </p>
+  </div>
+
+  <div class="faq">
+    <h3>What are billable hours?</h3>
+    <p>
+      Billable hours are the hours you can directly charge clients
+      for. Administrative work, marketing and business development
+      may take additional time.
+    </p>
+  </div>
+
+  <div class="faq">
+    <h3>Should I include business expenses in my rate?</h3>
+    <p>
+      Yes. Software, equipment, internet, professional services
+      and other business costs should be considered when setting
+      your freelance prices.
+    </p>
+  </div>
+
+  <div class="faq">
+    <h3>Does this calculator convert currencies?</h3>
+    <p>
+      No. The currency selector changes the currency format only.
+      Enter your income and expenses in the currency you select.
+    </p>
+  </div>
+
+  <h2>More free tools from TinyGenius</h2>
+
+  <p>
+    Explore our <a href="../">TinyGenius homepage</a> for
+    additional calculators and practical online tools
+    designed for freelancers and content creators.
+  </p>
+
+</main>
+
+<footer>
+  <p>© 2026 TinyGenius. Small tools. Big answers.</p>
+  <p><a href="../">Back to TinyGenius homepage</a></p>
+</footer>
+
+<script>
+  const currencyFormats = {
+    USD: { locale: "en-US" },
+    INR: { locale: "en-IN" },
+    GBP: { locale: "en-GB" },
+    EUR: { locale: "de-DE" },
+    CAD: { locale: "en-CA" },
+    AUD: { locale: "en-AU" },
+    AED: { locale: "en-AE" }
+  };
+
+  function formatMoney(amount, currency) {
+    return new Intl.NumberFormat(
+      currencyFormats[currency].locale,
+      {
+        style: "currency",
+        currency: currency,
+        maximumFractionDigits: 2
+      }
+    ).format(amount);
+  }
+
+  function calculateRate() {
+    const currency = document.getElementById("currency").value;
+    const income = Number(document.getElementById("income").value);
+    const expenses = Number(document.getElementById("expenses").value);
+    const hours = Number(document.getElementById("hours").value);
+    const weeks = Number(document.getElementById("weeks").value);
+
+    if (
+      !Number.isFinite(income) ||
+      !Number.isFinite(expenses) ||
+      !Number.isFinite(hours) ||
+      !Number.isFinite(weeks) ||
+      income < 0 ||
+      expenses < 0 ||
+      hours <= 0 ||
+      hours > 168 ||
+      weeks < 1 ||
+      weeks > 52
+    ) {
+      alert("Please enter valid values for all fields.");
+      return;
+    }
+
+    const annualHours = hours * weeks;
+    const annualTarget = income + expenses;
+    const hourlyRate = annualTarget / annualHours;
+    const weeklyTarget = annualTarget / weeks;
+
+    document.getElementById("hourlyRate").textContent =
+      formatMoney(hourlyRate, currency) + " / hour";
+
+    document.getElementById("annualDetails").textContent =
+      "Annual income plus expenses: " +
+      formatMoney(annualTarget, currency);
+
+    document.getElementById("weeklyDetails").textContent =
+      "Required weekly revenue: " +
+      formatMoney(weeklyTarget, currency);
+
+    document.getElementById("result").style.display = "block";
+  }
+</script>
+
+</body>
+</html>
