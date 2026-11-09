@@ -252,5 +252,48 @@ function filterTools() {
 }
 </script>
 
+<!-- YouTube Revenue Estimator -->
+<section class="calculator-card" id="youtube-calculator">
+  <h2>YouTube Revenue Estimator</h2>
+  <p>Estimate your potential YouTube earnings.</p>
+
+  <label for="yt-views">Monthly video views</label>
+  <input type="number" id="yt-views" min="0" placeholder="e.g. 100000">
+
+  <label for="yt-rpm">Estimated RPM (USD)</label>
+  <input type="number" id="yt-rpm" min="0" step="0.01" placeholder="e.g. 3">
+
+  <button type="button" onclick="calculateYoutubeRevenue()">
+    Calculate revenue
+  </button>
+
+  <div id="yt-result" aria-live="polite"></div>
+</section>
+
+<script>
+function calculateYoutubeRevenue() {
+  const views = Number(document.getElementById('yt-views').value);
+  const rpm = Number(document.getElementById('yt-rpm').value);
+  const result = document.getElementById('yt-result');
+
+  if (views < 0 || rpm < 0 ||
+      document.getElementById('yt-views').value === '' ||
+      document.getElementById('yt-rpm').value === '' ||
+      !Number.isFinite(views) || !Number.isFinite(rpm)) {
+    result.textContent = 'Please enter valid positive numbers.';
+    return;
+  }
+
+  const monthly = (views * rpm) / 1000;
+  const annual = monthly * 12;
+
+  result.innerHTML =
+    '<h3>Estimated monthly revenue: $' +
+    monthly.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) +
+    '</h3><p>Estimated annual revenue: $' +
+    annual.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) +
+    '</p>';
+}
+</script>
 </body>
 </html>
