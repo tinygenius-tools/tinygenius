@@ -5,14 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="TinyGenius provides simple, free online calculators and tools to make everyday decisions easier.">
   <title>TinyGenius — Small Tools. Big Answers.</title>
+
   <style>
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       color: #20243a;
       background: #f8f9ff;
     }
+
     header {
       padding: 22px 8%;
       display: flex;
@@ -21,24 +24,41 @@
       background: white;
       border-bottom: 1px solid #e9eaf2;
     }
-    .logo { font-size: 25px; font-weight: 800; color: #5145cd; }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      color: #5145cd;
+    }
+
     nav a {
       color: #555b70;
       text-decoration: none;
       margin-left: 22px;
       font-size: 14px;
     }
+
+    nav a:hover,
+    .card a:hover {
+      color: #493db5;
+    }
+
     .hero {
       text-align: center;
       padding: 85px 20px 65px;
       background: linear-gradient(135deg,#eeedff,#f5f8ff);
     }
+
     .hero h1 {
       font-size: clamp(38px,6vw,62px);
       margin: 0 0 16px;
       letter-spacing: -2px;
     }
-    .hero h1 span { color: #6355d9; }
+
+    .hero h1 span {
+      color: #6355d9;
+    }
+
     .hero p {
       color: #687087;
       font-size: 18px;
@@ -46,6 +66,7 @@
       max-width: 570px;
       margin: 0 auto 28px;
     }
+
     .search {
       width: min(520px,90%);
       padding: 16px 20px;
@@ -54,14 +75,29 @@
       font-size: 16px;
       outline-color: #6355d9;
     }
-    main { max-width: 1050px; margin: auto; padding: 55px 20px; }
-    .section-title { font-size: 27px; margin-bottom: 8px; }
-    .section-subtitle { color: #747b90; margin-bottom: 28px; }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 55px 20px;
+    }
+
+    .section-title {
+      font-size: 27px;
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      color: #747b90;
+      margin-bottom: 28px;
+    }
+
     .tools {
       display: grid;
       grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
       gap: 20px;
     }
+
     .card {
       background: white;
       padding: 25px;
@@ -69,9 +105,21 @@
       border-radius: 16px;
       box-shadow: 0 5px 20px rgba(40,40,90,.035);
     }
-    .card .emoji { font-size: 30px; }
-    .card h3 { margin: 15px 0 9px; }
-    .card p { color: #73798c; line-height: 1.6; font-size: 14px; }
+
+    .card .emoji {
+      font-size: 30px;
+    }
+
+    .card h3 {
+      margin: 15px 0 9px;
+    }
+
+    .card p {
+      color: #73798c;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
     .card a {
       display: inline-block;
       margin-top: 10px;
@@ -79,22 +127,49 @@
       font-weight: bold;
       text-decoration: none;
     }
+
     .calculator {
-      margin-top: 65px;
+      margin-top: 35px;
       background: white;
       border: 1px solid #e9eaf2;
       border-radius: 18px;
       padding: 30px;
-      max-width: 650px;
+      max-width: 720px;
+      box-shadow: 0 5px 20px rgba(40,40,90,.035);
     }
-    label { display: block; margin: 18px 0 8px; font-weight: 600; }
-    input {
+
+    .calculator h2 {
+      margin: 0 0 10px;
+      font-size: 26px;
+    }
+
+    .calculator > p {
+      color: #687087;
+      line-height: 1.6;
+    }
+
+    .field-label {
+      display: block;
+      margin: 18px 0 8px;
+      font-weight: 600;
+    }
+
+    input, select {
+      display: block;
       width: 100%;
       padding: 13px;
       border: 1px solid #dfe1ec;
       border-radius: 9px;
       font-size: 16px;
+      color: #20243a;
+      background: white;
     }
+
+    input:focus, select:focus {
+      outline: 2px solid #c9c4ff;
+      border-color: #6355d9;
+    }
+
     button {
       margin-top: 22px;
       background: #6355d9;
@@ -103,17 +178,50 @@
       border-radius: 9px;
       padding: 14px 23px;
       font-size: 15px;
+      font-weight: 600;
       cursor: pointer;
     }
-    button:hover { background: #493db5; }
-    #result {
+
+    button:hover {
+      background: #493db5;
+    }
+
+    .result {
       display: none;
       margin-top: 22px;
       background: #f0efff;
       padding: 20px;
       border-radius: 12px;
-      line-height: 1.7;
+      line-height: 1.8;
     }
+
+    .result strong {
+      color: #20243a;
+    }
+
+    .big-number {
+      display: inline-block;
+      margin: 5px 0;
+      color: #5145cd;
+      font-size: 30px;
+      font-weight: 800;
+    }
+
+    .note {
+      font-size: 12px;
+      color: #85899b;
+      margin-top: 18px;
+    }
+
+    #about {
+      margin-top: 65px;
+    }
+
+    #about p {
+      color: #73798c;
+      line-height: 1.8;
+    }
+
     footer {
       text-align: center;
       padding: 35px 15px;
@@ -122,12 +230,18 @@
       margin-top: 55px;
       font-size: 14px;
     }
+
     @media(max-width:600px) {
+      header { padding: 18px 5%; }
+      .logo { font-size: 22px; }
       nav a { margin-left: 10px; font-size: 12px; }
       .hero { padding-top: 60px; }
+      main { padding: 38px 16px; }
+      .calculator { padding: 22px; }
     }
   </style>
 </head>
+
 <body>
 
 <header>
@@ -140,17 +254,31 @@
 
 <section class="hero">
   <h1>Small tools.<br><span>Big answers.</span></h1>
-  <p>Useful online tools that simplify everyday decisions.
-     Calculate, discover and make smarter choices in seconds.</p>
-  <input class="search" id="search"
-    placeholder="Search for a tool..." oninput="filterTools()">
+
+  <p>
+    Useful online tools that simplify everyday decisions.
+    Calculate, discover and make smarter choices in seconds.
+  </p>
+
+  <input
+    class="search"
+    id="search"
+    type="search"
+    placeholder="Search for a tool..."
+    oninput="filterTools()"
+    aria-label="Search tools"
+  >
 </section>
 
 <main>
+
   <h2 class="section-title" id="tools">Explore our tools</h2>
-  <p class="section-subtitle">Simple solutions to everyday problems.</p>
+  <p class="section-subtitle">
+    Simple solutions to everyday problems.
+  </p>
 
   <div class="tools" id="toolGrid">
+
     <div class="card" data-name="freelance hourly rate pricing">
       <div class="emoji">💼</div>
       <h3>Freelance Rate Calculator</h3>
@@ -167,44 +295,146 @@
 
     <div class="card" data-name="youtube creator earnings revenue">
       <div class="emoji">🎥</div>
-      <h3>YouTube Earnings Estimator</h3>
-      <p>Explore estimated creator revenue based on views and assumptions.</p>
-      <a href="#calculator">Coming soon →</a>
+      <h3>YouTube Revenue Estimator</h3>
+      <p>Estimate potential creator revenue based on monthly views and RPM.</p>
+      <a href="#youtube-calculator">Calculate now →</a>
     </div>
+
   </div>
 
+  <!-- FREELANCE CALCULATOR -->
+
   <section class="calculator" id="calculator">
+
     <h2>Freelance Rate Calculator</h2>
-    <p>Estimate an hourly rate based on your income goal and working time.</p>
 
-    <label for="income">Desired annual income ($)</label>
-    <input type="number" id="income" value="60000" min="1">
+    <p>
+      Estimate an hourly rate based on your income goal and working time.
+    </p>
 
-    <label for="expenses">Annual business expenses ($)</label>
-    <input type="number" id="expenses" value="6000" min="0">
+    <label class="field-label" for="freelance-currency">
+      Currency
+    </label>
 
-    <label for="hours">Billable working hours per week</label>
-    <input type="number" id="hours" value="25" min="1" max="80">
+    <select id="freelance-currency">
+      <option value="USD" selected>USD — US Dollar ($)</option>
+      <option value="INR">INR — Indian Rupee (₹)</option>
+      <option value="GBP">GBP — British Pound (£)</option>
+      <option value="EUR">EUR — Euro (€)</option>
+      <option value="CAD">CAD — Canadian Dollar (C$)</option>
+      <option value="AUD">AUD — Australian Dollar (A$)</option>
+      <option value="AED">AED — UAE Dirham (د.إ)</option>
+    </select>
 
-    <label for="weeks">Working weeks per year</label>
-    <input type="number" id="weeks" value="48" min="1" max="52">
+    <label class="field-label" for="income">
+      Desired annual income
+    </label>
 
-    <button onclick="calculateRate()">Calculate my rate</button>
+    <input type="number" id="income" value="60000" min="1" step="any">
 
-    <div id="result" aria-live="polite"></div>
-    <p style="font-size:12px;color:#85899b">
+    <label class="field-label" for="expenses">
+      Annual business expenses
+    </label>
+
+    <input type="number" id="expenses" value="6000" min="0" step="any">
+
+    <label class="field-label" for="hours">
+      Billable working hours per week
+    </label>
+
+    <input type="number" id="hours" value="25" min="1" max="80" step="any">
+
+    <label class="field-label" for="weeks">
+      Working weeks per year
+    </label>
+
+    <input type="number" id="weeks" value="48" min="1" max="52" step="any">
+
+    <button type="button" onclick="calculateRate()">
+      Calculate my rate
+    </button>
+
+    <div class="result" id="result" aria-live="polite"></div>
+
+    <p class="note">
       Estimates are illustrative and exclude personal taxes and other individual circumstances.
     </p>
+
   </section>
 
-  <section id="about" style="margin-top:65px">
+  <!-- YOUTUBE REVENUE CALCULATOR -->
+
+  <section class="calculator" id="youtube-calculator">
+
+    <h2>YouTube Revenue Estimator</h2>
+
+    <p>
+      Estimate potential YouTube earnings using monthly views and your estimated RPM.
+    </p>
+
+    <label class="field-label" for="youtube-currency">
+      Currency
+    </label>
+
+    <select id="youtube-currency">
+      <option value="USD" selected>USD — US Dollar ($)</option>
+      <option value="INR">INR — Indian Rupee (₹)</option>
+      <option value="GBP">GBP — British Pound (£)</option>
+      <option value="EUR">EUR — Euro (€)</option>
+      <option value="CAD">CAD — Canadian Dollar (C$)</option>
+      <option value="AUD">AUD — Australian Dollar (A$)</option>
+      <option value="AED">AED — UAE Dirham (د.إ)</option>
+    </select>
+
+    <label class="field-label" for="yt-views">
+      Monthly video views
+    </label>
+
+    <input
+      type="number"
+      id="yt-views"
+      min="0"
+      step="1"
+      placeholder="e.g. 100000"
+    >
+
+    <label class="field-label" for="yt-rpm">
+      Estimated RPM (selected currency)
+    </label>
+
+    <input
+      type="number"
+      id="yt-rpm"
+      min="0"
+      step="0.01"
+      placeholder="e.g. 3"
+    >
+
+    <button type="button" onclick="calculateYoutubeRevenue()">
+      Calculate revenue
+    </button>
+
+    <div class="result" id="yt-result" aria-live="polite"></div>
+
+    <p class="note">
+      RPM means estimated revenue per 1,000 views. Actual earnings vary by audience,
+      content, ads and other factors. This tool does not convert currencies.
+    </p>
+
+  </section>
+
+  <section id="about">
+
     <h2 class="section-title">Why TinyGenius?</h2>
-    <p style="color:#73798c;line-height:1.8">
+
+    <p>
       We believe useful tools should be simple, accessible and easy to use.
       Our mission is to turn everyday questions into clear answers,
       without unnecessary complexity.
     </p>
+
   </section>
+
 </main>
 
 <footer>
@@ -212,88 +442,159 @@
 </footer>
 
 <script>
-function calculateRate() {
-  const income = Number(document.getElementById("income").value);
-  const expenses = Number(document.getElementById("expenses").value);
-  const hours = Number(document.getElementById("hours").value);
-  const weeks = Number(document.getElementById("weeks").value);
-  const result = document.getElementById("result");
 
-  if (!Number.isFinite(income) || !Number.isFinite(expenses) ||
-      !Number.isFinite(hours) || !Number.isFinite(weeks) ||
-      income <= 0 || expenses < 0 || hours <= 0 ||
-      hours > 80 || weeks < 1 || weeks > 52) {
+const currencySettings = {
+  USD: { locale: "en-US", currency: "USD" },
+  INR: { locale: "en-IN", currency: "INR" },
+  GBP: { locale: "en-GB", currency: "GBP" },
+  EUR: { locale: "de-DE", currency: "EUR" },
+  CAD: { locale: "en-CA", currency: "CAD" },
+  AUD: { locale: "en-AU", currency: "AUD" },
+  AED: { locale: "en-AE", currency: "AED" }
+};
+
+function formatMoney(amount, currencyCode) {
+
+  const settings =
+    currencySettings[currencyCode] || currencySettings.USD;
+
+  return new Intl.NumberFormat(settings.locale, {
+    style: "currency",
+    currency: settings.currency,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(amount);
+}
+
+function calculateRate() {
+
+  const income =
+    Number(document.getElementById("income").value);
+
+  const expenses =
+    Number(document.getElementById("expenses").value);
+
+  const hours =
+    Number(document.getElementById("hours").value);
+
+  const weeks =
+    Number(document.getElementById("weeks").value);
+
+  const currency =
+    document.getElementById("freelance-currency").value;
+
+  const result =
+    document.getElementById("result");
+
+  if (
+    !Number.isFinite(income) ||
+    !Number.isFinite(expenses) ||
+    !Number.isFinite(hours) ||
+    !Number.isFinite(weeks) ||
+    income <= 0 ||
+    expenses < 0 ||
+    hours <= 0 ||
+    hours > 80 ||
+    weeks < 1 ||
+    weeks > 52
+  ) {
+
     result.style.display = "block";
-    result.textContent = "Please enter valid numbers. Hours must be 1–80 and weeks 1–52.";
+
+    result.textContent =
+      "Please enter valid numbers. Hours must be 1–80 and weeks 1–52.";
+
     return;
   }
 
   const annualTarget = income + expenses;
-  const hourlyRate = annualTarget / (hours * weeks);
-  const monthlyTarget = annualTarget / 12;
+
+  const hourlyRate =
+    annualTarget / (hours * weeks);
+
+  const monthlyTarget =
+    annualTarget / 12;
 
   result.style.display = "block";
+
   result.innerHTML =
     "<strong>Your estimated minimum hourly rate:</strong><br>" +
-    "<span style='font-size:30px;color:#5145cd;font-weight:bold'>$" +
-    hourlyRate.toFixed(2) + "</span><br>" +
-    "Annual income and expenses target: $" +
-    annualTarget.toLocaleString("en-US", {maximumFractionDigits:2}) +
-    "<br>Monthly target: $" +
-    monthlyTarget.toLocaleString("en-US", {maximumFractionDigits:2}) +
+    "<span class='big-number'>" +
+    formatMoney(hourlyRate, currency) +
+    "</span><br>" +
+    "Annual income and expenses target: " +
+    formatMoney(annualTarget, currency) +
+    "<br>Monthly target: " +
+    formatMoney(monthlyTarget, currency) +
     "<br><small>This is a planning estimate, not a guaranteed market rate.</small>";
 }
 
-function filterTools() {
-  const query = document.getElementById("search").value.toLowerCase();
-  document.querySelectorAll(".card").forEach(card => {
-    card.style.display = card.dataset.name.includes(query) ? "" : "none";
-  });
-}
-</script>
-
-<!-- YouTube Revenue Estimator -->
-<section class="calculator-card" id="youtube-calculator">
-  <h2>YouTube Revenue Estimator</h2>
-  <p>Estimate your potential YouTube earnings.</p>
-
-  <label for="yt-views">Monthly video views</label>
-  <input type="number" id="yt-views" min="0" placeholder="e.g. 100000">
-
-  <label for="yt-rpm">Estimated RPM (USD)</label>
-  <input type="number" id="yt-rpm" min="0" step="0.01" placeholder="e.g. 3">
-
-  <button type="button" onclick="calculateYoutubeRevenue()">
-    Calculate revenue
-  </button>
-
-  <div id="yt-result" aria-live="polite"></div>
-</section>
-
-<script>
 function calculateYoutubeRevenue() {
-  const views = Number(document.getElementById('yt-views').value);
-  const rpm = Number(document.getElementById('yt-rpm').value);
-  const result = document.getElementById('yt-result');
 
-  if (views < 0 || rpm < 0 ||
-      document.getElementById('yt-views').value === '' ||
-      document.getElementById('yt-rpm').value === '' ||
-      !Number.isFinite(views) || !Number.isFinite(rpm)) {
-    result.textContent = 'Please enter valid positive numbers.';
+  const viewsInput =
+    document.getElementById("yt-views").value;
+
+  const rpmInput =
+    document.getElementById("yt-rpm").value;
+
+  const views = Number(viewsInput);
+
+  const rpm = Number(rpmInput);
+
+  const currency =
+    document.getElementById("youtube-currency").value;
+
+  const result =
+    document.getElementById("yt-result");
+
+  if (
+    viewsInput === "" ||
+    rpmInput === "" ||
+    !Number.isFinite(views) ||
+    !Number.isFinite(rpm) ||
+    views < 0 ||
+    rpm < 0
+  ) {
+
+    result.style.display = "block";
+
+    result.textContent =
+      "Please enter valid non-negative numbers for views and RPM.";
+
     return;
   }
 
-  const monthly = (views * rpm) / 1000;
-  const annual = monthly * 12;
+  const monthly =
+    (views * rpm) / 1000;
+
+  const annual =
+    monthly * 12;
+
+  result.style.display = "block";
 
   result.innerHTML =
-    '<h3>Estimated monthly revenue: $' +
-    monthly.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) +
-    '</h3><p>Estimated annual revenue: $' +
-    annual.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) +
-    '</p>';
+    "<strong>Estimated monthly revenue:</strong><br>" +
+    "<span class='big-number'>" +
+    formatMoney(monthly, currency) +
+    "</span><br>" +
+    "Estimated annual revenue: " +
+    formatMoney(annual, currency);
 }
+
+function filterTools() {
+
+  const query =
+    document.getElementById("search").value.toLowerCase().trim();
+
+  document.querySelectorAll(".card").forEach(card => {
+
+    card.style.display =
+      card.dataset.name.includes(query) ? "" : "none";
+
+  });
+}
+
 </script>
+
 </body>
 </html>
