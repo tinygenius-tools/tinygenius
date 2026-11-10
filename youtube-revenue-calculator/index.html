@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>YouTube Revenue Calculator – Estimate Your Earnings | TinyGenius</title>
+
+  <meta name="description" content="Estimate your YouTube earnings using monthly views and RPM. Free YouTube revenue calculator for creators, YouTubers and video publishers.">
+
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tinygenius-tools.github.io/tinygenius/youtube-revenue-calculator/">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8ff;
+      color: #20243a;
+      line-height: 1.7;
+    }
+
+    header {
+      background: white;
+      padding: 20px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .logo {
+      color: #6254df;
+      font-size: 25px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    header a.back {
+      color: #454b64;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 65px 20px 35px;
+      background: linear-gradient(135deg, #f0efff, #f8f8ff);
+    }
+
+    h1 {
+      font-size: clamp(30px, 5vw, 45px);
+      line-height: 1.2;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: auto;
+      color: #626982;
+      font-size: 17px;
+    }
+
+    .calculator {
+      background: white;
+      max-width: 650px;
+      margin: 35px auto;
+      padding: 32px;
+      border-radius: 18px;
+      box-shadow: 0 5px 25px rgba(30, 35, 80, 0.07);
+    }
+
+    .calculator h2 {
+      margin-bottom: 22px;
+      font-size: 23px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 17px 0 7px;
+      font-size: 14px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #dce0ed;
+      border-radius: 9px;
+      font-size: 16px;
+      background: white;
+      color: #20243a;
+    }
+
+    input:focus, select:focus {
+      outline: 2px solid #8d80ff;
+      border-color: #6254df;
+    }
+
+    button {
+      width: 100%;
+      background: #6254df;
+      color: white;
+      padding: 15px;
+      border: none;
+      border-radius: 9px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 25px;
+    }
+
+    button:hover {
+      background: #5042c5;
+    }
+
+    .result {
+      display: none;
+      margin-top: 25px;
+      padding: 22px;
+      border-radius: 12px;
+      background: #f0efff;
+      text-align: center;
+    }
+
+    .result strong {
+      display: block;
+      font-size: 35px;
+      color: #6254df;
+      margin: 8px 0;
+    }
+
+    .result p {
+      margin-top: 7px;
+      color: #555d78;
+    }
+
+    .content {
+      max-width: 850px;
+      margin: 55px auto;
+      padding: 0 22px;
+    }
+
+    .content h2 {
+      font-size: 25px;
+      margin: 30px 0 12px;
+    }
+
+    .content p {
+      color: #555d78;
+      margin-bottom: 15px;
+    }
+
+    .content ul {
+      padding-left: 25px;
+      color: #555d78;
+      margin-bottom: 20px;
+    }
+
+    .faq {
+      border-bottom: 1px solid #e2e4ee;
+      padding: 18px 0;
+    }
+
+    .faq h3 {
+      font-size: 17px;
+      margin-bottom: 7px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 15px;
+      background: white;
+      color: #747b91;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #6254df;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .calculator {
+        margin: 20px 14px;
+        padding: 23px;
+      }
+
+      .hero {
+        padding-top: 45px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <a class="logo" href="../">TinyGenius.</a>
+  <a class="back" href="../">Explore all tools →</a>
+</header>
+
+<section class="hero">
+  <h1>YouTube Revenue Calculator</h1>
+  <p>
+    Estimate how much your YouTube channel could earn
+    from monthly views. Calculate your potential monthly
+    and annual advertising revenue in seconds.
+  </p>
+</section>
+
+<section class="calculator">
+  <h2>Estimate Your YouTube Earnings</h2>
+
+  <label for="currency">Choose currency</label>
+  <select id="currency">
+    <option value="USD">USD ($)</option>
+    <option value="INR">INR (₹)</option>
+    <option value="GBP">GBP (£)</option>
+    <option value="EUR">EUR (€)</option>
+    <option value="CAD">CAD ($)</option>
+    <option value="AUD">AUD ($)</option>
+    <option value="AED">AED (د.إ)</option>
+  </select>
+
+  <label for="views">Monthly video views</label>
+  <input
+    id="views"
+    type="number"
+    min="0"
+    step="1"
+    value="100000"
+  >
+
+  <label for="rpm">Estimated RPM</label>
+  <input
+    id="rpm"
+    type="number"
+    min="0"
+    step="0.01"
+    value="3"
+  >
+
+  <button onclick="calculateRevenue()">
+    Calculate My YouTube Earnings
+  </button>
+
+  <div class="result" id="result" aria-live="polite">
+    <p>Estimated monthly revenue</p>
+    <strong id="monthlyRevenue"></strong>
+
+    <p id="annualRevenue"></p>
+    <p id="dailyRevenue"></p>
+  </div>
+
+  <p style="font-size:12px;color:#777;margin-top:15px;">
+    Estimates are illustrative and depend on actual RPM,
+    monetized views and YouTube revenue policies.
+  </p>
+</section>
+
+<main class="content">
+
+  <h2>What is a YouTube revenue calculator?</h2>
+
+  <p>
+    A YouTube revenue calculator helps creators estimate
+    their potential advertising earnings based on video
+    views and revenue per thousand views (RPM).
+  </p>
+
+  <p>
+    Whether you are a new YouTuber, an established creator
+    or a video publisher, understanding estimated revenue
+    can help you plan your content business.
+  </p>
+
+  <h2>How is YouTube revenue calculated?</h2>
+
+  <p>
+    This calculator uses the following formula:
+  </p>
+
+  <p>
+    <strong>
+      Estimated revenue = (Monthly views ÷ 1,000) × RPM
+    </strong>
+  </p>
+
+  <p>
+    RPM means Revenue Per Mille. It represents the revenue
+    a creator receives per 1,000 video views after YouTube's
+    revenue share, as reported in YouTube Analytics.
+  </p>
+
+  <h2>What factors affect YouTube earnings?</h2>
+
+  <ul>
+    <li>Audience location and demographics.</li>
+    <li>Video category and subject matter.</li>
+    <li>Advertiser demand and seasonal trends.</li>
+    <li>Video length and advertising opportunities.</li>
+    <li>Monetized playbacks and viewer engagement.</li>
+    <li>Differences between Shorts and long-form content.</li>
+  </ul>
+
+  <h2>What is a good YouTube RPM?</h2>
+
+  <p>
+    There is no universal RPM. It varies considerably
+    depending on audience, content category, geography,
+    video format and advertiser demand.
+  </p>
+
+  <p>
+    Use your actual RPM from YouTube Analytics whenever
+    possible. Any assumed RPM should be treated as a
+    scenario, not a guaranteed earning rate.
+  </p>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq">
+    <h3>How much does YouTube pay for 1,000 views?</h3>
+    <p>
+      Earnings vary according to RPM, content type,
+      audience location and monetization. Enter your
+      own estimated RPM to calculate potential revenue.
+    </p>
+  </div>
+
+  <div class="faq">
+    <h3>What does RPM mean on YouTube?</h3>
+    <p>
+      RPM means Revenue Per Mille. It estimates how much
+      a creator earns per 1,000 video views after
+      YouTube's revenue share.
+    </p>
+  </div>
+
+  <div class="faq">
+    <h3>Does this calculator guarantee YouTube earnings?</h3>
+    <p>
+      No. It provides an estimate based on your inputs.
+      Actual earnings can be different and are not guaranteed.
+    </p>
+  </div>
+
+  <div class="faq">
+    <h3>Does the currency selector convert exchange rates?</h3>
+    <p>
+      No. It changes the display currency only.
+      Enter your RPM in the currency you select.
+    </p>
+  </div>
+
+  <h2>Explore more free creator tools</h2>
+
+  <p>
+    Visit the <a href="../">TinyGenius homepage</a> to
+    explore practical calculators and online tools
+    for freelancers and content creators.
+  </p>
+
+</main>
+
+<footer>
+  <p>© 2026 TinyGenius. Small tools. Big answers.</p>
+  <p><a href="../">Back to TinyGenius homepage</a></p>
+</footer>
+
+<script>
+  const currencyFormats = {
+    USD: "en-US",
+    INR: "en-IN",
+    GBP: "en-GB",
+    EUR: "de-DE",
+    CAD: "en-CA",
+    AUD: "en-AU",
+    AED: "en-AE"
+  };
+
+  function formatMoney(amount, currency) {
+    return new Intl.NumberFormat(
+      currencyFormats[currency],
+      {
+        style: "currency",
+        currency: currency,
+        maximumFractionDigits: 2
+      }
+    ).format(amount);
+  }
+
+  function calculateRevenue() {
+    const views = Number(
+      document.getElementById("views").value
+    );
+
+    const rpm = Number(
+      document.getElementById("rpm").value
+    );
+
+    const currency =
+      document.getElementById("currency").value;
+
+    if (
+      !Number.isFinite(views) ||
+      !Number.isFinite(rpm) ||
+      views < 0 ||
+      rpm < 0
+    ) {
+      alert("Please enter valid non-negative values.");
+      return;
+    }
+
+    const monthly = (views / 1000) * rpm;
+    const annual = monthly * 12;
+    const daily = monthly / 30;
+
+    document.getElementById("monthlyRevenue").textContent =
+      formatMoney(monthly, currency);
+
+    document.getElementById("annualRevenue").textContent =
+      "Estimated annual revenue: " +
+      formatMoney(annual, currency);
+
+    document.getElementById("dailyRevenue").textContent =
+      "Estimated daily average: " +
+      formatMoney(daily, currency);
+
+    document.getElementById("result").style.display = "block";
+  }
+</script>
+
+</body>
+</html>
