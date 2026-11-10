@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>UGC Pricing Calculator – How Much Should You Charge? | TinyGenius</title>
+
+<meta name="description" content="Calculate how much to charge brands for UGC videos, editing, usage rights, revisions and raw footage with our free UGC Pricing Calculator.">
+
+<link rel="canonical" href="https://tinygenius-tools.github.io/tinygenius/ugc-pricing-calculator/">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f6f7fb;
+  color: #20243a;
+  line-height: 1.6;
+}
+
+header {
+  text-align: center;
+  padding: 30px 15px;
+}
+
+header a {
+  color: #6855d9;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 720px;
+  margin: 10px auto 40px;
+  padding: 0 16px;
+}
+
+.card {
+  background: white;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.06);
+}
+
+h1 { text-align: center; line-height: 1.25; }
+
+.intro {
+  text-align: center;
+  color: #656b7b;
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin: 17px 0 6px;
+}
+
+input, select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #d9dce7;
+  border-radius: 9px;
+  font-size: 16px;
+  background: white;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 24px;
+  background: #6855d9;
+  color: white;
+  border: none;
+  border-radius: 9px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover { background: #5140bb; }
+
+.result {
+  display: none;
+  margin-top: 25px;
+  padding: 22px;
+  background: #f0edff;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.total {
+  font-size: 32px;
+  font-weight: bold;
+  color: #5140bb;
+  margin: 8px 0;
+}
+
+.breakdown {
+  text-align: left;
+  margin-top: 18px;
+}
+
+.breakdown div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #ded9f5;
+}
+
+.info {
+  background: white;
+  padding: 24px;
+  border-radius: 14px;
+  margin-top: 22px;
+}
+
+.info h2 { font-size: 21px; }
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #656b7b;
+}
+
+footer a {
+  color: #6855d9;
+  text-decoration: none;
+  margin: 5px;
+}
+
+@media(max-width: 500px) {
+  .card { padding: 20px; }
+  .total { font-size: 27px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="../">← TinyGenius Home</a>
+</header>
+
+<main class="container">
+
+<div class="card">
+
+<h1>UGC Pricing Calculator</h1>
+
+<p class="intro">
+Calculate what to charge brands for creating user-generated content.
+</p>
+
+<label for="currency">Currency</label>
+<select id="currency">
+  <option value="USD">USD ($)</option>
+  <option value="INR">INR (₹)</option>
+  <option value="GBP">GBP (£)</option>
+  <option value="EUR">EUR (€)</option>
+  <option value="CAD">CAD ($)</option>
+  <option value="AUD">AUD ($)</option>
+  <option value="AED">AED (د.إ)</option>
+</select>
+
+<label for="creation">Video creation fee</label>
+<input type="number" id="creation" min="0" value="100">
+
+<label for="editing">Editing fee</label>
+<input type="number" id="editing" min="0" value="30">
+
+<label for="usage">Usage rights fee</label>
+<input type="number" id="usage" min="0" value="50">
+
+<label for="revisions">Additional revisions fee</label>
+<input type="number" id="revisions" min="0" value="20">
+
+<label for="raw">Raw footage fee</label>
+<input type="number" id="raw" min="0" value="0">
+
+<button onclick="calculate()">Calculate My UGC Price</button>
+
+<div class="result" id="result">
+  <div>Your suggested project quote</div>
+  <div class="total" id="total"></div>
+
+  <div class="breakdown">
+    <div><span>Video creation</span><strong id="bCreation"></strong></div>
+    <div><span>Editing</span><strong id="bEditing"></strong></div>
+    <div><span>Usage rights</span><strong id="bUsage"></strong></div>
+    <div><span>Additional revisions</span><strong id="bRevisions"></strong></div>
+    <div><span>Raw footage</span><strong id="bRaw"></strong></div>
+    <div><strong>Total project quote</strong><strong id="bTotal"></strong></div>
+  </div>
+</div>
+
+</div>
+
+<section class="info">
+<h2>What is UGC pricing?</h2>
+<p>
+User-Generated Content (UGC) is content created by individuals for brands to use in marketing. UGC creators may produce product demonstrations, testimonials, unboxing videos and short-form advertisements.
+</p>
+
+<h2>How is the price calculated?</h2>
+<p>
+Your suggested quote is the sum of your video creation fee, editing fee, usage rights, additional revisions and raw footage charges.
+</p>
+
+<h2>Frequently asked questions</h2>
+
+<h3>Do I need a large following to become a UGC creator?</h3>
+<p>No. UGC creators are generally paid for producing content, not necessarily for their follower count.</p>
+
+<h3>What are usage rights?</h3>
+<p>Usage rights describe how and where a brand can use your content, including whether it can use it in paid advertisements.</p>
+
+<h3>Is this a guaranteed market rate?</h3>
+<p>No. This calculator provides an estimate based on the fees you enter. Actual prices depend on experience, content complexity, licensing terms and client budgets.</p>
+</section>
+
+</main>
+
+<footer>
+  <p>Small tools. Big answers.</p>
+  <a href="../">Home</a> |
+  <a href="../freelance-rate-calculator/">Freelance Rate Calculator</a> |
+  <a href="../youtube-revenue-calculator/">YouTube Revenue Calculator</a>
+</footer>
+
+<script>
+function calculate() {
+  const fields = ["creation", "editing", "usage", "revisions", "raw"];
+  const values = {};
+
+  for (const field of fields) {
+    const value = Number(document.getElementById(field).value);
+
+    if (!Number.isFinite(value) || value < 0) {
+      alert("Please enter valid non-negative amounts.");
+      return;
+    }
+
+    values[field] = value;
+  }
+
+  const total = Object.values(values).reduce((sum, value) => sum + value, 0);
+  const currency = document.getElementById("currency").value;
+
+  const formatter = new Intl.NumberFormat("en", {
+    style: "currency",
+    currency: currency,
+    maximumFractionDigits: 2
+  });
+
+  document.getElementById("total").textContent = formatter.format(total);
+  document.getElementById("bTotal").textContent = formatter.format(total);
+
+  const outputIds = {
+    creation: "bCreation",
+    editing: "bEditing",
+    usage: "bUsage",
+    revisions: "bRevisions",
+    raw: "bRaw"
+  };
+
+  for (const field of fields) {
+    document.getElementById(outputIds[field]).textContent =
+      formatter.format(values[field]);
+  }
+
+  document.getElementById("result").style.display = "block";
+}
+</script>
+
+</body>
+</html>
