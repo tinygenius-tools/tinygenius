@@ -2,25 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://tinygenius-tools.github.io/tinygenius/</loc>
+    <loc>https://tinygenius.tools/</loc>
   </url>
 
   <url>
-    <loc>https://tinygenius-tools.github.io/tinygenius/freelance-rate-calculator/</loc>
+    <loc>https://tinygenius.tools/freelance-rate-calculator/</loc>
   </url>
 
   <url>
-    <loc>https://tinygenius-tools.github.io/tinygenius/youtube-revenue-calculator/</loc>
+    <loc>https://tinygenius.tools/youtube-revenue-calculator/</loc>
   </url>
 
   <url>
-    <loc>https://tinygenius-tools.github.io/tinygenius/ugc-pricing-calculator/</loc>
+    <loc>https://tinygenius.tools/ugc-pricing-calculator/</loc>
   </url>
-<url>
-  <loc>https://tinygenius-tools.github.io/tinygenius/privacy-policy/</loc>
-</url>
 
-<url>
-  <loc>https://tinygenius-tools.github.io/tinygenius/terms-of-use/</loc>
-</url>
+  <url>
+    <loc>https://tinygenius.tools/privacy-policy/</loc>
+  </url>
+
+  <url>
+    <loc>https://tinygenius.tools/terms-of-use/</loc>
+  </url>
+
 </urlset>
