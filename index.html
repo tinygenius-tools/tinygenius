@@ -554,30 +554,37 @@
 </footer>
 
 <script>
-  function filterTools() {
+function filterTools() {
+    const query = document
+        .getElementById("search")
+        .value
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, " ");
 
-    const query =
-      document.getElementById("search").value.toLowerCase().trim();
+    const searchWords = query.split(" ").filter(Boolean);
 
-    const cards =
-      document.querySelectorAll(".tool-card");
-
+    const cards = document.querySelectorAll(".tool-card");
     let visibleCount = 0;
 
     cards.forEach(card => {
+        const cardText = card.textContent
+            .toLowerCase()
+            .replace(/\s+/g, " ")
+            .trim();
 
-      const matches = card.dataset.name.includes(query);
+        const matches = searchWords.every(word =>
+            cardText.includes(word)
+        );
 
-      card.style.display = matches ? "" : "none";
+        card.style.display = matches ? "" : "none";
 
-      if (matches) visibleCount++;
-
+        if (matches) visibleCount++;
     });
 
     document.getElementById("noResults").style.display =
-      visibleCount === 0 ? "block" : "none";
-
-  }
+        visibleCount === 0 ? "block" : "none";
+}
 </script>
 
 </body>
