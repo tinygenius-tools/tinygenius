@@ -28,11 +28,6 @@ details{border:1px solid var(--line);border-radius:12px;padding:12px 13px;margin
 .message{background:#f8fafc;border:1px solid var(--line);border-radius:13px;padding:13px;margin-top:14px}.message textarea{min-height:185px;line-height:1.6;background:#fff;font-size:12px}.messagebar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px}.messagebar b{font-size:10px;letter-spacing:.7px;color:var(--muted);text-transform:uppercase}
 .receipt{border:1px solid var(--line);border-radius:13px;padding:15px;margin-top:13px}.receipt h3{color:var(--navy);font-size:15px;margin:0 0 8px}.receipt-row{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid #edf0f3;font-size:11px}.receipt-row:last-child{border:0}.receipt-row span:first-child{color:var(--muted)}.outcome{margin-top:14px;padding:14px;background:#f7f9fb;border:1px solid var(--line);border-radius:12px}.outcome p{font-size:11px;color:var(--muted);margin:4px 0 10px}
 .overlay{position:fixed;inset:0;background:rgba(17,30,45,.58);z-index:20;display:none;align-items:center;justify-content:center;padding:16px}.overlay.show{display:flex}.modal{width:min(470px,100%);background:#fff;border-radius:21px;padding:25px;box-shadow:0 24px 70px rgba(0,0,0,.2);position:relative}.modal h2{font-size:24px;color:var(--navy);line-height:1.2;margin:8px 0}.modal p{font-size:12px;color:var(--muted)}.close{position:absolute;right:15px;top:12px;border:0;background:none;font-size:22px;color:var(--muted)}.amounts{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:15px 0}.amounts button{padding:11px 4px;border:1px solid var(--line);background:white;border-radius:9px;font-weight:800;color:var(--navy)}.amounts button.selected{border:2px solid var(--teal);background:var(--tealbg);padding:10px 3px}.modal-actions{display:flex;gap:8px;margin-top:15px}.modal-actions button{flex:1}.modal small{font-size:9px;color:#8995a2;display:block;margin-top:13px}
-.rating-stars{display:flex;gap:8px;margin:17px 0 12px}
-.rating-stars button{border:1px solid var(--line);background:#fff;border-radius:10px;color:#8b97a4;font-size:25px;line-height:1;padding:8px 11px;min-width:44px}
-.rating-stars button[aria-pressed="true"]{color:#B98224;border-color:#D5A34A;background:#FFF8E9}
-.feedback-note{font-size:10px!important;color:#8995a2!important;margin-top:10px}
-#feedbackOverlay .modal textarea{min-height:90px;margin-top:6px}
 .footer{text-align:center;font-size:10px;color:#8b97a4;margin-top:22px}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--navy);color:white;padding:10px 15px;border-radius:10px;font-size:11px;display:none;z-index:30;max-width:90vw}
 @media(max-width:850px){.level-status{text-align:left;max-width:none}.level-picker{align-items:stretch;width:100%}.shell{grid-template-columns:1fr}.aside{position:static}.hero{align-items:flex-start;flex-direction:column}.levels{width:100%}.levels button{flex:1}.topright{display:none}}
 @media(max-width:560px){.top{padding:11px 14px}.wrap{padding:22px 12px 38px}.main{padding:16px}.aside{padding:16px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.strategies{grid-template-columns:1fr}.strategy{min-height:0;padding:11px}.strategy.selected{padding:10px}.metrics{grid-template-columns:1fr 1fr}.metric:last-child{grid-column:1/-1}.head h2{font-size:17px}.step-label{font-size:9px}.actions{align-items:stretch}.actions .btn{padding:11px 12px}.actions .hint{max-width:45%}.two{grid-template-columns:1fr}.modal{padding:21px 17px}.hero p{font-size:13px}}
@@ -107,7 +102,7 @@ details{border:1px solid var(--line);border-radius:12px;padding:12px 13px;margin
   @page { margin: 16mm; }
   html, body { background:#fff !important; color:#1f2937 !important; }
   .top, .hero, .aside, .footer, .progress, #s1, #s2, #s3, #s4,
-  #print, #done, #supportOverlay, #feedbackOverlay, .toast { display:none !important; }
+  #print, #done, .toast { display:none !important; }
   .wrap { max-width:none !important; margin:0 !important; padding:0 !important; }
   .shell { display:block !important; }
   .main { border:0 !important; box-shadow:none !important; padding:0 !important; }
@@ -253,60 +248,20 @@ details{border:1px solid var(--line);border-radius:12px;padding:12px 13px;margin
    <div class="fine">*Estimates before personal income tax. The minimum quote is calculated from your own target, hours, costs and fees—not from market-rate data. No legal, tax or investment advice.</div>
   </aside>
  </div>
- <div class="footer">TINYGENIUS FAIR &amp; JUST · INTERACTIVE PREVIEW · FIX20 · NOT A LIVE SERVICE</div>
+ <div class="footer">TINYGENIUS FAIR &amp; JUST · VERSION 1.0</div>
 </main>
-<div class="overlay" id="supportOverlay" role="dialog" aria-modal="true" aria-labelledby="supportTitle">
- <section class="modal">
-  <button class="close" id="closeSupport" aria-label="Close">×</button>
-  <div class="eyebrow">Only if this genuinely helped</div>
-  <h2 id="supportTitle">Help keep fair-deal tools accessible.</h2>
-  <p>You reported a successful outcome. If Fair &amp; Just helped you prepare for it, you can voluntarily support the work behind TinyGenius. All core tools remain free whether you contribute or not.</p>
-  <div class="amounts"><button data-amount="1">$1</button><button data-amount="3">$3</button><button class="selected" data-amount="5">$5</button><button data-amount="10">$10</button></div>
-  <div class="field"><label for="customAmount">Or enter another amount (USD)</label><input id="customAmount" type="number" min="1" max="10000" step="0.01" inputmode="decimal" placeholder="e.g. 2.50"></div>
-  <div class="modal-actions"><button class="btn primary" id="supportContinue">Continue</button><button class="btn secondary" id="supportLater">Maybe later</button></div>
-  <small id="supportCurrencyHint">Contributions are always in US dollars (USD), regardless of your negotiation currency. Entirely optional. Payment processing is not connected in this prototype; no money will be collected. Your negotiation record is available regardless of your choice.</small>
-  <p id="supportThanks" class="hidden" style="color:var(--teal);font-weight:750"></p>
-  <button class="btn secondary hidden" id="supportFeedbackContinue" style="width:100%;margin-top:10px">Continue to feedback</button>
- </section>
-</div>
-<div class="overlay" id="feedbackOverlay" role="dialog" aria-modal="true" aria-labelledby="feedbackTitle">
- <section class="modal">
-  <button class="close" id="closeFeedback" aria-label="Close">×</button>
-  <div class="eyebrow">Optional product feedback</div>
-  <h2 id="feedbackTitle">How was your Fair &amp; Just experience?</h2>
-  <p>Your honest feedback helps us improve the product. Your rating is entirely optional.</p>
-  <div class="rating-stars" role="group" aria-label="Rate your experience from one to five stars">
-   <button type="button" data-rating="1" aria-label="1 star" aria-pressed="false">★</button>
-   <button type="button" data-rating="2" aria-label="2 stars" aria-pressed="false">★</button>
-   <button type="button" data-rating="3" aria-label="3 stars" aria-pressed="false">★</button>
-   <button type="button" data-rating="4" aria-label="4 stars" aria-pressed="false">★</button>
-   <button type="button" data-rating="5" aria-label="5 stars" aria-pressed="false">★</button>
-  </div>
-  <div class="field"><label for="feedbackComment">Anything we could improve? (optional)</label><textarea id="feedbackComment" rows="3" placeholder="Share a thought, suggestion or issue..."></textarea></div>
-  <div class="modal-actions"><button class="btn primary" id="submitFeedback">Finish</button><button class="btn secondary" id="skipFeedback">Skip</button></div>
-  <small class="feedback-note">Feedback submission is not connected in this prototype. Nothing you enter here is sent or stored.</small>
-  <p id="feedbackThanks" class="hidden" style="color:var(--teal);font-weight:750"></p>
- </section>
-</div>
+
+
 <div class="toast" id="toast" role="status"></div>
 <script>
 const $=id=>document.getElementById(id);
-let level='beginner',strategy='price',data=null,selectedAmount=5,receiptMade=false;
+let level='beginner',strategy='price',data=null,receiptMade=false;
 initTheme();
 const currencyLocales={USD:'en-US',INR:'en-IN',CNY:'zh-CN',GBP:'en-GB',EUR:'en-IE',CAD:'en-CA',AUD:'en-AU',AED:'en-AE',SGD:'en-SG',JPY:'ja-JP',CHF:'de-CH',NZD:'en-NZ',HKD:'zh-HK',SAR:'en-SA',ZAR:'en-ZA',BRL:'pt-BR',MXN:'es-MX',KRW:'ko-KR',SEK:'sv-SE',NOK:'nb-NO',DKK:'da-DK',PLN:'pl-PL',THB:'th-TH',MYR:'ms-MY',PHP:'en-PH',IDR:'id-ID',TRY:'tr-TR'};
 const currencyFractionDigits={JPY:0,KRW:0,IDR:0};
 const fmt=n=>{const code=$('currency').value||'USD';const value=Number(n);if(!Number.isFinite(value))return '—';try{const digits=currencyFractionDigits[code];const options={style:'currency',currency:code,currencyDisplay:'symbol'};if(digits!==undefined){options.minimumFractionDigits=digits;options.maximumFractionDigits=digits;}const formatted=new Intl.NumberFormat(currencyLocales[code]||'en-US',options).format(value);return formatted.includes(code)?formatted:formatted+' '+code;}catch(e){return value.toFixed(currencyFractionDigits[code]??2)+' '+code;}};
 function initCurrency(){let saved='USD';try{saved=localStorage.getItem('tinygenius-currency')||'USD'}catch(e){}if($('currency')&&[...$('currency').options].some(o=>o.value===saved))$('currency').value=saved;$('currency').addEventListener('change',()=>{try{localStorage.setItem('tinygenius-currency',$('currency').value)}catch(e){}});}
-function fmtUSD(n){const value=Number(n);if(!Number.isFinite(value))return '—';return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2}).format(value);}
-initCurrency();
 
-function applyTheme(value){
- const allowed=['system','light','dark'];const theme=allowed.includes(value)?value:'system';
- document.documentElement.dataset.theme=theme;
- document.documentElement.classList.toggle('system-dark',theme==='system'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);
- const picker=$('themeSelect');if(picker&&picker.value!==theme)picker.value=theme;
- const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.setAttribute('content',theme==='dark'||(theme==='system'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'#111A24':'#23364D');
-}
 function initTheme(){let saved='system';try{saved=localStorage.getItem('tinygenius-theme')||'system'}catch(e){}applyTheme(saved);$('themeSelect').addEventListener('change',e=>{applyTheme(e.target.value);try{localStorage.setItem('tinygenius-theme',e.target.value)}catch(err){}});if(window.matchMedia){const mq=window.matchMedia('(prefers-color-scheme: dark)');const sync=()=>{let current='system';try{current=localStorage.getItem('tinygenius-theme')||'system'}catch(e){}if(current==='system')applyTheme('system')};if(mq.addEventListener)mq.addEventListener('change',sync);else if(mq.addListener)mq.addListener(sync)}}
 
 function toast(t){$('toast').textContent=t;$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',2200)}
@@ -448,23 +403,9 @@ function createReceipt(){
  $('receiptSub').textContent='Private working record · Self-reported information · Not proof of payment, an invoice or a signed contract.';
  receiptMade=true;go(5);return true;
 }
-$('makeReceipt').onclick=()=>{const made=createReceipt();if(made && $('result').value==='success')setTimeout(()=>$('supportOverlay').classList.add('show'),450)};
+$('makeReceipt').onclick=createReceipt;
 $('print').onclick=()=>window.print();
-$('done').onclick=()=>{$('supportOverlay').classList.remove('show');$('feedbackOverlay').classList.remove('show');go(1);$('recordName').value='';toast('Your record is ready. You can start another negotiation.')};
-function openFeedback(){ $('supportOverlay').classList.remove('show'); $('feedbackOverlay').classList.add('show'); }
-function finishFeedback(){ $('feedbackOverlay').classList.remove('show'); }
-$('closeSupport').onclick=openFeedback;
-$('supportLater').onclick=openFeedback;
-document.querySelectorAll('[data-amount]').forEach(b=>b.onclick=()=>{selectedAmount=Number(b.dataset.amount);$('customAmount').value='';document.querySelectorAll('[data-amount]').forEach(x=>x.classList.toggle('selected',x===b))});
-$('customAmount').oninput=()=>{if($('customAmount').value)document.querySelectorAll('[data-amount]').forEach(x=>x.classList.remove('selected'))};
-$('supportContinue').onclick=()=>{const v=$('customAmount').value?Number($('customAmount').value):selectedAmount;if(!Number.isFinite(v)||v<1||v>10000){toast('Enter a USD contribution between $1 and $10,000.');return}$('supportThanks').textContent='Thank you for considering a contribution of '+fmtUSD(v)+'. Payment is not enabled in this prototype; no payment has been made.';$('supportThanks').classList.remove('hidden');$('supportFeedbackContinue').classList.remove('hidden');$('supportContinue').classList.add('hidden')};
-$('supportFeedbackContinue').onclick=openFeedback;
-let selectedRating=0;
-document.querySelectorAll('[data-rating]').forEach(b=>b.onclick=()=>{selectedRating=Number(b.dataset.rating);document.querySelectorAll('[data-rating]').forEach(x=>{const n=Number(x.dataset.rating);x.setAttribute('aria-pressed',String(n<=selectedRating))})});
-$('submitFeedback').onclick=()=>{$('feedbackThanks').textContent='Thank you for taking the time to share your thoughts. Feedback is not submitted or stored in this prototype.';$('feedbackThanks').classList.remove('hidden');$('submitFeedback').classList.add('hidden');$('skipFeedback').textContent='Close';};
-$('skipFeedback').onclick=finishFeedback;
-$('closeFeedback').onclick=finishFeedback;
-window.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('feedbackOverlay').classList.contains('show'))finishFeedback();else if($('supportOverlay').classList.contains('show'))openFeedback()}});
+$('done').onclick=()=>{go(1);$('recordName').value='';toast('Your record is ready. You can start another negotiation.')};
 </script>
 <footer style="max-width:1180px;margin:0 auto;padding:18px 20px 30px;text-align:center;color:var(--muted);font-size:12px"><a href="../" style="color:inherit">Return to TinyGenius home</a></footer>
 </body>
