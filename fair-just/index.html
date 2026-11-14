@@ -278,7 +278,7 @@ function getData(){
  const net=O*(1-F)-C,rate=net/H,min=(T*H+C)/(1-F);
  return {O,H,T,C,F,net,rate,min};
 }
-function setLevel(v){level=v;document.querySelectorAll('[data-level]').forEach(b=>b.classList.toggle('active',b.dataset.level===v));['a1','a2','a3','a4'].forEach(id=>$(id).open=false);const messages={beginner:'Beginner selected: a simple guided experience with only the essential questions.',intermediate:'Intermediate selected: optional financial and risk details are available whenever you need them.',expert:'Expert selected: advanced analysis and strategy controls are available whenever you choose to open them.'};$('levelStatus').textContent=messages[v];go(1);$('workType').focus({preventScroll:true})}
+function setLevel(v){level=v;document.querySelectorAll('[data-level]').forEach(b=>b.classList.toggle('active',b.dataset.level===v));const panels={beginner:[],intermediate:['a1','a2'],expert:['a1','a2','a3','a4']};['a1','a2','a3','a4'].forEach(id=>$(id).open=panels[v].includes(id));const messages={beginner:'Beginner selected: a simple guided experience with only the essential questions.',intermediate:'Intermediate selected: you can also use the financial and risk details when they are relevant.',expert:'Expert selected: all advanced analysis and strategy controls are available.'};$('levelStatus').textContent=messages[v];go(1);$('workType').focus({preventScroll:true})}
 document.querySelectorAll('[data-level]').forEach(b=>b.onclick=()=>setLevel(b.dataset.level));
 document.querySelectorAll('[data-skip-details]').forEach(b=>b.addEventListener('click',()=>{const d=$(b.dataset.skipDetails);if(d)d.open=false}));
 function runDealReview(){
