@@ -250,8 +250,6 @@ details{border:1px solid var(--line);border-radius:12px;padding:12px 13px;margin
  </div>
  <div class="footer">TINYGENIUS FAIR &amp; JUST · VERSION 1.0</div>
 </main>
-
-
 <div class="toast" id="toast" role="status"></div>
 <script>
 const $=id=>document.getElementById(id);
@@ -261,7 +259,15 @@ const currencyLocales={USD:'en-US',INR:'en-IN',CNY:'zh-CN',GBP:'en-GB',EUR:'en-I
 const currencyFractionDigits={JPY:0,KRW:0,IDR:0};
 const fmt=n=>{const code=$('currency').value||'USD';const value=Number(n);if(!Number.isFinite(value))return '—';try{const digits=currencyFractionDigits[code];const options={style:'currency',currency:code,currencyDisplay:'symbol'};if(digits!==undefined){options.minimumFractionDigits=digits;options.maximumFractionDigits=digits;}const formatted=new Intl.NumberFormat(currencyLocales[code]||'en-US',options).format(value);return formatted.includes(code)?formatted:formatted+' '+code;}catch(e){return value.toFixed(currencyFractionDigits[code]??2)+' '+code;}};
 function initCurrency(){let saved='USD';try{saved=localStorage.getItem('tinygenius-currency')||'USD'}catch(e){}if($('currency')&&[...$('currency').options].some(o=>o.value===saved))$('currency').value=saved;$('currency').addEventListener('change',()=>{try{localStorage.setItem('tinygenius-currency',$('currency').value)}catch(e){}});}
+initCurrency();
 
+function applyTheme(value){
+ const allowed=['system','light','dark'];const theme=allowed.includes(value)?value:'system';
+ document.documentElement.dataset.theme=theme;
+ document.documentElement.classList.toggle('system-dark',theme==='system'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);
+ const picker=$('themeSelect');if(picker&&picker.value!==theme)picker.value=theme;
+ const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.setAttribute('content',theme==='dark'||(theme==='system'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'#111A24':'#23364D');
+}
 function initTheme(){let saved='system';try{saved=localStorage.getItem('tinygenius-theme')||'system'}catch(e){}applyTheme(saved);$('themeSelect').addEventListener('change',e=>{applyTheme(e.target.value);try{localStorage.setItem('tinygenius-theme',e.target.value)}catch(err){}});if(window.matchMedia){const mq=window.matchMedia('(prefers-color-scheme: dark)');const sync=()=>{let current='system';try{current=localStorage.getItem('tinygenius-theme')||'system'}catch(e){}if(current==='system')applyTheme('system')};if(mq.addEventListener)mq.addEventListener('change',sync);else if(mq.addListener)mq.addListener(sync)}}
 
 function toast(t){$('toast').textContent=t;$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',2200)}
