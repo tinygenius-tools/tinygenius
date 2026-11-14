@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#23364D">
+<meta name="description" content="Fair & Just by TinyGenius helps freelancers and creators assess offers, protect scope and usage rights, compare negotiation strategies, and prepare clearer client responses.">
+<link rel="canonical" href="https://tinygenius.tools/fair-just/">
+<title>TinyGenius Fair &amp; Just — Negotiation Copilot</title>
+<style>
+:root{--navy:#23364D;--navy2:#314B67;--ink:#243447;--muted:#69798B;--bg:#F5F7FA;--white:#fff;--line:#E1E7EE;--teal:#397A68;--tealbg:#EAF3EF;--bluebg:#EEF3F8;--gold:#D5A34A;--red:#A64E4E;--shadow:0 12px 32px rgba(35,54,77,.07);--r:18px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #9bb9d1;outline-offset:2px}
+.top{background:#fff;border-bottom:1px solid var(--line);padding:14px max(18px,calc((100% - 1180px)/2));display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{display:flex;align-items:center;gap:10px}.logo{height:39px;width:39px;border-radius:12px;background:var(--navy);color:white;display:grid;place-items:center;font-weight:850}.brand strong{display:block;color:var(--navy);font-size:15px}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:1px;text-transform:uppercase}.topright{font-size:11px;color:var(--muted)}
+.wrap{max-width:1180px;margin:auto;padding:30px 20px 55px}.hero{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:22px}.eyebrow{font-size:10px;letter-spacing:1.25px;text-transform:uppercase;color:var(--teal);font-weight:850}.hero h1{font-size:clamp(27px,4vw,38px);line-height:1.1;letter-spacing:-1.2px;color:var(--navy);margin:7px 0}.hero p{color:var(--muted);margin:0;max-width:690px;font-size:14px}
+.level-picker{display:flex;flex-direction:column;gap:6px;align-items:flex-end}.level-caption{font-size:11px;color:var(--muted)}.level-status{font-size:11px;color:var(--muted);margin:5px 0 0;max-width:320px;text-align:right}.skip-row{display:flex;justify-content:flex-end;margin:10px 0 0}.skip-btn{border:0;background:transparent;color:var(--muted);font-size:12px;text-decoration:underline;padding:7px 2px}.skip-btn:hover{color:var(--navy)}.optional-note{font-size:11px;color:var(--muted);font-weight:500;margin-left:6px}.levels{display:flex;background:#fff;border:1px solid var(--line);border-radius:12px;padding:4px;gap:3px;flex-shrink:0}.levels button{border:0;background:transparent;color:var(--muted);font-size:11px;font-weight:750;padding:9px 12px;border-radius:9px}.levels button.active{background:var(--navy);color:#fff}
+.shell{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(270px,.75fr);gap:18px;align-items:start}.panel{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}.main{padding:24px}.aside{padding:20px;position:sticky;top:14px}.progress{display:flex;gap:6px;margin-bottom:20px}.progress i{height:4px;flex:1;background:#e8edf2;border-radius:5px}.progress i.done{background:var(--teal)}
+.head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:17px}.head h2{font-size:19px;color:var(--navy);margin:0;letter-spacing:-.4px}.step-label{font-size:10px;color:var(--muted);font-weight:750;white-space:nowrap}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:5px;min-width:0}.field.full{grid-column:1/-1}label{font-size:11px;font-weight:750;color:#42546a}input,select,textarea{width:100%;border:1px solid #d7e0e9;border-radius:10px;padding:10px 11px;background:white;color:var(--ink);min-width:0}textarea{resize:vertical}input:focus,select:focus,textarea:focus{border-color:#6c9a8b;outline:none;box-shadow:0 0 0 3px rgba(57,122,104,.1)}.hint{font-size:10px;color:var(--muted)}
+details{border:1px solid var(--line);border-radius:12px;padding:12px 13px;margin-top:15px;background:#fbfcfd}summary{cursor:pointer;list-style:none;font-size:12px;font-weight:800;color:var(--navy);display:flex;justify-content:space-between;gap:10px}summary::-webkit-details-marker{display:none}summary:after{content:"＋";font-size:15px;color:var(--teal)}details[open] summary:after{content:"−"}details .grid{margin-top:13px}
+.actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:20px}.btn{border:0;border-radius:10px;padding:11px 15px;font-size:12px;font-weight:800}.primary{background:var(--navy);color:#fff}.primary:hover{background:var(--navy2)}.secondary{background:#edf2f6;color:var(--navy)}.quiet{background:transparent;color:var(--muted)}.hidden{display:none!important}
+.aside h3{font-size:14px;color:var(--navy);margin:0}.aside>p{font-size:11px;color:var(--muted);margin:6px 0 14px}.aside-row{display:flex;gap:9px;padding:11px 0;border-top:1px solid var(--line);font-size:11px;color:#58687a}.num{height:23px;width:23px;flex-shrink:0;border-radius:8px;background:var(--bluebg);color:var(--navy);display:grid;place-items:center;font-weight:800}.principle{background:var(--tealbg);border-radius:11px;padding:12px;margin-top:14px;font-size:11px;color:#315f52}.fine{font-size:10px;color:#8995a2;margin-top:12px}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:13px 0}.metric{background:#f7f9fb;border:1px solid var(--line);border-radius:12px;padding:12px}.metric small{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);font-weight:800}.metric b{display:block;font-size:19px;color:var(--navy);margin-top:4px;overflow-wrap:anywhere}
+.assess{border:1px solid #d6e8df;background:var(--tealbg);border-radius:13px;padding:14px;margin:12px 0}.assess b{color:#285e4d;font-size:13px}.assess p{margin:5px 0 0;color:#49695f;font-size:11px}
+.minihead{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:18px 0 8px}.minihead b{font-size:14px;color:var(--navy)}.minihead span{font-size:9px;color:var(--muted);font-weight:800}
+.strategies{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.strategy{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;text-align:left;min-height:123px}.strategy.selected{border:2px solid var(--teal);padding:11px;background:#f5faf7}.strategy small{font-size:9px;color:var(--teal);font-weight:850;text-transform:uppercase;letter-spacing:.6px}.strategy b{display:block;color:var(--navy);font-size:12px;margin:5px 0}.strategy span{font-size:10px;color:var(--muted);display:block;line-height:1.4}
+.insight{border:1px solid var(--line);border-radius:12px;padding:13px;margin-top:12px}.insight h4{font-size:12px;color:var(--navy);margin:0 0 5px}.insight p{font-size:11px;color:var(--muted);margin:0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pill{display:inline-block;border-radius:30px;padding:4px 8px;background:var(--bluebg);color:var(--navy);font-size:9px;font-weight:800}
+.message{background:#f8fafc;border:1px solid var(--line);border-radius:13px;padding:13px;margin-top:14px}.message textarea{min-height:185px;line-height:1.6;background:#fff;font-size:12px}.messagebar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px}.messagebar b{font-size:10px;letter-spacing:.7px;color:var(--muted);text-transform:uppercase}
+.receipt{border:1px solid var(--line);border-radius:13px;padding:15px;margin-top:13px}.receipt h3{color:var(--navy);font-size:15px;margin:0 0 8px}.receipt-row{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid #edf0f3;font-size:11px}.receipt-row:last-child{border:0}.receipt-row span:first-child{color:var(--muted)}.outcome{margin-top:14px;padding:14px;background:#f7f9fb;border:1px solid var(--line);border-radius:12px}.outcome p{font-size:11px;color:var(--muted);margin:4px 0 10px}
+.overlay{position:fixed;inset:0;background:rgba(17,30,45,.58);z-index:20;display:none;align-items:center;justify-content:center;padding:16px}.overlay.show{display:flex}.modal{width:min(470px,100%);background:#fff;border-radius:21px;padding:25px;box-shadow:0 24px 70px rgba(0,0,0,.2);position:relative}.modal h2{font-size:24px;color:var(--navy);line-height:1.2;margin:8px 0}.modal p{font-size:12px;color:var(--muted)}.close{position:absolute;right:15px;top:12px;border:0;background:none;font-size:22px;color:var(--muted)}.amounts{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:15px 0}.amounts button{padding:11px 4px;border:1px solid var(--line);background:white;border-radius:9px;font-weight:800;color:var(--navy)}.amounts button.selected{border:2px solid var(--teal);background:var(--tealbg);padding:10px 3px}.modal-actions{display:flex;gap:8px;margin-top:15px}.modal-actions button{flex:1}.modal small{font-size:9px;color:#8995a2;display:block;margin-top:13px}
+.rating-stars{display:flex;gap:8px;margin:17px 0 12px}
+.rating-stars button{border:1px solid var(--line);background:#fff;border-radius:10px;color:#8b97a4;font-size:25px;line-height:1;padding:8px 11px;min-width:44px}
+.rating-stars button[aria-pressed="true"]{color:#B98224;border-color:#D5A34A;background:#FFF8E9}
+.feedback-note{font-size:10px!important;color:#8995a2!important;margin-top:10px}
+#feedbackOverlay .modal textarea{min-height:90px;margin-top:6px}
+.footer{text-align:center;font-size:10px;color:#8b97a4;margin-top:22px}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--navy);color:white;padding:10px 15px;border-radius:10px;font-size:11px;display:none;z-index:30;max-width:90vw}
+@media(max-width:850px){.level-status{text-align:left;max-width:none}.level-picker{align-items:stretch;width:100%}.shell{grid-template-columns:1fr}.aside{position:static}.hero{align-items:flex-start;flex-direction:column}.levels{width:100%}.levels button{flex:1}.topright{display:none}}
+@media(max-width:560px){.top{padding:11px 14px}.wrap{padding:22px 12px 38px}.main{padding:16px}.aside{padding:16px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.strategies{grid-template-columns:1fr}.strategy{min-height:0;padding:11px}.strategy.selected{padding:10px}.metrics{grid-template-columns:1fr 1fr}.metric:last-child{grid-column:1/-1}.head h2{font-size:17px}.step-label{font-size:9px}.actions{align-items:stretch}.actions .btn{padding:11px 12px}.actions .hint{max-width:45%}.two{grid-template-columns:1fr}.modal{padding:21px 17px}.hero p{font-size:13px}}
+
+/* Theme support: system is the default; manual choices are saved locally. */
+.top-actions{display:flex;align-items:center;gap:16px}.theme-control{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);font-weight:700}.theme-control select{width:auto;min-width:92px;padding:7px 26px 7px 9px;font-size:11px;border-radius:9px;background:var(--surface);color:var(--ink);border-color:var(--line)}
+:root{color-scheme:light}
+:root[data-theme="dark"],:root[data-theme="system"].system-dark{color-scheme:dark;--navy:#DCE7F2;--navy2:#B8CADD;--ink:#E5ECF3;--muted:#AAB8C7;--bg:#111A24;--white:#1B2835;--surface:#223242;--line:#344657;--teal:#75B7A0;--tealbg:#203B36;--bluebg:#26394A;--gold:#E0B968;--red:#E28B8B;--shadow:0 12px 32px rgba(0,0,0,.22)}
+:root[data-theme="dark"] body,:root[data-theme="system"].system-dark body{background:var(--bg);color:var(--ink)}
+:root[data-theme="dark"] .top,:root[data-theme="system"].system-dark .top,:root[data-theme="dark"] .panel,:root[data-theme="system"].system-dark .panel,:root[data-theme="dark"] .modal,:root[data-theme="system"].system-dark .modal{background:var(--white);color:var(--ink);border-color:var(--line)}
+:root[data-theme="dark"] .levels,:root[data-theme="system"].system-dark .levels,:root[data-theme="dark"] .strategy,:root[data-theme="system"].system-dark .strategy,:root[data-theme="dark"] .amounts button,:root[data-theme="system"].system-dark .amounts button{background:var(--surface);color:var(--ink);border-color:var(--line)}
+:root[data-theme="dark"] input,:root[data-theme="dark"] select,:root[data-theme="dark"] textarea,:root[data-theme="system"].system-dark input,:root[data-theme="system"].system-dark select,:root[data-theme="system"].system-dark textarea{background:var(--surface);color:var(--ink);border-color:var(--line)}
+:root[data-theme="dark"] details,:root[data-theme="system"].system-dark details,:root[data-theme="dark"] .metrics .metric,:root[data-theme="system"].system-dark .metrics .metric,:root[data-theme="dark"] .message,:root[data-theme="system"].system-dark .message,:root[data-theme="dark"] .message textarea,:root[data-theme="system"].system-dark .message textarea,:root[data-theme="dark"] .outcome,:root[data-theme="system"].system-dark .outcome{background:var(--surface);border-color:var(--line);color:var(--ink)}
+:root[data-theme="dark"] .secondary,:root[data-theme="system"].system-dark .secondary{background:#304457;color:#E5ECF3}
+:root[data-theme="dark"] .strategy.selected,:root[data-theme="system"].system-dark .strategy.selected{background:#203B36;border-color:var(--teal)}
+:root[data-theme="dark"] .assess,:root[data-theme="system"].system-dark .assess{background:#203B36;border-color:#426D61}
+:root[data-theme="dark"] .assess b,:root[data-theme="system"].system-dark .assess b,:root[data-theme="dark"] .assess p,:root[data-theme="system"].system-dark .assess p,:root[data-theme="dark"] .principle,:root[data-theme="system"].system-dark .principle{color:#C5E3D8}
+:root[data-theme="dark"] .receipt-row,:root[data-theme="system"].system-dark .receipt-row{border-color:var(--line)}
+:root[data-theme="dark"] .progress i,:root[data-theme="system"].system-dark .progress i{background:#344657}
+:root[data-theme="dark"] .logo,:root[data-theme="system"].system-dark .logo{background:#30465C;color:#fff}
+:root[data-theme="dark"] .overlay,:root[data-theme="system"].system-dark .overlay{background:rgba(0,0,0,.72)}
+:root[data-theme="dark"] .skip-btn:hover,:root[data-theme="system"].system-dark .skip-btn:hover{color:var(--ink)}
+@media(prefers-color-scheme:dark){:root[data-theme="system"]{color-scheme:dark;--navy:#DCE7F2;--navy2:#B8CADD;--ink:#E5ECF3;--muted:#AAB8C7;--bg:#111A24;--white:#1B2835;--surface:#223242;--line:#344657;--teal:#75B7A0;--tealbg:#203B36;--bluebg:#26394A;--gold:#E0B968;--red:#E28B8B;--shadow:0 12px 32px rgba(0,0,0,.22)}
+:root[data-theme="system"] body{background:var(--bg);color:var(--ink)}
+:root[data-theme="system"] .top,:root[data-theme="system"] .panel,:root[data-theme="system"] .modal{background:var(--white);color:var(--ink);border-color:var(--line)}
+:root[data-theme="system"] .levels,:root[data-theme="system"] .strategy,:root[data-theme="system"] .amounts button,:root[data-theme="system"] input,:root[data-theme="system"] select,:root[data-theme="system"] textarea{background:var(--surface);color:var(--ink);border-color:var(--line)}
+:root[data-theme="system"] details,:root[data-theme="system"] .metric,:root[data-theme="system"] .message,:root[data-theme="system"] .message textarea,:root[data-theme="system"] .outcome{background:var(--surface);border-color:var(--line);color:var(--ink)}
+:root[data-theme="system"] .secondary{background:#304457;color:#E5ECF3}:root[data-theme="system"] .strategy.selected,:root[data-theme="system"] .assess{background:#203B36;border-color:#426D61}:root[data-theme="system"] .assess b,:root[data-theme="system"] .assess p,:root[data-theme="system"] .principle{color:#C5E3D8}:root[data-theme="system"] .receipt-row{border-color:var(--line)}:root[data-theme="system"] .progress i{background:#344657}:root[data-theme="system"] .logo{background:#30465C;color:#fff}:root[data-theme="system"] .overlay{background:rgba(0,0,0,.72)}}
+@media(max-width:850px){.top-actions{width:100%;justify-content:space-between}.top-actions .topright{display:none}.theme-control{margin-left:auto}}
+
+
+/* Dark-mode readability correction: raise contrast for every secondary label and selected control. */
+:root[data-theme="dark"],:root[data-theme="system"].system-dark{
+ --muted:#C2CFDC; --line:#46596B; --surface:#263849; --white:#1A2734; --bg:#101923;
+}
+:root[data-theme="dark"] label,:root[data-theme="system"].system-dark label,
+:root[data-theme="dark"] .aside-row,:root[data-theme="system"].system-dark .aside-row,
+:root[data-theme="dark"] .fine,:root[data-theme="system"].system-dark .fine,
+:root[data-theme="dark"] .footer,:root[data-theme="system"].system-dark .footer,
+:root[data-theme="dark"] .receipt-row span:first-child,:root[data-theme="system"].system-dark .receipt-row span:first-child,
+:root[data-theme="dark"] .level-caption,:root[data-theme="system"].system-dark .level-caption,
+:root[data-theme="dark"] .skip-btn,:root[data-theme="system"].system-dark .skip-btn,
+:root[data-theme="dark"] .optional-note,:root[data-theme="system"].system-dark .optional-note {color:#C2CFDC}
+:root[data-theme="dark"] .levels button.active,:root[data-theme="system"].system-dark .levels button.active,
+:root[data-theme="dark"] .primary,:root[data-theme="system"].system-dark .primary {background:#347A67;color:#FFFFFF}
+:root[data-theme="dark"] .primary:hover,:root[data-theme="system"].system-dark .primary:hover {background:#286653}
+:root[data-theme="dark"] .principle,:root[data-theme="system"].system-dark .principle {color:#D5F0E5;background:#24483F}
+:root[data-theme="dark"] .assess b,:root[data-theme="system"].system-dark .assess b,
+:root[data-theme="dark"] .assess p,:root[data-theme="system"].system-dark .assess p {color:#D5F0E5}
+:root[data-theme="dark"] .strategy small,:root[data-theme="system"].system-dark .strategy small {color:#8FD2B8}
+:root[data-theme="dark"] .metric b,:root[data-theme="system"].system-dark .metric b,
+:root[data-theme="dark"] .receipt h3,:root[data-theme="system"].system-dark .receipt h3 {color:#F0F5FA}
+:root[data-theme="dark"] .eyebrow,:root[data-theme="system"].system-dark .eyebrow {color:#8FD2B8}
+:root[data-theme="dark"] input::placeholder,:root[data-theme="system"].system-dark input::placeholder,
+:root[data-theme="dark"] textarea::placeholder,:root[data-theme="system"].system-dark textarea::placeholder {color:#AAB9C8;opacity:1}
+@media(prefers-color-scheme:dark){:root[data-theme="system"]{
+ --muted:#C2CFDC;--line:#46596B;--surface:#263849;--white:#1A2734;--bg:#101923;
+}}
+@media(prefers-color-scheme:dark){
+ :root[data-theme="system"] label,:root[data-theme="system"] .aside-row,:root[data-theme="system"] .fine,:root[data-theme="system"] .footer,:root[data-theme="system"] .receipt-row span:first-child,:root[data-theme="system"] .level-caption,:root[data-theme="system"] .skip-btn,:root[data-theme="system"] .optional-note {color:#C2CFDC}
+ :root[data-theme="system"] .levels button.active,:root[data-theme="system"] .primary {background:#347A67;color:#fff}
+ :root[data-theme="system"] .primary:hover {background:#286653}
+ :root[data-theme="system"] .principle {color:#D5F0E5;background:#24483F}
+ :root[data-theme="system"] .assess b,:root[data-theme="system"] .assess p {color:#D5F0E5}
+ :root[data-theme="system"] .strategy small,:root[data-theme="system"] .eyebrow {color:#8FD2B8}
+ :root[data-theme="system"] .metric b,:root[data-theme="system"] .receipt h3 {color:#F0F5FA}
+ :root[data-theme="system"] input::placeholder,:root[data-theme="system"] textarea::placeholder {color:#AAB9C8;opacity:1}
+}
+
+
+@media print {
+  @page { margin: 16mm; }
+  html, body { background:#fff !important; color:#1f2937 !important; }
+  .top, .hero, .aside, .footer, .progress, #s1, #s2, #s3, #s4,
+  #print, #done, #supportOverlay, #feedbackOverlay, .toast { display:none !important; }
+  .wrap { max-width:none !important; margin:0 !important; padding:0 !important; }
+  .shell { display:block !important; }
+  .main { border:0 !important; box-shadow:none !important; padding:0 !important; }
+  #s5 { display:block !important; }
+  #s5 .head { margin:0 0 12px !important; }
+  #receiptContent { display:block !important; border:1px solid #d8dee6 !important; }
+  .receipt-row { break-inside:avoid; page-break-inside:avoid; }
+  .receipt-row span:first-child { color:#526174 !important; }
+  .receipt-row b { color:#172536 !important; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+ <div class="brand"><div class="logo">TG</div><div><strong>TinyGenius Fair &amp; Just</strong><small>Negotiation Copilot</small></div></div>
+ <div class="top-actions"><div class="topright"><a href="../" style="color:inherit;text-decoration:none;font-weight:700">← TinyGenius home</a> · Know your value · Make your move · Find a fair deal</div><label class="theme-control" for="themeSelect"><span>Theme</span><select id="themeSelect" aria-label="Color theme"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label></div>
+</header>
+<main class="wrap">
+ <section class="hero">
+  <div><div class="eyebrow">A fairer way to do business</div><h1>Negotiate a deal that works for both sides.</h1><p>Understand your numbers, consider the other party's incentives, and choose a commercially sensible next move. Start simply; unlock deeper analysis whenever you need it.</p></div>
+  <div class="level-picker"><span class="level-caption">Choose how much guidance you would like</span><nav class="levels" aria-label="Experience level"><button class="active" data-level="beginner" type="button">Beginner</button><button data-level="intermediate" type="button">Intermediate</button><button data-level="expert" type="button">Expert</button></nav><p id="levelStatus" class="level-status" aria-live="polite">Beginner gives you the simplest guided experience.</p></div>
+ </section>
+ <div class="shell">
+  <section class="panel main">
+   <div class="progress"><i id="pg1" class="done"></i><i id="pg2"></i><i id="pg3"></i><i id="pg4"></i></div>
+   <section id="s1">
+    <div class="head"><h2>1. Understand the offer</h2><span class="step-label">YOUR STARTING POINT</span></div>
+    <div class="grid">
+     <div class="field"><label for="workType">Your work</label><select id="workType"><option value="freelance">Freelance project</option><option value="ugc">UGC / creator deal</option><option value="service">Other professional service</option></select></div>
+     <div class="field"><label for="currency">Currency</label><select id="currency" aria-describedby="currencyHint">
+      <option value="USD">🇺🇸 US Dollar · USD ($)</option><option value="INR">🇮🇳 Indian Rupee · INR (₹)</option><option value="CNY">🇨🇳 Chinese Yuan · CNY (¥)</option><option value="GBP">🇬🇧 British Pound · GBP (£)</option><option value="EUR">🇪🇺 Euro · EUR (€)</option>
+      <option value="CAD">🇨🇦 Canadian Dollar · CAD (C$)</option><option value="AUD">🇦🇺 Australian Dollar · AUD (A$)</option><option value="AED">🇦🇪 UAE Dirham · AED (د.إ)</option><option value="SGD">🇸🇬 Singapore Dollar · SGD (S$)</option><option value="JPY">🇯🇵 Japanese Yen · JPY (¥)</option>
+      <option value="CHF">🇨🇭 Swiss Franc · CHF</option><option value="NZD">🇳🇿 New Zealand Dollar · NZD (NZ$)</option><option value="HKD">🇭🇰 Hong Kong Dollar · HKD (HK$)</option><option value="SAR">🇸🇦 Saudi Riyal · SAR (ر.س)</option><option value="ZAR">🇿🇦 South African Rand · ZAR (R)</option>
+      <option value="BRL">🇧🇷 Brazilian Real · BRL (R$)</option><option value="MXN">🇲🇽 Mexican Peso · MXN (Mex$)</option><option value="KRW">🇰🇷 South Korean Won · KRW (₩)</option><option value="SEK">🇸🇪 Swedish Krona · SEK (kr)</option><option value="NOK">🇳🇴 Norwegian Krone · NOK (kr)</option>
+      <option value="DKK">🇩🇰 Danish Krone · DKK (kr)</option><option value="PLN">🇵🇱 Polish Zloty · PLN (zł)</option><option value="THB">🇹🇭 Thai Baht · THB (฿)</option><option value="MYR">🇲🇾 Malaysian Ringgit · MYR (RM)</option><option value="PHP">🇵🇭 Philippine Peso · PHP (₱)</option><option value="IDR">🇮🇩 Indonesian Rupiah · IDR (Rp)</option><option value="TRY">🇹🇷 Turkish Lira · TRY (₺)</option>
+     </select><span class="hint" id="currencyHint">All amounts are interpreted in this currency. Changing it does not convert existing numbers; re-enter amounts if you switch currencies.</span></div>
+     <div class="field"><label for="offer">Client's offer</label><input id="offer" type="number" min="0.01" step=".01" placeholder="e.g. 300"></div>
+     <div class="field"><label for="hours">Estimated total hours</label><input id="hours" type="number" min=".1" step=".5" placeholder="e.g. 13"><span class="hint">Include meetings, admin, revisions and delivery.</span></div>
+     <div class="field"><label for="target">Your target net earnings per hour</label><input id="target" type="number" min="0.01" step=".01" placeholder="e.g. 30"></div>
+     <div class="field"><label for="costs">Direct project costs</label><input id="costs" type="number" min="0" step=".01" value="0"></div>
+    </div>
+    <details id="a1"><summary>More detail for a better assessment <span class="hint">Optional</span></summary><div class="grid">
+     <div class="field"><label for="fee">Platform / payment fees (%)</label><input id="fee" type="number" min="0" max="99" step=".1" value="0"></div>
+     <div class="field"><label for="deliverables">Deliverables / project scope</label><input id="deliverables" placeholder="e.g. 3 edited videos"></div>
+     <div class="field"><label for="deadline">Deadline / urgency</label><input id="deadline" placeholder="e.g. 5 business days"></div>
+     <div class="field"><label for="clientBudget">What do you know about the client's budget?</label><select id="clientBudget"><option value="unknown">Not sure</option><option value="fixed">Fixed / limited</option><option value="some">Some flexibility</option><option value="flexible">Likely flexible</option></select></div>
+     <div class="field full"><label for="projectValue">What makes this work valuable or demanding?</label><textarea id="projectValue" rows="2" placeholder="Specialist skills, research, urgency, coordination, creative direction..."></textarea></div>
+    <div class="skip-row"><button class="skip-btn" type="button" data-skip-details="a1">Skip optional details</button></div></div></details>
+    <div id="reviewError" role="alert" class="hint" style="display:none;color:#A64E4E;font-weight:700;margin-top:10px"></div><div class="actions"><span class="hint">Your inputs are processed in this browser.</span><button class="btn primary" id="reviewDealBtn">Review my deal →</button></div>
+   </section>
+   <section id="s2" class="hidden">
+    <div class="head"><h2>2. Understand your position</h2><span class="step-label">ECONOMICS &amp; ALTERNATIVES</span></div>
+    <div class="metrics">
+     <div class="metric"><small>Net project earnings*</small><b id="net">$—</b></div>
+     <div class="metric"><small>Effective hourly*</small><b id="hourly">$—</b></div>
+     <div class="metric"><small>Target-based minimum quote*</small><b id="minimum">$—</b></div>
+    </div>
+    <div class="assess"><b id="assessmentTitle">Your offer assessment</b><p id="assessmentText"></p></div>
+    <div class="minihead"><b>What happens if this deal does not close?</b><span>BATNA · YOUR ALTERNATIVES</span></div>
+    <div class="grid">
+     <div class="field"><label for="alternative">Your best realistic alternative</label><select id="alternative"><option value="none">No clear alternative yet</option><option value="other">Another client / project</option><option value="pipeline">A promising lead in progress</option><option value="wait">Wait and pursue better-fit work</option><option value="income">Other income / existing work</option></select></div>
+     <div class="field"><label for="alternativeValue">Estimated value of that alternative</label><input id="alternativeValue" type="number" min="0" step=".01" placeholder="Optional amount"></div>
+    </div>
+    <div class="insight"><h4>Why your alternative matters</h4><p id="batnaText">A credible alternative can reduce pressure to accept terms that do not work. Do not treat an uncertain lead as guaranteed income.</p></div>
+    <div class="skip-row"><button class="skip-btn" type="button" id="skipBatna">Skip alternatives and continue →</button></div>
+    <details id="a2"><summary>Advanced financial and risk checks <span class="hint">Optional</span></summary>
+     <div class="grid">
+      <div class="field"><label for="paymentRisk">Payment reliability</label><select id="paymentRisk"><option value="unknown">Unknown</option><option value="good">Known / reliable client</option><option value="mixed">Some uncertainty</option><option value="poor">High uncertainty</option></select></div>
+      <div class="field"><label for="rightsRisk">Usage / licensing rights</label><select id="rightsRisk"><option value="notapplicable">Not applicable / not sure</option><option value="organic">Limited organic use</option><option value="paid">Paid advertising use</option><option value="unlimited">Unlimited or perpetual use</option><option value="whitelisting">Whitelisting / creator-handle ads</option><option value="exclusive">Exclusivity requested</option></select><span class="hint">For UGC, paid ads, whitelisting and exclusivity should be clearly priced and limited.</span></div>
+      <div class="field"><label for="scopeRisk">Scope clarity</label><select id="scopeRisk"><option value="clear">Clearly defined</option><option value="some">Some open items</option><option value="unclear">Unclear / likely to expand</option></select></div>
+      <div class="field"><label for="priority">Your most important priority</label><select id="priority"><option value="income">Protect earnings</option><option value="relationship">Preserve client relationship</option><option value="time">Protect time and capacity</option><option value="portfolio">Build portfolio / experience</option><option value="rights">Protect usage rights</option></select></div>
+      <div class="field"><label for="walkaway">Your walk-away condition</label><input id="walkaway" placeholder="e.g. below 350 or unlimited ad rights"></div>
+     </div>
+     <div class="skip-row"><button class="skip-btn" type="button" data-skip-details="a2">Skip advanced checks</button></div>
+    </details>
+    <div class="actions"><button class="btn quiet" id="back1">← Back</button><button class="btn primary" id="strategies">Find my best move →</button></div>
+   </section>
+   <section id="s3" class="hidden">
+    <div class="head"><h2>3. Choose a negotiation strategy</h2><span class="step-label">MUTUAL-GAIN ANALYSIS</span></div>
+    <div class="assess"><b id="recommendTitle">Recommended starting point</b><p id="recommendText"></p></div>
+    <div class="minihead"><b>Compare your three practical options</b><span>SELECT ONE TO DEVELOP</span></div>
+    <div class="strategies">
+     <button class="strategy selected" data-strategy="price"><small>Option 1</small><b>Ask for a higher fee</b><span>Keep the scope and improve the price where the client's value and budget support it.</span></button>
+     <button class="strategy" data-strategy="scope"><small>Option 2</small><b>Adjust the scope</b><span>Fit the budget by changing deliverables, revisions, timeline or phases.</span></button>
+     <button class="strategy" data-strategy="terms"><small>Option 3</small><b>Improve the terms</b><span>Protect payment, rights, boundaries and uncertainty.</span></button>
+    </div>
+    <div class="insight"><h4 id="equilibriumTitle">Mutual-gain check</h4><p id="equilibriumText">A durable agreement should meet your minimum needs while giving the client a reason to proceed. We will test your selected approach against both sides' likely interests.</p></div>
+    <details id="a3"><summary>Expert strategy controls <span class="hint">Optional</span></summary>
+     <div class="grid">
+      <div class="field"><label for="clientNeed">Client's likely main concern</label><select id="clientNeed"><option value="unknown" selected>Unknown / not confirmed</option><option value="budget">Budget certainty</option><option value="speed">Speed / deadline</option><option value="quality">Quality / outcome</option><option value="simplicity">Low coordination / simplicity</option><option value="rights">Usage / ownership rights</option><option value="unknown">Unknown</option></select></div>
+      <div class="field"><label for="concession">What could you trade?</label><select id="concession"><option value="none" selected>Nothing selected yet</option><option value="scope">Scope / number of deliverables</option><option value="timeline">Timeline / phased delivery</option><option value="payment">Payment schedule</option><option value="rights">Duration / extent of rights</option><option value="none">Nothing material</option></select></div>
+      <div class="field full"><label for="protect">Terms you need to protect</label><input id="protect" placeholder="e.g. 2 revision rounds, 50% upfront, 30-day organic use"></div>
+      <div class="field full"><label for="objection">Client's objection or response so far</label><textarea id="objection" rows="2" placeholder="e.g. This is above our budget..."></textarea></div>
+     </div>
+     <div class="skip-row"><button class="skip-btn" type="button" data-skip-details="a3">Skip expert controls</button></div>
+    </details>
+    <div class="actions"><button class="btn quiet" id="back2">← Back</button><button class="btn primary" id="draft">Prepare my response →</button></div>
+   </section>
+   <section id="s4" class="hidden">
+    <div class="head"><h2>4. Prepare, agree and record</h2><span class="step-label">YOUR NEGOTIATION PLAN</span></div>
+    <div class="grid">
+     <div class="field"><label for="clientName">Client's name <span class="optional-note">Optional</span></label><input id="clientName" type="text" maxlength="80" autocomplete="off" placeholder="Enter client name (optional)"></div>
+     <div class="field"><label for="proposed">Your proposed fee</label><input id="proposed" type="number" min="0" step=".01"></div>
+     <div class="field"><label for="tone">Message tone</label><select id="tone"><option value="professional">Confident &amp; professional</option><option value="warm">Warm &amp; collaborative</option><option value="firm">Direct &amp; firm</option></select></div>
+    </div>
+    <div class="message"><div class="messagebar"><b>Client message · edit before sending</b><button class="btn secondary" id="refresh">Refresh</button></div><textarea id="clientMessage"></textarea><div class="actions"><span class="hint">Use only details that are accurate for your project.</span><button class="btn primary" id="copy">Copy message</button></div></div>
+    <details id="a4"><summary>Deal terms to confirm before agreeing <span class="hint">Optional</span></summary>
+     <div class="grid">
+      <div class="field"><label for="payment">Payment schedule</label><input id="payment" placeholder="e.g. 50% upfront, 50% on delivery"></div>
+      <div class="field"><label for="revisions">Included revisions</label><input id="revisions" placeholder="e.g. 2 rounds"></div>
+      <div class="field"><label for="deadlineFinal">Delivery date</label><input id="deadlineFinal" placeholder="e.g. 7 business days after deposit"></div>
+      <div class="field"><label for="rights">Usage / licensing rights</label><input id="rights" placeholder="e.g. organic use for 30 days"></div>
+      <div class="field full"><label for="exclusions">Exclusions and additional-work terms</label><textarea id="exclusions" rows="2" placeholder="e.g. Paid advertising and raw footage quoted separately."></textarea></div>
+     </div>
+     <div class="skip-row"><button class="skip-btn" type="button" data-skip-details="a4">Skip deal terms</button></div>
+    </details>
+    <div class="outcome">
+     <b style="font-size:13px;color:var(--navy)">What happened after you negotiated?</b>
+     <p>Record the real outcome. This helps you learn from each negotiation. The result is self-reported, not independently verified.</p>
+     <div class="grid">
+      <div class="field full"><label for="recordName">Your name <span class="optional-note">Optional — leave blank to skip</span></label><input id="recordName" type="text" maxlength="80" autocomplete="name" placeholder="Enter your name (optional)"></div>
+      <div class="field"><label for="result">Outcome</label><select id="result"><option value="pending">Still discussing</option><option value="success">We reached an agreement</option><option value="declined">I declined the deal</option><option value="lost">The deal did not proceed</option></select></div>
+      <div class="field"><label for="finalFee">Agreed final fee (if any)</label><input id="finalFee" type="number" min="0" step=".01" placeholder="Optional"></div>
+      <div class="field full"><label for="lesson">What did you learn? (optional)</label><textarea id="lesson" rows="2" placeholder="What worked, what changed, what would you do differently?"></textarea></div>
+     </div>
+    </div>
+    <div class="actions"><button class="btn quiet" id="back3">← Back</button><button class="btn primary" id="makeReceipt">Create my private negotiation record →</button></div>
+   </section>
+   <section id="s5" class="hidden">
+    <div class="head"><h2>Your private negotiation record</h2><span class="step-label">FOR YOUR RECORDS</span></div>
+    <div class="assess"><b id="receiptTitle">Negotiation record created</b><p id="receiptSub">This record is based on the information you entered. It is not proof of payment, an invoice or a signed contract.</p></div>
+    <div class="receipt" id="receiptContent"></div>
+    <div class="actions"><button class="btn secondary" id="print">Print / Save as PDF</button><button class="btn primary" id="done">Finish</button></div>
+   </section>
+  </section>
+  <aside class="panel aside">
+   <h3>Commercially smart. Human by design.</h3><p>One product with a simple guided path and deeper controls when you want them.</p>
+   <div class="aside-row"><span class="num">1</span><span><b>Know your economics</b><br>See what remains after direct costs and fees.</span></div>
+   <div class="aside-row"><span class="num">2</span><span><b>Know your alternative</b><br>Understand your BATNA and avoid negotiating from pressure.</span></div>
+   <div class="aside-row"><span class="num">3</span><span><b>Understand both sides</b><br>Look for terms each party has a reason to accept.</span></div>
+   <div class="aside-row"><span class="num">4</span><span><b>Build sustainable value</b><br>Protect cash flow, time, rights and future capacity.</span></div>
+   <div class="principle"><b>Fairness grows when it is shared.</b><br>We aim for durable agreements—not one-sided wins.</div>
+   <div class="fine">*Estimates before personal income tax. The minimum quote is calculated from your own target, hours, costs and fees—not from market-rate data. No legal, tax or investment advice.</div>
+  </aside>
+ </div>
+ <div class="footer">TINYGENIUS FAIR &amp; JUST · INTERACTIVE PREVIEW · FIX20 · NOT A LIVE SERVICE</div>
+</main>
+<div class="overlay" id="supportOverlay" role="dialog" aria-modal="true" aria-labelledby="supportTitle">
+ <section class="modal">
+  <button class="close" id="closeSupport" aria-label="Close">×</button>
+  <div class="eyebrow">Only if this genuinely helped</div>
+  <h2 id="supportTitle">Help keep fair-deal tools accessible.</h2>
+  <p>You reported a successful outcome. If Fair &amp; Just helped you prepare for it, you can voluntarily support the work behind TinyGenius. All core tools remain free whether you contribute or not.</p>
+  <div class="amounts"><button data-amount="1">$1</button><button data-amount="3">$3</button><button class="selected" data-amount="5">$5</button><button data-amount="10">$10</button></div>
+  <div class="field"><label for="customAmount">Or enter another amount (USD)</label><input id="customAmount" type="number" min="1" max="10000" step="0.01" inputmode="decimal" placeholder="e.g. 2.50"></div>
+  <div class="modal-actions"><button class="btn primary" id="supportContinue">Continue</button><button class="btn secondary" id="supportLater">Maybe later</button></div>
+  <small id="supportCurrencyHint">Contributions are always in US dollars (USD), regardless of your negotiation currency. Entirely optional. Payment processing is not connected in this prototype; no money will be collected. Your negotiation record is available regardless of your choice.</small>
+  <p id="supportThanks" class="hidden" style="color:var(--teal);font-weight:750"></p>
+  <button class="btn secondary hidden" id="supportFeedbackContinue" style="width:100%;margin-top:10px">Continue to feedback</button>
+ </section>
+</div>
+<div class="overlay" id="feedbackOverlay" role="dialog" aria-modal="true" aria-labelledby="feedbackTitle">
+ <section class="modal">
+  <button class="close" id="closeFeedback" aria-label="Close">×</button>
+  <div class="eyebrow">Optional product feedback</div>
+  <h2 id="feedbackTitle">How was your Fair &amp; Just experience?</h2>
+  <p>Your honest feedback helps us improve the product. Your rating is entirely optional.</p>
+  <div class="rating-stars" role="group" aria-label="Rate your experience from one to five stars">
+   <button type="button" data-rating="1" aria-label="1 star" aria-pressed="false">★</button>
+   <button type="button" data-rating="2" aria-label="2 stars" aria-pressed="false">★</button>
+   <button type="button" data-rating="3" aria-label="3 stars" aria-pressed="false">★</button>
+   <button type="button" data-rating="4" aria-label="4 stars" aria-pressed="false">★</button>
+   <button type="button" data-rating="5" aria-label="5 stars" aria-pressed="false">★</button>
+  </div>
+  <div class="field"><label for="feedbackComment">Anything we could improve? (optional)</label><textarea id="feedbackComment" rows="3" placeholder="Share a thought, suggestion or issue..."></textarea></div>
+  <div class="modal-actions"><button class="btn primary" id="submitFeedback">Finish</button><button class="btn secondary" id="skipFeedback">Skip</button></div>
+  <small class="feedback-note">Feedback submission is not connected in this prototype. Nothing you enter here is sent or stored.</small>
+  <p id="feedbackThanks" class="hidden" style="color:var(--teal);font-weight:750"></p>
+ </section>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const $=id=>document.getElementById(id);
+let level='beginner',strategy='price',data=null,selectedAmount=5,receiptMade=false;
+initTheme();
+const currencyLocales={USD:'en-US',INR:'en-IN',CNY:'zh-CN',GBP:'en-GB',EUR:'en-IE',CAD:'en-CA',AUD:'en-AU',AED:'en-AE',SGD:'en-SG',JPY:'ja-JP',CHF:'de-CH',NZD:'en-NZ',HKD:'zh-HK',SAR:'en-SA',ZAR:'en-ZA',BRL:'pt-BR',MXN:'es-MX',KRW:'ko-KR',SEK:'sv-SE',NOK:'nb-NO',DKK:'da-DK',PLN:'pl-PL',THB:'th-TH',MYR:'ms-MY',PHP:'en-PH',IDR:'id-ID',TRY:'tr-TR'};
+const currencyFractionDigits={JPY:0,KRW:0,IDR:0};
+const fmt=n=>{const code=$('currency').value||'USD';const value=Number(n);if(!Number.isFinite(value))return '—';try{const digits=currencyFractionDigits[code];const options={style:'currency',currency:code,currencyDisplay:'symbol'};if(digits!==undefined){options.minimumFractionDigits=digits;options.maximumFractionDigits=digits;}const formatted=new Intl.NumberFormat(currencyLocales[code]||'en-US',options).format(value);return formatted.includes(code)?formatted:formatted+' '+code;}catch(e){return value.toFixed(currencyFractionDigits[code]??2)+' '+code;}};
+function initCurrency(){let saved='USD';try{saved=localStorage.getItem('tinygenius-currency')||'USD'}catch(e){}if($('currency')&&[...$('currency').options].some(o=>o.value===saved))$('currency').value=saved;$('currency').addEventListener('change',()=>{try{localStorage.setItem('tinygenius-currency',$('currency').value)}catch(e){}});}
+function fmtUSD(n){const value=Number(n);if(!Number.isFinite(value))return '—';return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2}).format(value);}
+initCurrency();
+
+function applyTheme(value){
+ const allowed=['system','light','dark'];const theme=allowed.includes(value)?value:'system';
+ document.documentElement.dataset.theme=theme;
+ document.documentElement.classList.toggle('system-dark',theme==='system'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);
+ const picker=$('themeSelect');if(picker&&picker.value!==theme)picker.value=theme;
+ const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.setAttribute('content',theme==='dark'||(theme==='system'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'#111A24':'#23364D');
+}
+function initTheme(){let saved='system';try{saved=localStorage.getItem('tinygenius-theme')||'system'}catch(e){}applyTheme(saved);$('themeSelect').addEventListener('change',e=>{applyTheme(e.target.value);try{localStorage.setItem('tinygenius-theme',e.target.value)}catch(err){}});if(window.matchMedia){const mq=window.matchMedia('(prefers-color-scheme: dark)');const sync=()=>{let current='system';try{current=localStorage.getItem('tinygenius-theme')||'system'}catch(e){}if(current==='system')applyTheme('system')};if(mq.addEventListener)mq.addEventListener('change',sync);else if(mq.addListener)mq.addListener(sync)}}
+
+function toast(t){$('toast').textContent=t;$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',2200)}
+function go(n){for(let i=1;i<=5;i++){const el=$('s'+i);if(el)el.classList.toggle('hidden',i!==n);const pg=$('pg'+i);if(pg)pg.classList.toggle('done',i<=n)}window.scrollTo({top:0,behavior:'smooth'})}
+function getData(){
+ const O=Number($('offer').value),H=Number($('hours').value),T=Number($('target').value),C=Number($('costs').value||0),F=Number($('fee').value||0)/100;
+ if(!Number.isFinite(O)||O<=0||!Number.isFinite(H)||H<=0||!Number.isFinite(T)||T<=0||C<0||F<0||F>=1){const e=$('reviewError');e.textContent='Please enter a client offer greater than 0, estimated hours greater than 0, and a target hourly earning greater than 0. Check that costs are not negative and fees are below 100%.';e.style.display='block';return null} $('reviewError').style.display='none';
+ const net=O*(1-F)-C,rate=net/H,min=(T*H+C)/(1-F);
+ return {O,H,T,C,F,net,rate,min};
+}
+function setLevel(v){level=v;document.querySelectorAll('[data-level]').forEach(b=>b.classList.toggle('active',b.dataset.level===v));const panels={beginner:[],intermediate:['a1','a2'],expert:['a1','a2','a3','a4']};['a1','a2','a3','a4'].forEach(id=>$(id).open=panels[v].includes(id));const messages={beginner:'Beginner selected: a simple guided experience with only the essential questions.',intermediate:'Intermediate selected: you can also use the financial and risk details when they are relevant.',expert:'Expert selected: all advanced analysis and strategy controls are available.'};$('levelStatus').textContent=messages[v];go(1);$('workType').focus({preventScroll:true})}
+document.querySelectorAll('[data-level]').forEach(b=>b.onclick=()=>setLevel(b.dataset.level));
+document.querySelectorAll('[data-skip-details]').forEach(b=>b.addEventListener('click',()=>{const d=$(b.dataset.skipDetails);if(d)d.open=false}));
+function runDealReview(){
+ data=getData();if(!data)return;
+ $('net').textContent=fmt(data.net);$('hourly').textContent=fmt(data.rate);$('minimum').textContent=fmt(data.min);
+ if(data.rate>=data.T){$('assessmentTitle').textContent='The offer meets your stated earnings target';$('assessmentText').textContent='Your estimated rate is '+fmt(data.rate)+' per hour before personal income tax. Check scope, payment reliability and rights before deciding. A higher price is not automatically the best move.';strategy='terms'}
+ else{$('assessmentTitle').textContent='The offer is below your stated earnings target';$('assessmentText').textContent='Your estimated rate is '+fmt(data.rate)+' per hour. Your target-based minimum quote is '+fmt(data.min)+'. This is a personal threshold, not a market benchmark.';strategy=$('clientBudget').value==='fixed'?'scope':'price'}
+ updateBatna();chooseStrategy(strategy);go(2);
+}
+function updateBatna(){
+ const a=$('alternative').value,v=Number($('alternativeValue').value||0);
+ const txt={none:'You may have limited leverage if no realistic alternative is available. Consider whether you can build a pipeline before accepting a poor-fit deal.',other:'Compare the certainty, expected net earnings and time commitment of the other project. Do not double-count work you cannot realistically take.',pipeline:'A promising lead can improve your options, but it is not secured income until the client commits.',wait:'Waiting may preserve capacity for better-fit work, but consider your cash-flow needs and how long you can reasonably wait.',income:'Existing income can reduce pressure to accept weak terms. Compare the real opportunity cost of taking this project.'};
+ $('batnaText').textContent=txt[a]+(v>0?' You estimate this alternative at '+fmt(v)+'. Treat that estimate cautiously.':'');
+}
+$('alternative').onchange=updateBatna;$('alternativeValue').oninput=updateBatna;$('skipBatna').onclick=()=>{updateBatna();findStrategies()};
+function chooseStrategy(s){
+ strategy=s;document.querySelectorAll('[data-strategy]').forEach(b=>b.classList.toggle('selected',b.dataset.strategy===s));
+ const p={
+ price:['Price negotiation','Ask for a higher fee while keeping the full scope. Use your target-based minimum as a boundary reference, not automatically as your opening price.'],
+ scope:['Scope negotiation','If the client budget is constrained, reduce or phase deliverables so the work remains viable for you and useful to the client.'],
+ terms:['Terms negotiation','If the fee is workable, improve payment certainty, revision limits, delivery assumptions or usage rights before agreeing.']
+ };
+ $('equilibriumTitle').textContent=p[s][0]+' · mutual-gain check';$('equilibriumText').textContent=p[s][1]+' A stable agreement should leave both sides better off than their realistic alternatives.';
+}
+document.querySelectorAll('[data-strategy]').forEach(b=>b.onclick=()=>chooseStrategy(b.dataset.strategy));
+function findStrategies(){
+ const budget=$('clientBudget').value, risk=$('scopeRisk').value, pay=$('paymentRisk').value, rights=$('rightsRisk').value;
+ const priority=$('priority').value, clientNeed=$('clientNeed').value, concession=$('concession').value;
+ const alternative=$('alternative').value, alternativeValue=Number($('alternativeValue').value||0);
+ const scores={price:0,scope:0,terms:0}, reasons={price:[],scope:[],terms:[]};
+ const add=(key,points,reason)=>{scores[key]+=points;if(reason)reasons[key].push(reason)};
+ // Price: driven by the user's economics and credible budget flexibility.
+ if(data.rate<data.T){add('price',2,'The offer is below your stated earnings target');}
+ if(budget==='flexible'){add('price',2,'You indicated that the client may have budget flexibility');}
+ else if(budget==='some'){add('price',1,'You indicated some budget flexibility');}
+ else if(budget==='fixed'){add('scope',3,'You indicated that the client budget is fixed or limited');}
+ if(clientNeed==='quality'){add('price',1,'The client appears to prioritise the quality or outcome');}
+ // Scope: change workload, phasing or deliverables when the budget/time fit is the issue.
+ if(risk==='unclear'){add('scope',2,'The project scope is unclear and may expand');}
+ else if(risk==='some'){add('scope',1,'Some scope details still need to be defined');}
+ if(priority==='time'){add('scope',2,'Protecting your time and capacity is your priority');}
+ if(priority==='portfolio'){add('scope',1,'A carefully limited scope may support portfolio value without overcommitting');}
+ if(clientNeed==='budget'){add('scope',1,'Budget certainty appears important to the client');}
+ if(clientNeed==='speed'){add('scope',1,"A phased or simplified scope may help with the client's timing needs");}
+ if(concession==='scope'||concession==='timeline'){add('scope',1,'You identified scope or timing as a possible trade-off');}
+ // Terms: protect payment, rights and boundaries before focusing on headline price.
+ if(pay==='poor'){add('terms',3,'Payment reliability is a significant concern');}
+ else if(pay==='mixed'){add('terms',1,'Payment reliability has some uncertainty');}
+ if(priority==='rights'){add('terms',3,'Protecting usage rights is your priority');}
+ if($('workType').value==='ugc'&&rights==='notapplicable'){add('terms',2,'UGC content rights have not been specified; confirm organic and paid usage, duration, platforms and any exclusivity before agreeing.');}
+ if(['paid','unlimited','whitelisting','exclusive'].includes(rights)){add('terms',3,({paid:'Paid advertising use needs clearly agreed licensing terms and duration.',unlimited:'Unlimited or perpetual usage can transfer substantial value; clarify limits before agreeing.',whitelisting:'Whitelisting gives the client advertising access through your creator identity; agree scope, duration and control.',exclusive:'Exclusivity can restrict future work; define category, territory and duration.'})[rights]);}
+ else if(rights==='organic'){add('terms',1,'Confirm the platforms and duration for organic usage.');}
+ if(risk==='unclear'){add('terms',1,'Written boundaries can reduce scope disputes');}
+ if(clientNeed==='rights'){add('terms',2,'Usage or ownership rights appear important to the client');}
+ if(concession==='payment'||concession==='rights'){add('terms',1,'You identified payment or rights as a negotiable term');}
+ if(priority==='relationship'){add('scope',1,'A collaborative scope adjustment may help preserve the relationship');}
+
+ // A BATNA is leverage only to the extent it is realistic; a pipeline lead is not secured income.
+ const batna={none:'No clear alternative entered; avoid assuming you can easily replace this work.',other:'Another client or project may provide a meaningful alternative if it is genuinely available.',pipeline:'A lead in progress is a possible alternative, not guaranteed income.',wait:'Waiting preserves capacity but has a cash-flow and time cost.',income:'Existing income may reduce pressure to accept terms that do not work.'}[alternative];
+ const batnaCaution=alternative==='pipeline'?' Treat this as uncertain until committed.':alternative==='wait'?' Consider how long you can afford to wait.':'';
+ const batnaValueNote=alternativeValue>0?' Estimated alternative value entered: '+fmt(alternativeValue)+'. Compare it on a like-for-like net and time basis; this value does not automatically determine the recommendation.':'';
+ const walkaway=$('walkaway').value.trim();
+ const walkawayNote=walkaway?' Your stated walk-away condition: '+walkaway+'. Check any proposed agreement against this boundary before accepting.':'';
+ const sorted=Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+ let rec=sorted[0][0];
+ // If no risk or negotiation signal is present, do not invent a reason to push for a higher fee.
+ if(sorted[0][1]===0)rec=data.rate>=data.T?'terms':(budget==='fixed'?'scope':'price');
+ // Resolve ties using the commercial risk that should be addressed first.
+ if(scores.scope===scores.price&&risk==='unclear'&&sorted[0][1]>0)rec='scope';
+ if(scores.terms===scores.price&&$('workType').value==='ugc'&&rights==='notapplicable'&&sorted[0][1]>0)rec='terms';
+ // Critical payment and licensing risks take priority over a price or scope tie.
+ if(pay==='poor'||['paid','unlimited','whitelisting','exclusive'].includes(rights))rec='terms';
+ // Avoid escalating price as the default when the client has a fixed budget and the user can adapt scope.
+ if(scores.scope===scores.price&&budget==='fixed'&&sorted[0][1]>0&&pay!=='poor'&&!['paid','unlimited','whitelisting','exclusive'].includes(rights))rec='scope';
+ const titles={price:'Ask for a higher fee',scope:'Adjust the scope',terms:'Improve the terms'};
+ const explanations={
+  price:'A fee discussion is the strongest starting point from the information entered. Keep the full scope clear and propose a reasoned amount; your minimum quote is a personal boundary, not automatically your opening offer.',
+  scope:'A scope discussion is the strongest starting point. Offer a smaller or phased package that fits the budget while protecting the time and quality required for the agreed deliverables.',
+  terms:'A terms discussion is the strongest starting point. Clarify payment, revisions, delivery boundaries and usage rights before treating the headline fee as the whole deal.'
+ };
+ const scoreSummary='Decision signals — higher fee: '+scores.price+', scope: '+scores.scope+', terms: '+scores.terms+'.';
+ $('recommendTitle').textContent='Suggested starting point: '+titles[rec];
+ const triggered=reasons[rec].length?' Key reasons: '+reasons[rec].join('; ')+'.':'';
+ $('recommendText').textContent=explanations[rec]+triggered+' '+scoreSummary+' BATNA context: '+batna+batnaCaution+batnaValueNote+walkawayNote+' Usage-rights check: '+(rights==='notapplicable'&&$('workType').value==='ugc'?'UGC usage rights have not been specified; confirm usage type, duration, platforms and exclusivity before accepting.':rights==='notapplicable'?'No specific licensing risk was selected.':rights==='organic'?'Confirm limited organic-use scope and duration.':({'paid':'Paid advertising use selected; clarify licensing fee, duration and platforms.','unlimited':'Unlimited/perpetual use selected; do not treat this as ordinary production work.','whitelisting':'Whitelisting selected; clarify access, duration, control and payment.','exclusive':'Exclusivity selected; define category, territory and duration.'})[rights])+' Client priorities are based only on the details you entered, not assumptions about what the client is thinking.';
+ strategy=rec;chooseStrategy(rec);
+ // A Nash-style lens: test whether the selected move gives each side a reason to proceed.
+ const mutual={
+  price:'Your side: the fee moves closer to your stated earnings target. Client side: the full scope and outcome remain intact if the revised fee fits its budget.',
+  scope:'Your side: the workload becomes proportionate to the fee. Client side: essential outcomes can still be delivered within the stated budget.',
+  terms:'Your side: payment, scope or rights risks are reduced. Client side: expectations become clearer and delivery is less likely to create disputes.'
+ };
+ $('equilibriumTitle').textContent='Mutual-gain test · '+titles[rec];
+ $('equilibriumText').textContent=mutual[rec]+' This is a negotiation lens, not a mathematically proven Nash equilibrium. The agreement is sustainable only if both parties prefer it to their realistic alternatives.';
+ go(3);
+}
+function makeMessage(){
+ if(!data)return;
+ const q=Number($('proposed').value||0),tone=$('tone').value,scope=$('deliverables').value.trim(),context=$('projectValue').value.trim(),terms=$('protect').value.trim();
+ const greet=tone==='warm'?'Thank you for considering me for this project. I would like to find an arrangement that works well for both of us.':tone==='firm'?'Thank you for the offer. I have reviewed the scope, time commitment and terms.':'Thank you for the offer. I have reviewed the project requirements and the work involved.';
+ let body='';
+ if(strategy==='price')body='For '+(scope||'the full agreed scope')+', my proposed fee is '+fmt(q)+'. This reflects the time, costs and delivery requirements involved. If this works within your budget, I would be happy to confirm the details.';
+ if(strategy==='scope')body='I can work within the current budget of '+fmt(data.O)+', provided we adjust the scope. I suggest prioritising the essential deliverables and agreeing on additional work separately.';
+ if(strategy==='terms')body='I would be comfortable moving forward at '+fmt(q)+', subject to confirming the project boundaries, payment schedule and any applicable usage or licensing terms.';
+ if(context)body+=' The project also involves: '+context+'.';
+ if(terms)body+=' I would also like to confirm: '+terms+'.';
+ const close=tone==='firm'?'Please let me know whether these terms are acceptable so we can confirm the arrangement before work begins.':tone==='warm'?'I am happy to discuss the details and find a practical way forward.':'Please let me know which approach works best for you, and I will be happy to confirm the next steps.';
+ const clientName=$('clientName').value.trim();
+ const salutation=clientName?'Dear '+clientName+',':'Dear Sir/Madam,';
+ $('clientMessage').value=salutation+'\n\n'+greet+'\n\n'+body+'\n\n'+close+'\n\nBest regards';
+}
+$('reviewDealBtn').addEventListener('click',runDealReview);$('back1').onclick=()=>go(1);$('strategies').onclick=findStrategies;$('back2').onclick=()=>go(2);
+$('draft').onclick=()=>{let q=data.min;if(strategy==='scope'||strategy==='terms')q=data.O;$('proposed').value=Number(q.toFixed(2));makeMessage();go(4)};
+$('tone').onchange=makeMessage;$('refresh').onclick=makeMessage;
+$('copy').onclick=async()=>{try{await navigator.clipboard.writeText($('clientMessage').value);toast('Message copied')}catch(e){$('clientMessage').select();document.execCommand('copy');toast('Message selected for copying')}};
+function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function createReceipt(){
+ const outcome=$('result').value,final=Number($('finalFee').value||0);
+ const finalRaw=$('finalFee').value.trim();
+ if(finalRaw && (!Number.isFinite(final)||final<0)){toast('Please enter a valid final fee of zero or more.');return false;}
+ const proposedRaw=$('proposed').value.trim();
+ if(proposedRaw && (!Number.isFinite(Number(proposedRaw))||Number(proposedRaw)<0)){toast('Please enter a valid proposed fee of zero or more.');return false;}
+ const rows=[
+ ...($('recordName').value.trim()?[['Name',$('recordName').value.trim()]]:[]),
+ ['Work type',$('workType').selectedOptions[0].text],['Original offer',fmt(data.O)],['Estimated hours',data.H],['Estimated net before income tax',fmt(data.net)],['Estimated effective hourly',fmt(data.rate)],['Target-based minimum quote',fmt(data.min)],['Strategy selected',{price:'Higher fee',scope:'Adjust scope',terms:'Improve terms'}[strategy]],['Proposed fee',$('proposed').value.trim()?fmt(Number($('proposed').value)):'Not provided'],['BATNA', $('alternative').selectedOptions[0].text],['Estimated alternative value',$('alternativeValue').value.trim()?fmt(Number($('alternativeValue').value)):'Not provided'],['Walk-away condition',$('walkaway').value.trim()||'Not specified'],['Reported outcome',$('result').selectedOptions[0].text],['Reported final fee',finalRaw?fmt(final):'Not provided'],['Payment schedule',$('payment').value||'Not specified'],['Revisions',$('revisions').value||'Not specified'],['Delivery date',$('deadlineFinal').value||'Not specified'],['Usage rights',$('rightsRisk').selectedOptions[0].text+' · '+($('rights').value||'Details not provided')],['Learning',$('lesson').value||'Not provided']
+ ];
+ $('receiptContent').innerHTML=rows.map(r=>'<div class="receipt-row"><span>'+safe(r[0])+'</span><b>'+safe(r[1])+'</b></div>').join('');
+ $('receiptTitle').textContent=outcome==='success'?'You reported reaching an agreement':outcome==='declined'?'You chose to decline the deal':outcome==='lost'?'The deal did not proceed':'Your negotiation is still in progress';
+ $('receiptSub').textContent='Private working record · Self-reported information · Not proof of payment, an invoice or a signed contract.';
+ receiptMade=true;go(5);return true;
+}
+$('makeReceipt').onclick=()=>{const made=createReceipt();if(made && $('result').value==='success')setTimeout(()=>$('supportOverlay').classList.add('show'),450)};
+$('print').onclick=()=>window.print();
+$('done').onclick=()=>{$('supportOverlay').classList.remove('show');$('feedbackOverlay').classList.remove('show');go(1);$('recordName').value='';toast('Your record is ready. You can start another negotiation.')};
+function openFeedback(){ $('supportOverlay').classList.remove('show'); $('feedbackOverlay').classList.add('show'); }
+function finishFeedback(){ $('feedbackOverlay').classList.remove('show'); }
+$('closeSupport').onclick=openFeedback;
+$('supportLater').onclick=openFeedback;
+document.querySelectorAll('[data-amount]').forEach(b=>b.onclick=()=>{selectedAmount=Number(b.dataset.amount);$('customAmount').value='';document.querySelectorAll('[data-amount]').forEach(x=>x.classList.toggle('selected',x===b))});
+$('customAmount').oninput=()=>{if($('customAmount').value)document.querySelectorAll('[data-amount]').forEach(x=>x.classList.remove('selected'))};
+$('supportContinue').onclick=()=>{const v=$('customAmount').value?Number($('customAmount').value):selectedAmount;if(!Number.isFinite(v)||v<1||v>10000){toast('Enter a USD contribution between $1 and $10,000.');return}$('supportThanks').textContent='Thank you for considering a contribution of '+fmtUSD(v)+'. Payment is not enabled in this prototype; no payment has been made.';$('supportThanks').classList.remove('hidden');$('supportFeedbackContinue').classList.remove('hidden');$('supportContinue').classList.add('hidden')};
+$('supportFeedbackContinue').onclick=openFeedback;
+let selectedRating=0;
+document.querySelectorAll('[data-rating]').forEach(b=>b.onclick=()=>{selectedRating=Number(b.dataset.rating);document.querySelectorAll('[data-rating]').forEach(x=>{const n=Number(x.dataset.rating);x.setAttribute('aria-pressed',String(n<=selectedRating))})});
+$('submitFeedback').onclick=()=>{$('feedbackThanks').textContent='Thank you for taking the time to share your thoughts. Feedback is not submitted or stored in this prototype.';$('feedbackThanks').classList.remove('hidden');$('submitFeedback').classList.add('hidden');$('skipFeedback').textContent='Close';};
+$('skipFeedback').onclick=finishFeedback;
+$('closeFeedback').onclick=finishFeedback;
+window.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('feedbackOverlay').classList.contains('show'))finishFeedback();else if($('supportOverlay').classList.contains('show'))openFeedback()}});
+</script>
+<footer style="max-width:1180px;margin:0 auto;padding:18px 20px 30px;text-align:center;color:var(--muted);font-size:12px"><a href="../" style="color:inherit">Return to TinyGenius home</a></footer>
+</body>
+</html>
