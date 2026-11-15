@@ -431,5 +431,32 @@ $('print').onclick=()=>window.print();
 $('done').onclick=()=>{go(1);$('recordName').value='';toast('Your record is ready. You can start another negotiation.')};
 </script>
 <footer style="max-width:1180px;margin:0 auto;padding:18px 20px 30px;text-align:center;color:var(--muted);font-size:12px"><a href="../" style="color:inherit">Return to TinyGenius home</a></footer>
+
+<script>
+(function () {
+  document.addEventListener("click", function (event) {
+    const link = event.target.closest("a[href]");
+    if (!link || typeof gtag !== "function") return;
+    let destination;
+    try { destination = new URL(link.href, window.location.href); } catch (error) { return; }
+    if (destination.origin !== window.location.origin) return;
+    const path = destination.pathname.replace(/\\/+$/, "") + "/";
+    const tools = {
+      "/fair-just/": "fair_just",
+      "/freelance-rate-calculator/": "freelance_rate_calculator",
+      "/youtube-revenue-calculator/": "youtube_revenue_calculator",
+      "/ugc-pricing-calculator/": "ugc_pricing_calculator"
+    };
+    const toolName = tools[path];
+    if (!toolName) return;
+    gtag("event", "tool_open", {
+      tool_name: toolName,
+      source_page: window.location.pathname,
+      destination_path: destination.pathname,
+      transport_type: "beacon"
+    });
+  }, true);
+})();
+</script>
 </body>
 </html>
