@@ -440,6 +440,7 @@
       formatMoney(weeklyTarget, currency);
 
     document.getElementById("result").style.display = "block";
+    if (typeof gtag === "function") gtag("event", "freelance_rate_calculated", { currency: currency });
   }
 </script>
 
