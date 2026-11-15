@@ -453,7 +453,7 @@
     let destination;
     try { destination = new URL(link.href, window.location.href); } catch (error) { return; }
     if (destination.origin !== window.location.origin) return;
-    const path = destination.pathname.replace(/\\/+$/, "") + "/";
+    const path = destination.pathname.endsWith("/") ? destination.pathname : destination.pathname + "/";
     const tools = {
       "/fair-just/": "fair_just",
       "/freelance-rate-calculator/": "freelance_rate_calculator",
