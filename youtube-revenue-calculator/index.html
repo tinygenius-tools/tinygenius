@@ -458,6 +458,7 @@
       formatMoney(daily, currency);
 
     document.getElementById("result").style.display = "block";
+    if (typeof gtag === "function") gtag("event", "youtube_revenue_estimated", { currency: currency });
   }
 </script>
 <div style="text-align:center; padding:25px; margin-top:30px;">
