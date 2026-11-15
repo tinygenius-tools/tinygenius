@@ -87,7 +87,7 @@
     let destination;
     try { destination = new URL(link.href, window.location.href); } catch (error) { return; }
     if (destination.origin !== window.location.origin) return;
-    const path = destination.pathname.replace(/\\/+$/, "") + "/";
+    const path = destination.pathname.endsWith("/") ? destination.pathname : destination.pathname + "/";
     const tools = { "/fair-just/": "fair_just", "/freelance-rate-calculator/": "freelance_rate_calculator", "/youtube-revenue-calculator/": "youtube_revenue_calculator", "/ugc-pricing-calculator/": "ugc_pricing_calculator" };
     const toolName = tools[path];
     if (!toolName) return;
