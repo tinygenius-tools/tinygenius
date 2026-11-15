@@ -10,374 +10,97 @@
     gtag('js', new Date());
     gtag('config', 'G-L7G530DD95');
   </script>
-
   <meta name="google-site-verification" content="pRVCD5Ql2Fb2kia3yr_yCwVMn-mLzPe3KjqKhJih_CA" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Explore free online calculators for freelancers and content creators. Estimate freelance rates, YouTube revenue and UGC project pricing with TinyGenius.">
+<meta name="description" content="Explore TinyGenius: free tools for freelancers and creators, including Fair & Just Negotiation Co-Pilot, freelance rate calculator, YouTube revenue estimator and UGC pricing calculator.">
   <title>TinyGenius – Free Calculators & Online Tools for Creators and Freelancers</title>
   <link rel="canonical" href="https://tinygenius.tools/">
   <meta name="theme-color" content="#26345e">
-
   <style>
     :root {
-      --navy:#26345e;
-      --ink:#303653;
-      --muted:#69718a;
-      --yellow:#fff1a8;
-      --lavender:#c9b5ff;
-      --mint:#a9e8d2;
-      --blue:#dceaff;
-      --cream:#fff9ed;
-      --white:#fff;
-      --line:#e8e9f1;
-      --purple:#6954cf;
+      --navy:#26345e; --ink:#303653; --muted:#69718a;
+      --yellow:#fff1a8; --lavender:#c9b5ff; --mint:#a9e8d2;
+      --blue:#dceaff; --cream:#fff9ed; --white:#fff;
+      --line:#e8e9f1; --purple:#6954cf;
       --shadow:0 10px 28px rgba(38,52,94,.08);
     }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--cream)}
+    header{padding:15px max(5%,calc((100% - 1120px)/2));display:flex;justify-content:space-between;align-items:center;gap:18px;background:#fff;border-bottom:1px solid var(--line)}
+    .logo{font-size:25px;font-weight:800;letter-spacing:-1px;color:var(--navy);text-decoration:none;white-space:nowrap}
+    .logo span{color:#e4ad19}
+    nav{display:flex;align-items:center;gap:20px}
+    nav a{color:#59617a;text-decoration:none;font-size:14px;font-weight:700}
+    nav a:hover,footer a:hover{color:var(--purple)}
+    .hero{padding:34px 20px 28px;text-align:center;background:linear-gradient(115deg,#fff1a8 0%,#f4edff 52%,#a9e8d2 100%)}
+    .eyebrow{display:inline-block;margin:0 0 10px;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.78);color:#51417f;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
+    .hero h1{font-size:clamp(34px,5vw,52px);line-height:1.04;margin:0 0 10px;letter-spacing:-2px;color:var(--navy)}
+    .hero h1 span{color:#7056c8}
+    .hero p{color:#59627b;font-size:16px;line-height:1.55;max-width:620px;margin:0 auto}
+    .search-band{padding:15px 20px;background:#fff;border-bottom:1px solid var(--line)}
+    .search-wrap{max-width:760px;margin:auto;position:relative}
+    .search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:18px;pointer-events:none}
+    .search{display:block;width:100%;padding:14px 18px 14px 46px;border:1px solid #dcd8ef;border-radius:14px;font-size:16px;color:var(--ink);background:#fff;box-shadow:0 4px 14px rgba(38,52,94,.05);outline:none}
+    .search:focus{border-color:#8c76dc;box-shadow:0 0 0 4px rgba(155,135,237,.15)}
+    main{max-width:1120px;margin:auto;padding:30px 20px 65px}
+    .section-heading{margin-bottom:18px}
+    .section-title{font-size:clamp(24px,3vw,30px);color:var(--navy);margin:0 0 6px;letter-spacing:-.6px}
+    .section-subtitle{color:var(--muted);margin:0;line-height:1.55}
+    .tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .card{display:flex;flex-direction:column;align-items:flex-start;min-height:220px;padding:22px;border:1px solid rgba(38,52,94,.09);border-radius:19px;box-shadow:0 6px 18px rgba(38,52,94,.045);transition:transform .2s ease,box-shadow .2s ease}
+    .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+    .card-lavender{background:var(--lavender)}
+    .card-yellow{background:var(--yellow)}
+    .card-mint{background:var(--mint)}
+    .emoji{display:grid;place-items:center;width:48px;height:48px;border-radius:15px;background:rgba(255,255,255,.78);font-size:25px}
+    .card h3{margin:14px 0 8px;color:var(--navy);font-size:18px}
+    .card p{color:#4f5872;line-height:1.55;font-size:14px;margin:0 0 15px}
+    .card a{display:inline-block;margin-top:auto;padding:10px 14px;border-radius:10px;background:var(--navy);color:#fff;font-weight:700;font-size:14px;text-decoration:none}
+    .card a:hover{background:#46578e}
+    .no-results{display:none;margin-top:16px;padding:15px;background:#fff;border:1px dashed #c9c2e8;border-radius:13px;color:var(--muted)}
 
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
+    /* Flagship product feature: Fair & Just */
+    .flagship{position:relative;overflow:hidden;margin:0 0 38px;padding:30px 32px;border-radius:22px;background:linear-gradient(120deg,#10172b 0%,#1b1c45 58%,#142b45 100%);color:#fff;box-shadow:0 14px 34px rgba(24,25,65,.18)}
+    .flagship:before{content:"";position:absolute;width:300px;height:300px;right:-85px;top:-155px;border-radius:50%;background:radial-gradient(circle,rgba(133,83,255,.36),rgba(133,83,255,0) 70%);pointer-events:none}
+    .flagship:after{content:"";position:absolute;width:260px;height:260px;right:18%;bottom:-205px;border-radius:50%;background:radial-gradient(circle,rgba(34,211,238,.20),rgba(34,211,238,0) 70%);pointer-events:none}
+    .flagship-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:28px}
+    .flagship-copy{max-width:700px}.flagship-kicker{display:inline-flex;align-items:center;gap:8px;margin-bottom:12px;padding:6px 11px;border:1px solid rgba(177,143,255,.5);border-radius:999px;color:#d9c9ff;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+    .flagship h2{margin:0 0 9px;color:#fff;font-size:clamp(25px,3.4vw,36px);line-height:1.12;letter-spacing:-.8px}.flagship h2 span{background:linear-gradient(90deg,#b68cff,#55d8ed);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .flagship p{max-width:650px;margin:0;color:#cbd5e7;font-size:14px;line-height:1.65}.flagship-points{display:flex;flex-wrap:wrap;gap:8px;margin-top:17px}.flagship-points span{padding:6px 10px;border:1px solid rgba(167,185,220,.22);border-radius:999px;background:rgba(255,255,255,.06);color:#dce6f7;font-size:11px}
+    .flagship-cta{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;padding:14px 18px;border-radius:12px;background:linear-gradient(100deg,#7445dc,#5149cf);box-shadow:0 7px 20px rgba(105,76,220,.28);color:#fff;text-decoration:none;font-size:14px;font-weight:800;white-space:nowrap;transition:transform .2s ease,filter .2s ease}.flagship-cta:hover{transform:translateY(-2px);filter:brightness(1.1)}
 
-    body {
-      margin:0;
-      font-family:Arial,Helvetica,sans-serif;
-      color:var(--ink);
-      background:var(--cream);
-    }
-
-    header {
-      padding:15px max(5%,calc((100% - 1120px)/2));
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:18px;
-      background:#fff;
-      border-bottom:1px solid var(--line);
-    }
-
-    .logo {
-      font-size:25px;
-      font-weight:800;
-      letter-spacing:-1px;
-      color:var(--navy);
-      text-decoration:none;
-      white-space:nowrap;
-    }
-
-    .logo span { color:#e4ad19; }
-
-    nav {
-      display:flex;
-      align-items:center;
-      gap:20px;
-    }
-
-    nav a {
-      color:#59617a;
-      text-decoration:none;
-      font-size:14px;
-      font-weight:700;
-    }
-
-    nav a:hover, footer a:hover { color:var(--purple); }
-
-    .hero {
-      padding:34px 20px 28px;
-      text-align:center;
-      background:linear-gradient(115deg,#fff1a8 0%,#f4edff 52%,#a9e8d2 100%);
-    }
-
-    .eyebrow {
-      display:inline-block;
-      margin:0 0 10px;
-      padding:7px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,.78);
-      color:#51417f;
-      font-size:11px;
-      font-weight:800;
-      letter-spacing:.5px;
-      text-transform:uppercase;
-    }
-
-    .hero h1 {
-      font-size:clamp(34px,5vw,52px);
-      line-height:1.04;
-      margin:0 0 10px;
-      letter-spacing:-2px;
-      color:var(--navy);
-    }
-
-    .hero h1 span { color:#7056c8; }
-
-    .hero p {
-      color:#59627b;
-      font-size:16px;
-      line-height:1.55;
-      max-width:620px;
-      margin:0 auto;
-    }
-
-    .search-band {
-      padding:15px 20px;
-      background:#fff;
-      border-bottom:1px solid var(--line);
-    }
-
-    .search-wrap {
-      max-width:760px;
-      margin:auto;
-      position:relative;
-    }
-
-    .search-icon {
-      position:absolute;
-      left:16px;
-      top:50%;
-      transform:translateY(-50%);
-      font-size:18px;
-      pointer-events:none;
-    }
-
-    .search {
-      display:block;
-      width:100%;
-      padding:14px 18px 14px 46px;
-      border:1px solid #dcd8ef;
-      border-radius:14px;
-      font-size:16px;
-      color:var(--ink);
-      background:#fff;
-      box-shadow:0 4px 14px rgba(38,52,94,.05);
-      outline:none;
-    }
-
-    .search:focus {
-      border-color:#8c76dc;
-      box-shadow:0 0 0 4px rgba(155,135,237,.15);
-    }
-
-    main {
-      max-width:1120px;
-      margin:auto;
-      padding:30px 20px 65px;
-    }
-
-    .section-heading { margin-bottom:18px; }
-
-    .section-title {
-      font-size:clamp(24px,3vw,30px);
-      color:var(--navy);
-      margin:0 0 6px;
-      letter-spacing:-.6px;
-    }
-
-    .section-subtitle {
-      color:var(--muted);
-      margin:0;
-      line-height:1.55;
-    }
-
-    .tools {
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:18px;
-    }
-
-    .card {
-      display:flex;
-      flex-direction:column;
-      align-items:flex-start;
-      min-height:220px;
-      padding:22px;
-      border:1px solid rgba(38,52,94,.09);
-      border-radius:19px;
-      box-shadow:0 6px 18px rgba(38,52,94,.045);
-      transition:transform .2s ease,box-shadow .2s ease;
-    }
-
-    .card:hover {
-      transform:translateY(-4px);
-      box-shadow:var(--shadow);
-    }
-
-    .card-lavender { background:var(--lavender); }
-    .card-yellow { background:var(--yellow); }
-    .card-mint { background:var(--mint); }
-
-    .emoji {
-      display:grid;
-      place-items:center;
-      width:48px;
-      height:48px;
-      border-radius:15px;
-      background:rgba(255,255,255,.78);
-      font-size:25px;
-    }
-
-    .card h3 {
-      margin:14px 0 8px;
-      color:var(--navy);
-      font-size:18px;
-    }
-
-    .card p {
-      color:#4f5872;
-      line-height:1.55;
-      font-size:14px;
-      margin:0 0 15px;
-    }
-
-    .card a {
-      display:inline-block;
-      margin-top:auto;
-      padding:10px 14px;
-      border-radius:10px;
-      background:var(--navy);
-      color:#fff;
-      font-weight:700;
-      font-size:14px;
-      text-decoration:none;
-    }
-
-    .card a:hover { background:#46578e; }
-
-    .no-results {
-      display:none;
-      margin-top:16px;
-      padding:15px;
-      background:#fff;
-      border:1px dashed #c9c2e8;
-      border-radius:13px;
-      color:var(--muted);
-    }
-
-    .coming-soon {
-      margin-top:34px;
-      padding:22px;
-      border-radius:20px;
-      background:var(--blue);
-      border:1px solid #d4e4fa;
-    }
-
-    .coming-soon h2 {
-      margin:0 0 6px;
-      color:var(--navy);
-      font-size:21px;
-    }
-
-    .coming-soon-card {
-      margin-top:14px;
-      max-width:350px;
-      background:rgba(255,255,255,.8);
-      border:1px dashed #9db8dc;
-      border-radius:15px;
-      padding:16px;
-    }
-
-    .coming-label {
-      display:inline-block;
-      padding:5px 9px;
-      border-radius:999px;
-      background:#dce8ff;
-      color:#355486;
-      font-size:10px;
-      font-weight:800;
-      text-transform:uppercase;
-      letter-spacing:.4px;
-    }
-
-    .coming-soon-card h3 {
-      margin:9px 0 6px;
-      color:var(--navy);
-    }
-
-    .coming-soon-card p {
-      color:var(--muted);
-      line-height:1.5;
-      margin:0;
-      font-size:14px;
-    }
-
-    #about { margin-top:48px; }
-
-    #about p {
-      color:var(--muted);
-      line-height:1.8;
-    }
-
-    footer {
-      text-align:center;
-      padding:35px 20px;
-      color:#737b91;
-      background:#fff;
-      border-top:1px solid var(--line);
-      font-size:14px;
-    }
-
-    footer h3 {
-      color:var(--navy);
-      margin:0 0 8px;
-    }
-
-    footer p { margin:0 0 18px; }
-
-    .footer-links {
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:12px 20px;
-      margin-bottom:20px;
-    }
-
-    .footer-links a {
-      color:#5d4bb8;
-      text-decoration:none;
-      font-weight:700;
-    }
-
-    @media(max-width:800px) {
-      .tools { grid-template-columns:repeat(2,minmax(0,1fr)); }
-    }
-
-    @media(max-width:600px) {
-      header {
-        padding:14px 5%;
-        align-items:center;
-      }
-
-      .logo { font-size:21px; }
-      nav { gap:12px; }
-      nav a { font-size:12px; }
-
-      .hero { padding:29px 17px 24px; }
-      .hero p { font-size:15px; }
-
-      .search-band { padding:12px 16px; }
-      main { padding:25px 16px 48px; }
-
-      .tools {
-        grid-template-columns:1fr;
-        gap:13px;
-      }
-
-      .card {
-        min-height:190px;
-        padding:19px;
-      }
-
-      .coming-soon { padding:18px; }
+    .coming-soon{margin-top:34px;padding:22px;border-radius:20px;background:var(--blue);border:1px solid #d4e4fa}
+    .coming-soon h2{margin:0 0 6px;color:var(--navy);font-size:21px}
+    .coming-soon-card{margin-top:14px;max-width:350px;background:rgba(255,255,255,.8);border:1px dashed #9db8dc;border-radius:15px;padding:16px}
+    .coming-label{display:inline-block;padding:5px 9px;border-radius:999px;background:#dce8ff;color:#355486;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.4px}
+    .coming-soon-card h3{margin:9px 0 6px;color:var(--navy)}
+    .coming-soon-card p{color:var(--muted);line-height:1.5;margin:0;font-size:14px}
+    #about{margin-top:48px}
+    #about p{color:var(--muted);line-height:1.8}
+    footer{text-align:center;padding:35px 20px;color:#737b91;background:#fff;border-top:1px solid var(--line);font-size:14px}
+    footer h3{color:var(--navy);margin:0 0 8px}
+    footer p{margin:0 0 18px}
+    .footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 20px;margin-bottom:20px}
+    .footer-links a{color:#5d4bb8;text-decoration:none;font-weight:700}
+    @media(max-width:800px){.tools{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:600px){
+      header{padding:14px 5%;align-items:center}.logo{font-size:21px}
+      nav{gap:12px}nav a{font-size:12px}
+      .flagship{padding:23px 19px;margin-bottom:30px}.flagship-inner{align-items:flex-start;flex-direction:column;gap:18px}.flagship-cta{width:100%}.flagship h2{font-size:27px}
+      .hero{padding:29px 17px 24px}.hero p{font-size:15px}
+      .search-band{padding:12px 16px}
+      main{padding:25px 16px 48px}
+      .tools{grid-template-columns:1fr;gap:13px}
+      .card{min-height:190px;padding:19px}
+      .coming-soon{padding:18px}
     }
   </style>
 </head>
-
 <body>
-
 <header>
-  <a class="logo" href="./" aria-label="TinyGenius home">
-    TinyGenius<span>.</span> 💡
-  </a>
-
+  <a class="logo" href="./" aria-label="TinyGenius home">TinyGenius<span>.</span> 💡</a>
   <nav aria-label="Main navigation">
     <a href="#tools">Explore tools</a>
     <a href="#about">About</a>
@@ -386,206 +109,108 @@
 
 <section class="hero">
   <div class="eyebrow">Useful tools for your next big idea</div>
-
   <h1>Small tools.<br><span>Big answers.</span></h1>
-
-  <p>
-    Free online calculators and smart tools for freelancers,
-    YouTubers and content creators. Make clearer decisions
-    about your work, pricing and growth.
-  </p>
+  <p>Free online calculators and smart tools for freelancers, YouTubers and content creators. Make clearer decisions about your work, pricing and growth.</p>
 </section>
 
 <div class="search-band">
   <div class="search-wrap">
     <span class="search-icon" aria-hidden="true">🔎</span>
-
-    <input
-      class="search"
-      id="search"
-      type="search"
-      placeholder="Search calculators and tools..."
-      oninput="filterTools()"
-      aria-label="Search available tools"
-    >
+    <input class="search" id="search" type="search" placeholder="Search calculators and tools..." oninput="filterTools()" aria-label="Search available tools">
   </div>
 </div>
 
 <main>
 
-  <section id="tools">
+  <section class="flagship" aria-labelledby="flagshipTitle">
+    <div class="flagship-inner">
+      <div class="flagship-copy">
+        <span class="flagship-kicker">✦ TinyGenius flagship product · Fair &amp; Just</span>
+        <h2 id="flagshipTitle">Meet your <span>Negotiation Co-Pilot.</span></h2>
+        <p>Know your numbers, assess client offers, protect your time and usage rights, compare practical negotiation strategies, and prepare a clearer professional response — all in one guided workspace.</p>
+        <div class="flagship-points" aria-label="Product features">
+          <span>Offer assessment</span><span>BATNA analysis</span><span>Price · Scope · Terms</span><span>Client-ready responses</span>
+        </div>
+      </div>
+      <a class="flagship-cta" href="fair-just/" aria-label="Explore Fair and Just Negotiation Co-Pilot">Explore Fair &amp; Just&nbsp; →</a>
+    </div>
+  </section>
 
+  <section id="tools">
     <div class="section-heading">
       <h2 class="section-title">Explore our tools</h2>
-
-      <p class="section-subtitle">
-        Choose a tool to get your answer. No extra scrolling or sign-up required.
-      </p>
+      <p class="section-subtitle">Choose a tool to get your answer. No extra scrolling or sign-up required.</p>
     </div>
-
     <div class="tools" id="toolGrid">
-
-      <article class="card card-lavender tool-card"
-        data-name="freelance hourly rate pricing freelancer business">
-
+      <article class="card card-lavender tool-card" data-name="freelance hourly rate pricing freelancer business">
         <div class="emoji" aria-hidden="true">💼</div>
-
         <h3>Freelance Rate Calculator</h3>
-
-        <p>
-          Discover how much to charge clients for your time,
-          expenses and expertise.
-        </p>
-
+        <p>Discover how much to charge clients for your time, expenses and expertise.</p>
         <a href="freelance-rate-calculator/">Open calculator →</a>
       </article>
-
-      <article class="card card-yellow tool-card"
-        data-name="youtube creator earnings revenue views rpm">
-
+      <article class="card card-yellow tool-card" data-name="youtube creator earnings revenue views rpm">
         <div class="emoji" aria-hidden="true">🎥</div>
-
         <h3>YouTube Revenue Estimator</h3>
-
-        <p>
-          Estimate potential creator revenue based on
-          monthly views and RPM.
-        </p>
-
+        <p>Estimate potential creator revenue based on monthly views and RPM.</p>
         <a href="youtube-revenue-calculator/">Open calculator →</a>
       </article>
-
-      <article class="card card-mint tool-card"
-        data-name="ugc creator pricing brand content video usage rights">
-
+      <article class="card card-mint tool-card" data-name="ugc creator pricing brand content video usage rights">
         <div class="emoji" aria-hidden="true">🎬</div>
-
         <h3>UGC Pricing Calculator</h3>
-
-        <p>
-          Calculate what to charge brands for videos,
-          editing, usage rights and revisions.
-        </p>
-
+        <p>Calculate what to charge brands for videos, editing, usage rights and revisions.</p>
         <a href="ugc-pricing-calculator/">Open calculator →</a>
       </article>
-
     </div>
-
-    <div class="no-results" id="noResults" role="status">
-      No matching tools found. Try another search term.
-    </div>
-
+    <div class="no-results" id="noResults" role="status">No matching tools found. Try another search term.</div>
   </section>
 
   <section class="coming-soon" aria-labelledby="comingSoonTitle">
-
-    <h2 id="comingSoonTitle">
-      ✨ More useful tools are on the way
-    </h2>
-
-    <p class="section-subtitle">
-      We're building new ways to make everyday business decisions simpler.
-    </p>
-
+    <h2 id="comingSoonTitle">✨ More useful tools are on the way</h2>
+    <p class="section-subtitle">We're building new ways to make everyday business decisions simpler.</p>
     <article class="coming-soon-card">
-
       <span class="coming-label">Coming soon</span>
-
       <h3>📈 Profit Margin Calculator</h3>
-
-      <p>
-        Understand the relationship between your costs,
-        selling price and profit.
-      </p>
-
+      <p>Understand the relationship between your costs, selling price and profit.</p>
     </article>
-
   </section>
 
   <section id="about">
-
     <h2 class="section-title">About TinyGenius</h2>
-
-    <p>
-      TinyGenius is a growing collection of free, practical online tools
-      designed to make everyday work simpler. We help freelancers,
-      content creators and independent professionals make smarter
-      decisions through simple calculators and useful digital resources.
-    </p>
-
-    <p>
-      From calculating freelance rates to estimating YouTube revenue
-      and pricing UGC projects, our goal is to turn complicated
-      calculations into quick, understandable answers.
-    </p>
-
+    <p>TinyGenius is a growing collection of free, practical online tools designed to make everyday work simpler. We help freelancers, content creators and independent professionals make smarter decisions through simple calculators and useful digital resources.</p>
+    <p>From calculating freelance rates to estimating YouTube revenue and pricing UGC projects, our goal is to turn complicated calculations into quick, understandable answers.</p>
     <h3>Our philosophy</h3>
-
-    <p>
-      Small tools. Big answers. We believe useful technology should
-      be simple, accessible and available to everyone.
-    </p>
-
+    <p>Small tools. Big answers. We believe useful technology should be simple, accessible and available to everyone.</p>
   </section>
-
 </main>
 
 <footer>
-
   <h3>TinyGenius 💡</h3>
-
   <p>Small tools. Big answers.</p>
-
   <div class="footer-links">
     <a href="./">Home</a>
     <a href="freelance-rate-calculator/">Freelance Calculator</a>
     <a href="youtube-revenue-calculator/">YouTube Calculator</a>
     <a href="ugc-pricing-calculator/">UGC Calculator</a>
+    <a href="fair-just/">Fair &amp; Just Negotiation Co-Pilot</a>
     <a href="privacy-policy/">Privacy Policy</a>
     <a href="terms-of-use/">Terms of Use</a>
     <a href="contact/">Contact Us</a>
   </div>
-
-  <p style="font-size:13px;color:#8990a0;margin:0">
-    © 2026 TinyGenius. All rights reserved.
-  </p>
-
+  <p style="font-size:13px;color:#8990a0;margin:0">© 2026 TinyGenius. All rights reserved.</p>
 </footer>
 
 <script>
-function filterTools() {
-    const query = document
-        .getElementById("search")
-        .value
-        .toLowerCase()
-        .trim()
-        .replace(/\s+/g, " ");
-
-    const searchWords = query.split(" ").filter(Boolean);
-
+  function filterTools() {
+    const query = document.getElementById("search").value.toLowerCase().trim();
     const cards = document.querySelectorAll(".tool-card");
     let visibleCount = 0;
-
     cards.forEach(card => {
-        const cardText = card.textContent
-            .toLowerCase()
-            .replace(/\s+/g, " ")
-            .trim();
-
-        const matches = searchWords.every(word =>
-            cardText.includes(word)
-        );
-
-        card.style.display = matches ? "" : "none";
-
-        if (matches) visibleCount++;
+      const matches = card.dataset.name.includes(query);
+      card.style.display = matches ? "" : "none";
+      if (matches) visibleCount++;
     });
-
-    document.getElementById("noResults").style.display =
-        visibleCount === 0 ? "block" : "none";
-}
+    document.getElementById("noResults").style.display = visibleCount === 0 ? "block" : "none";
+  }
 </script>
-
 </body>
 </html>
