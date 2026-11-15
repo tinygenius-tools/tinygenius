@@ -3,10 +3,12 @@
 
   <url>
     <loc>https://tinygenius.tools/</loc>
+    <lastmod>2026-11-15</lastmod>
   </url>
 
   <url>
     <loc>https://tinygenius.tools/freelance-rate-calculator/</loc>
+    <lastmod>2026-11-15</lastmod>
   </url>
 
   <url>
@@ -15,6 +17,7 @@
 
   <url>
     <loc>https://tinygenius.tools/ugc-pricing-calculator/</loc>
+    <lastmod>2026-11-15</lastmod>
   </url>
 
   <url>
@@ -30,24 +33,18 @@
   </url>
 
   <url>
-  <loc>https://tinygenius.tools/how-to-calculate-freelance-hourly-rate/</loc>
-  <lastmod>2026-11-12</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.8</priority>
-</url>
+    <loc>https://tinygenius.tools/how-to-calculate-freelance-hourly-rate/</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
 
   <url>
-  <loc>https://tinygenius.tools/ugc-pricing-guide/</loc>
-  <lastmod>2026-11-12</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.8</priority>
-</url>
+    <loc>https://tinygenius.tools/ugc-pricing-guide/</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
 
   <url>
-  <loc>https://tinygenius.tools/fair-just/</loc>
-  <lastmod>2026-11-15</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.9</priority>
-</url>
-  
+    <loc>https://tinygenius.tools/fair-just/</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+
 </urlset>
