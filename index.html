@@ -104,7 +104,7 @@
     .eyebrow{display:inline-block;margin:0 0 10px;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.78);color:#51417f;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
     .hero h1{font-size:clamp(34px,5vw,52px);line-height:1.04;margin:0 0 10px;letter-spacing:-2px;color:var(--navy)}
     .hero h1 span{color:#7056c8}
-    .hero p{color:#59627b;font-size:16px;line-height:1.55;max-width:620px;margin:0 auto}
+    .hero p{color:#59627b;font-size:16px;line-height:1.55;max-width:620px;margin:0 auto}.hero-actions{display:flex;justify-content:center;gap:10px;margin-top:18px}.hero-cta{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:11px;background:#26345e;color:#fff;text-decoration:none;font-size:14px;font-weight:800;box-shadow:0 6px 16px rgba(38,52,94,.14)}.hero-cta:hover{background:#46578e}.hero-secondary{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border:1px solid rgba(38,52,94,.22);border-radius:11px;color:#26345e;text-decoration:none;font-size:14px;font-weight:800;background:rgba(255,255,255,.55)}
     .search-band{padding:15px 20px;background:#fff;border-bottom:1px solid var(--line)}
     .search-wrap{max-width:760px;margin:auto;position:relative}
     .search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:18px;pointer-events:none}
@@ -152,6 +152,7 @@
     .footer-links a{color:#5d4bb8;text-decoration:none;font-weight:700}
     @media(max-width:800px){.tools{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:600px){
+      .hero-actions{flex-direction:column;align-items:stretch;max-width:320px;margin:17px auto 0}.hero-cta,.hero-secondary{width:100%}
       header{padding:14px 5%;align-items:center}.logo{font-size:21px}
       nav{gap:12px}nav a{font-size:12px}
       .flagship{padding:23px 19px;margin-bottom:30px}.flagship-inner{align-items:flex-start;flex-direction:column;gap:18px}.flagship-cta{width:100%}.flagship h2{font-size:27px}
@@ -177,6 +178,7 @@
   <div class="eyebrow">Useful tools for your next big idea</div>
   <h1>Small tools.<br><span>Big answers.</span></h1>
   <p>Free online calculators and smart tools for freelancers, YouTubers and content creators. Make clearer decisions about your work, pricing and growth.</p>
+  <div class="hero-actions"><a class="hero-cta" href="fair-just/">Try Fair &amp; Just free →</a><a class="hero-secondary" href="#tools">Explore all tools</a></div>
 </section>
 
 <div class="search-band">
@@ -188,7 +190,7 @@
 
 <main>
 
-  <section class="flagship" aria-labelledby="flagshipTitle">
+  <section class="flagship" data-name="fair just negotiation copilot deal review client offer freelancer creator negotiation strategies" aria-labelledby="flagshipTitle">
     <div class="flagship-inner">
       <div class="flagship-copy">
         <span class="flagship-kicker">✦ TinyGenius flagship product · Fair &amp; Just</span>
@@ -268,7 +270,7 @@
 <script>
   function filterTools() {
     const query = document.getElementById("search").value.toLowerCase().trim();
-    const cards = document.querySelectorAll(".tool-card");
+    const cards = document.querySelectorAll(".tool-card, .flagship");
     let visibleCount = 0;
     cards.forEach(card => {
       const matches = card.dataset.name.includes(query);
