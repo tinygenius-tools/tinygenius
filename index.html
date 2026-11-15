@@ -267,5 +267,32 @@
     document.getElementById("noResults").style.display = visibleCount === 0 ? "block" : "none";
   }
 </script>
+
+<script>
+(function () {
+  document.addEventListener("click", function (event) {
+    const link = event.target.closest("a[href]");
+    if (!link || typeof gtag !== "function") return;
+    let destination;
+    try { destination = new URL(link.href, window.location.href); } catch (error) { return; }
+    if (destination.origin !== window.location.origin) return;
+    const path = destination.pathname.replace(/\\/+$/, "") + "/";
+    const tools = {
+      "/fair-just/": "fair_just",
+      "/freelance-rate-calculator/": "freelance_rate_calculator",
+      "/youtube-revenue-calculator/": "youtube_revenue_calculator",
+      "/ugc-pricing-calculator/": "ugc_pricing_calculator"
+    };
+    const toolName = tools[path];
+    if (!toolName) return;
+    gtag("event", "tool_open", {
+      tool_name: toolName,
+      source_page: window.location.pathname,
+      destination_path: destination.pathname,
+      transport_type: "beacon"
+    });
+  }, true);
+})();
+</script>
 </body>
 </html>
