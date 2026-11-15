@@ -303,6 +303,7 @@ function calculate() {
   }
 
   document.getElementById("result").style.display = "block";
+  if (typeof gtag === "function") gtag("event", "ugc_quote_calculated", { currency: currency });
 }
 </script>
 
