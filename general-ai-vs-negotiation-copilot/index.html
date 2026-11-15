@@ -78,4 +78,21 @@
 <li><a href="https://kgajos.seas.harvard.edu/papers/ma2025chatgpt.pdf" target="_blank" rel="noopener">CHIWORK 2025: Designing AI for Context Analysis in Humanitarian Frontline Negotiations</a></li>
 </ul>
 <footer><p><strong>TinyGenius</strong> — Small tools. Big answers.</p><p><a href="https://tinygenius.tools/">Home</a><a href="https://tinygenius.tools/fair-just/">Fair &amp; Just</a><a href="https://tinygenius.tools/freelance-rate-calculator/">Freelance Rate Calculator</a><a href="https://tinygenius.tools/how-to-calculate-freelance-hourly-rate/">Freelance Rate Guide</a><a href="https://tinygenius.tools/ugc-pricing-guide/">UGC Pricing Guide</a><a href="https://tinygenius.tools/privacy-policy/">Privacy</a><a href="https://tinygenius.tools/terms-of-use/">Terms</a></p></footer>
-</main></body></html>
+</main>
+<script>
+(function () {
+  document.addEventListener("click", function (event) {
+    const link = event.target.closest("a[href]");
+    if (!link || typeof gtag !== "function") return;
+    let destination;
+    try { destination = new URL(link.href, window.location.href); } catch (error) { return; }
+    if (destination.origin !== window.location.origin) return;
+    const path = destination.pathname.replace(/\\/+$/, "") + "/";
+    const tools = { "/fair-just/": "fair_just", "/freelance-rate-calculator/": "freelance_rate_calculator", "/youtube-revenue-calculator/": "youtube_revenue_calculator", "/ugc-pricing-calculator/": "ugc_pricing_calculator" };
+    const toolName = tools[path];
+    if (!toolName) return;
+    gtag("event", "tool_open", { tool_name: toolName, source_page: window.location.pathname, destination_path: destination.pathname, transport_type: "beacon" });
+  }, true);
+})();
+</script>
+</body></html>
