@@ -6,6 +6,14 @@
 <meta name="theme-color" content="#23364D">
 <meta name="description" content="Fair & Just by TinyGenius helps freelancers and creators assess offers, protect scope and usage rights, compare negotiation strategies, and prepare clearer client responses.">
 <link rel="canonical" href="https://tinygenius.tools/fair-just/">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L7G530DD95"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L7G530DD95');
+</script>
 <meta property="og:title" content="Fair &amp; Just — Negotiation Co-Pilot for Freelancers and Creators">
 <meta property="og:description" content="Assess client offers, understand your alternatives, protect scope and usage rights, and prepare a clearer negotiation response with Fair &amp; Just by TinyGenius.">
 <meta property="og:type" content="website">
@@ -294,6 +302,7 @@ function runDealReview(){
  if(data.rate>=data.T){$('assessmentTitle').textContent='The offer meets your stated earnings target';$('assessmentText').textContent='Your estimated rate is '+fmt(data.rate)+' per hour before personal income tax. Check scope, payment reliability and rights before deciding. A higher price is not automatically the best move.';strategy='terms'}
  else{$('assessmentTitle').textContent='The offer is below your stated earnings target';$('assessmentText').textContent='Your estimated rate is '+fmt(data.rate)+' per hour. Your target-based minimum quote is '+fmt(data.min)+'. This is a personal threshold, not a market benchmark.';strategy=$('clientBudget').value==='fixed'?'scope':'price'}
  updateBatna();chooseStrategy(strategy);go(2);
+ if(typeof gtag==="function")gtag("event","fair_just_deal_review_completed",{work_type:$("workType").value,currency:$("currency").value});
 }
 function updateBatna(){
  const a=$('alternative').value,v=Number($('alternativeValue').value||0);
@@ -395,6 +404,7 @@ function makeMessage(){
  const clientName=$('clientName').value.trim();
  const salutation=clientName?'Dear '+clientName+',':'Dear Sir/Madam,';
  $('clientMessage').value=salutation+'\n\n'+greet+'\n\n'+body+'\n\n'+close+'\n\nBest regards';
+ if(typeof gtag==="function")gtag("event","fair_just_message_drafted",{strategy:strategy});
 }
 $('reviewDealBtn').addEventListener('click',runDealReview);$('back1').onclick=()=>go(1);$('strategies').onclick=findStrategies;$('back2').onclick=()=>go(2);
 $('draft').onclick=()=>{let q=data.min;if(strategy==='scope'||strategy==='terms')q=data.O;$('proposed').value=Number(q.toFixed(2));makeMessage();go(4)};
@@ -414,7 +424,7 @@ function createReceipt(){
  $('receiptContent').innerHTML=rows.map(r=>'<div class="receipt-row"><span>'+safe(r[0])+'</span><b>'+safe(r[1])+'</b></div>').join('');
  $('receiptTitle').textContent=outcome==='success'?'You reported reaching an agreement':outcome==='declined'?'You chose to decline the deal':outcome==='lost'?'The deal did not proceed':'Your negotiation is still in progress';
  $('receiptSub').textContent='Private working record · Self-reported information · Not proof of payment, an invoice or a signed contract.';
- receiptMade=true;go(5);return true;
+ receiptMade=true;if(typeof gtag==="function")gtag("event","fair_just_record_created",{outcome:outcome});go(5);return true;
 }
 $('makeReceipt').onclick=createReceipt;
 $('print').onclick=()=>window.print();
