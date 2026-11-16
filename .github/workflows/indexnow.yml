@@ -1,0 +1,92 @@
+name: IndexNow URL notifications
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.html'
+      - 'index.html'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  notify-indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build changed URL list
+        id: urls
+        shell: bash
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            printf '%s\n' "https://tinygenius.tools/" > urls.txt
+          elif [ -n "$BEFORE_SHA" ] && [ "$BEFORE_SHA" != "0000000000000000000000000000000000000000" ]; then
+            git diff --name-only "$BEFORE_SHA" "$AFTER_SHA" -- '*.html' > changed-files.txt
+            : > urls.txt
+            while IFS= read -r file; do
+              [ -n "$file" ] || continue
+              if [ "$file" = "index.html" ]; then
+                printf '%s\n' "https://tinygenius.tools/" >> urls.txt
+              elif [[ "$file" == */index.html ]]; then
+                path="${file%index.html}"
+                printf 'https://tinygenius.tools/%s\n' "$path" >> urls.txt
+              else
+                printf 'https://tinygenius.tools/%s\n' "$file" >> urls.txt
+              fi
+            done < changed-files.txt
+          else
+            printf '%s\n' "https://tinygenius.tools/" > urls.txt
+          fi
+          sort -u -o urls.txt urls.txt
+          echo "Prepared URLs:"
+          cat urls.txt
+          if [ ! -s urls.txt ]; then
+            echo "No HTML page changes to notify."
+            echo "has_urls=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_urls=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Submit changed URLs to IndexNow
+        if: steps.urls.outputs.has_urls == 'true'
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import urllib.request
+          from pathlib import Path
+
+          key = Path("d8bc988be50f400993d965b0f53d1e28.txt").read_text(encoding="utf-8").strip()
+          urls = [line.strip() for line in Path("urls.txt").read_text(encoding="utf-8").splitlines() if line.strip()]
+          payload = {
+              "host": "tinygenius.tools",
+              "key": key,
+              "keyLocation": "https://tinygenius.tools/d8bc988be50f400993d965b0f53d1e28.txt",
+              "urlList": urls,
+          }
+          request = urllib.request.Request(
+              "https://api.indexnow.org/indexnow",
+              data=json.dumps(payload).encode("utf-8"),
+              headers={"Content-Type": "application/json; charset=utf-8"},
+              method="POST",
+          )
+          try:
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  print(f"IndexNow response: HTTP {response.status}")
+                  print(response.read().decode("utf-8", errors="replace"))
+          except urllib.error.HTTPError as error:
+              print(f"IndexNow response: HTTP {error.code}")
+              print(error.read().decode("utf-8", errors="replace"))
+              raise
+          PY
