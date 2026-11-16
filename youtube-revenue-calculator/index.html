@@ -458,6 +458,10 @@
     const monthly = (views / 1000) * rpm;
     const annual = monthly * 12;
     const daily = monthly / 30;
+    if (![monthly, annual, daily].every(Number.isFinite)) {
+      alert("These values are too large to estimate safely. Please enter smaller amounts.");
+      return;
+    }
 
     document.getElementById("monthlyRevenue").textContent =
       formatMoney(monthly, currency);
