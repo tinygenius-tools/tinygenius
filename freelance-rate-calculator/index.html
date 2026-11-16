@@ -447,6 +447,10 @@
     const annualTarget = income + expenses;
     const hourlyRate = annualTarget / annualHours;
     const weeklyTarget = annualTarget / weeks;
+    if (![annualHours, annualTarget, hourlyRate, weeklyTarget].every(Number.isFinite)) {
+      alert("These values are too large to calculate safely. Please enter smaller amounts.");
+      return;
+    }
 
     document.getElementById("hourlyRate").textContent =
       formatMoney(hourlyRate, currency) + " / hour";
