@@ -217,9 +217,9 @@ Calculate what to charge brands for creating user-generated content.
 <label for="raw">Raw footage fee</label>
 <input type="number" id="raw" min="0" value="0">
 
-<button onclick="calculate()">Calculate My UGC Price</button>
+<button type="button" onclick="calculate()">Calculate My UGC Price</button>
 
-<div class="result" id="result">
+<div class="result" id="result" aria-live="polite" aria-atomic="true">
   <div>Your suggested project quote</div>
   <div class="total" id="total"></div>
 
