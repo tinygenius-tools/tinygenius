@@ -279,7 +279,12 @@ function calculate() {
   const values = {};
 
   for (const field of fields) {
-    const value = Number(document.getElementById(field).value);
+    const rawValue = document.getElementById(field).value.trim();
+    if (rawValue === "") {
+      alert("Please complete every pricing field. Enter 0 for fees that do not apply.");
+      return;
+    }
+    const value = Number(rawValue);
 
     if (!Number.isFinite(value) || value < 0) {
       alert("Please enter valid non-negative amounts.");
