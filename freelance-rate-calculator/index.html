@@ -414,10 +414,18 @@
 
   function calculateRate() {
     const currency = document.getElementById("currency").value;
-    const income = Number(document.getElementById("income").value);
-    const expenses = Number(document.getElementById("expenses").value);
-    const hours = Number(document.getElementById("hours").value);
-    const weeks = Number(document.getElementById("weeks").value);
+    const incomeRaw = document.getElementById("income").value.trim();
+    const expensesRaw = document.getElementById("expenses").value.trim();
+    const hoursRaw = document.getElementById("hours").value.trim();
+    const weeksRaw = document.getElementById("weeks").value.trim();
+    if ([incomeRaw, expensesRaw, hoursRaw, weeksRaw].some(value => value === "")) {
+      alert("Please complete all fields. Enter 0 where an amount is not applicable.");
+      return;
+    }
+    const income = Number(incomeRaw);
+    const expenses = Number(expensesRaw);
+    const hours = Number(hoursRaw);
+    const weeks = Number(weeksRaw);
 
     if (
       !Number.isFinite(income) ||
