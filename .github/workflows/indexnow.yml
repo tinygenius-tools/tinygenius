@@ -30,7 +30,10 @@ jobs:
           EVENT_NAME: ${{ github.event_name }}
         run: |
           if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
-            printf '%s\n' "https://tinygenius.tools/" > urls.txt
+            printf '%s\n' \
+              "https://tinygenius.tools/" \
+              "https://tinygenius.tools/fair-just/" \
+              "https://tinygenius.tools/freelance-rate-calculator/" > urls.txt
           elif [ -n "$BEFORE_SHA" ] && [ "$BEFORE_SHA" != "0000000000000000000000000000000000000000" ]; then
             git diff --name-only "$BEFORE_SHA" "$AFTER_SHA" -- '*.html' > changed-files.txt
             : > urls.txt
