@@ -222,7 +222,7 @@ details{border:1px solid var(--line);border-radius:12px;padding:12px 13px;margin
     <div class="head"><h2>4. Prepare, agree and record</h2><span class="step-label">YOUR NEGOTIATION PLAN</span></div>
     <div class="grid">
      <div class="field"><label for="clientName">Client's name <span class="optional-note">Optional</span></label><input id="clientName" type="text" maxlength="80" autocomplete="off" placeholder="Enter client name (optional)"></div>
-     <div class="field"><label for="proposed">Your proposed fee</label><input id="proposed" type="number" min="0" step=".01"></div>
+     <div class="field"><label for="proposed">Your proposed fee</label><input id="proposed" type="number" min="0" step=".01"><span class="hint">For a higher-fee strategy, the prefilled amount is your target-based minimum—not a recommended opening offer or a market rate. Review and adjust it for the scope, client value and your negotiation approach before sending.</span></div>
      <div class="field"><label for="tone">Message tone</label><select id="tone"><option value="professional">Confident &amp; professional</option><option value="warm">Warm &amp; collaborative</option><option value="firm">Direct &amp; firm</option></select></div>
     </div>
     <div class="message"><div class="messagebar"><b>Client message · edit before sending</b><button type="button" class="btn secondary" id="refresh">Refresh</button></div><textarea id="clientMessage"></textarea><div class="actions"><span class="hint">Use only details that are accurate for your project.</span><button type="button" class="btn primary" id="copy">Copy message</button></div></div>
