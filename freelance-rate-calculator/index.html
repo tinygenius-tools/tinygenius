@@ -244,6 +244,7 @@
 #tg-consent-banner button:focus-visible,#tg-consent-manage:focus-visible{outline:3px solid #facc15;outline-offset:3px}
 @media(max-width:480px){#tg-consent-banner{left:10px;right:10px;bottom:10px;padding:15px}.tg-consent-actions button{flex:1}}
 </style>
+
 <script id="tg-analytics-consent">(function(){var id='G-L7G530DD95',allowed=false,loaded=false;try{allowed=localStorage.getItem('tg_cookie_consent')==='accepted'}catch(e){}window.dataLayer=window.dataLayer||[];window.gtag=function(){if(allowed)window.dataLayer.push(arguments)};window.__tgEnableAnalytics=function(){if(loaded)return;allowed=true;loaded=true;window.dataLayer.push(['js',new Date()]);window.dataLayer.push(['config',id]);var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+id;document.head.appendChild(s)};window.__tgDisableAnalytics=function(){allowed=false};if(allowed)window.__tgEnableAnalytics()})();</script>
 </head>
 
@@ -519,5 +520,6 @@
 </section>
 <button id="tg-consent-manage" type="button" aria-label="Change cookie preferences">Privacy choices</button>
 
+<script id="tg-consent-controller">(function(){var b=document.getElementById('tg-consent-banner'),a=document.getElementById('tg-consent-accept'),r=document.getElementById('tg-consent-reject'),m=document.getElementById('tg-consent-manage');if(!b||!a||!r||!m)return;function get(){try{return localStorage.getItem('tg_cookie_consent')}catch(e){return null}}function set(v){try{localStorage.setItem('tg_cookie_consent',v)}catch(e){}if(v==='accepted'&&window.__tgEnableAnalytics)window.__tgEnableAnalytics();if(v==='rejected'&&window.__tgDisableAnalytics)window.__tgDisableAnalytics();b.hidden=true;m.hidden=false}a.addEventListener('click',function(){set('accepted')});r.addEventListener('click',function(){set('rejected')});m.addEventListener('click',function(){b.hidden=false;m.hidden=true;a.focus()});if(get()==='accepted'||get()==='rejected'){b.hidden=true;m.hidden=false}else{b.hidden=false;m.hidden=true}})();</script>
 </body>
 </html>
