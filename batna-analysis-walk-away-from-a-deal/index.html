@@ -15,6 +15,24 @@
   <meta name="twitter:description" content="A practical framework for BATNA analysis and better negotiation decisions.">
   <meta name="theme-color" content="#10152d">
   <script>
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
+  (function(){
+    var saved = null;
+    try { saved = localStorage.getItem('tg_cookie_consent'); } catch(e) {}
+    var analytics = saved === 'accepted' ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      analytics_storage: analytics,
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      functionality_storage: 'granted',
+      security_storage: 'granted',
+      wait_for_update: 500
+    });
+  })();
+</script>
+<script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
@@ -70,24 +88,7 @@
     footer a{margin-right:14px}
     @media(max-width:600px){.wrap{padding:34px 18px 55px}body{font-size:16px}.dek{font-size:18px}h2{font-size:25px}.topinner{align-items:flex-start}}
   </style>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
-  (function(){
-    var saved = null;
-    try { saved = localStorage.getItem('tg_cookie_consent'); } catch(e) {}
-    var analytics = saved === 'accepted' ? 'granted' : 'denied';
-    gtag('consent', 'default', {
-      analytics_storage: analytics,
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      functionality_storage: 'granted',
-      security_storage: 'granted',
-      wait_for_update: 500
-    });
-  })();
-</script>
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7G530DD95"></script>
   
 <style id="tg-consent-styles">
