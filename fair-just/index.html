@@ -292,7 +292,7 @@ function toast(t){$('toast').textContent=t;$('toast').style.display='block';setT
 function go(n){for(let i=1;i<=5;i++){const el=$('s'+i);if(el)el.classList.toggle('hidden',i!==n);const pg=$('pg'+i);if(pg)pg.classList.toggle('done',i<=n)}window.scrollTo({top:0,behavior:'smooth'})}
 function getData(){
  const O=Number($('offer').value),H=Number($('hours').value),T=Number($('target').value),C=Number($('costs').value||0),F=Number($('fee').value||0)/100;
- if(!Number.isFinite(O)||O<=0||!Number.isFinite(H)||H<=0||!Number.isFinite(T)||T<=0||C<0||F<0||F>=1){const e=$('reviewError');e.textContent='Please enter a client offer greater than 0, estimated hours greater than 0, and a target hourly earning greater than 0. Check that costs are not negative and fees are below 100%.';e.style.display='block';return null} $('reviewError').style.display='none';
+ if(!Number.isFinite(O)||O<=0||!Number.isFinite(H)||H<=0||!Number.isFinite(T)||T<=0||!Number.isFinite(C)||C<0||!Number.isFinite(F)||F<0||F>=1){const e=$('reviewError');e.textContent='Please enter a client offer greater than 0, estimated hours greater than 0, and a target hourly earning greater than 0. Check that costs are not negative and fees are below 100%.';e.style.display='block';return null} $('reviewError').style.display='none';
  const net=O*(1-F)-C,rate=net/H,min=(T*H+C)/(1-F);
  return {O,H,T,C,F,net,rate,min};
 }
@@ -327,6 +327,7 @@ function findStrategies(){
  const budget=$('clientBudget').value, risk=$('scopeRisk').value, pay=$('paymentRisk').value, rights=$('rightsRisk').value;
  const priority=$('priority').value, clientNeed=$('clientNeed').value, concession=$('concession').value;
  const alternative=$('alternative').value, alternativeValue=Number($('alternativeValue').value||0);
+  if(!Number.isFinite(alternativeValue)||alternativeValue<0){toast('Please enter a valid alternative value of zero or more.');return;}
  const scores={price:0,scope:0,terms:0}, reasons={price:[],scope:[],terms:[]};
  const add=(key,points,reason)=>{scores[key]+=points;if(reason)reasons[key].push(reason)};
  // Price: driven by the user's economics and credible budget flexibility.
