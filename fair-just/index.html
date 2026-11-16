@@ -168,7 +168,7 @@ details{border:1px solid var(--line);border-radius:12px;padding:12px 13px;margin
      <div class="field"><label for="clientBudget">What do you know about the client's budget?</label><select id="clientBudget"><option value="unknown">Not sure</option><option value="fixed">Fixed / limited</option><option value="some">Some flexibility</option><option value="flexible">Likely flexible</option></select></div>
      <div class="field full"><label for="projectValue">What makes this work valuable or demanding?</label><textarea id="projectValue" rows="2" placeholder="Specialist skills, research, urgency, coordination, creative direction..."></textarea></div>
     <div class="skip-row"><button class="skip-btn" type="button" data-skip-details="a1">Skip optional details</button></div></div></details>
-    <div id="reviewError" role="alert" class="hint" style="display:none;color:#A64E4E;font-weight:700;margin-top:10px"></div><div class="actions"><span class="hint">Your inputs are processed in this browser.</span><button class="btn primary" id="reviewDealBtn">Review my deal →</button></div>
+    <div id="reviewError" role="alert" class="hint" style="display:none;color:#A64E4E;font-weight:700;margin-top:10px"></div><div class="actions"><span class="hint">Your inputs are processed in this browser.</span><button type="button" class="btn primary" id="reviewDealBtn">Review my deal →</button></div>
    </section>
    <section id="s2" class="hidden">
     <div class="head"><h2>2. Understand your position</h2><span class="step-label">ECONOMICS &amp; ALTERNATIVES</span></div>
@@ -195,16 +195,16 @@ details{border:1px solid var(--line);border-radius:12px;padding:12px 13px;margin
      </div>
      <div class="skip-row"><button class="skip-btn" type="button" data-skip-details="a2">Skip advanced checks</button></div>
     </details>
-    <div class="actions"><button class="btn quiet" id="back1">← Back</button><button class="btn primary" id="strategies">Find my best move →</button></div>
+    <div class="actions"><button type="button" class="btn quiet" id="back1">← Back</button><button type="button" class="btn primary" id="strategies">Find my best move →</button></div>
    </section>
    <section id="s3" class="hidden">
     <div class="head"><h2>3. Choose a negotiation strategy</h2><span class="step-label">MUTUAL-GAIN ANALYSIS</span></div>
     <div class="assess"><b id="recommendTitle">Recommended starting point</b><p id="recommendText"></p></div>
     <div class="minihead"><b>Compare your three practical options</b><span>SELECT ONE TO DEVELOP</span></div>
     <div class="strategies">
-     <button class="strategy selected" data-strategy="price"><small>Option 1</small><b>Ask for a higher fee</b><span>Keep the scope and improve the price where the client's value and budget support it.</span></button>
-     <button class="strategy" data-strategy="scope"><small>Option 2</small><b>Adjust the scope</b><span>Fit the budget by changing deliverables, revisions, timeline or phases.</span></button>
-     <button class="strategy" data-strategy="terms"><small>Option 3</small><b>Improve the terms</b><span>Protect payment, rights, boundaries and uncertainty.</span></button>
+     <button type="button" class="strategy selected" data-strategy="price" aria-pressed="true"><small>Option 1</small><b>Ask for a higher fee</b><span>Keep the scope and improve the price where the client's value and budget support it.</span></button>
+     <button type="button" class="strategy" data-strategy="scope" aria-pressed="false"><small>Option 2</small><b>Adjust the scope</b><span>Fit the budget by changing deliverables, revisions, timeline or phases.</span></button>
+     <button type="button" class="strategy" data-strategy="terms" aria-pressed="false"><small>Option 3</small><b>Improve the terms</b><span>Protect payment, rights, boundaries and uncertainty.</span></button>
     </div>
     <div class="insight"><h4 id="equilibriumTitle">Mutual-gain check</h4><p id="equilibriumText">A durable agreement should meet your minimum needs while giving the client a reason to proceed. We will test your selected approach against both sides' likely interests.</p></div>
     <details id="a3"><summary>Expert strategy controls <span class="hint">Optional</span></summary>
@@ -216,7 +216,7 @@ details{border:1px solid var(--line);border-radius:12px;padding:12px 13px;margin
      </div>
      <div class="skip-row"><button class="skip-btn" type="button" data-skip-details="a3">Skip expert controls</button></div>
     </details>
-    <div class="actions"><button class="btn quiet" id="back2">← Back</button><button class="btn primary" id="draft">Prepare my response →</button></div>
+    <div class="actions"><button type="button" class="btn quiet" id="back2">← Back</button><button type="button" class="btn primary" id="draft">Prepare my response →</button></div>
    </section>
    <section id="s4" class="hidden">
     <div class="head"><h2>4. Prepare, agree and record</h2><span class="step-label">YOUR NEGOTIATION PLAN</span></div>
@@ -225,7 +225,7 @@ details{border:1px solid var(--line);border-radius:12px;padding:12px 13px;margin
      <div class="field"><label for="proposed">Your proposed fee</label><input id="proposed" type="number" min="0" step=".01"></div>
      <div class="field"><label for="tone">Message tone</label><select id="tone"><option value="professional">Confident &amp; professional</option><option value="warm">Warm &amp; collaborative</option><option value="firm">Direct &amp; firm</option></select></div>
     </div>
-    <div class="message"><div class="messagebar"><b>Client message · edit before sending</b><button class="btn secondary" id="refresh">Refresh</button></div><textarea id="clientMessage"></textarea><div class="actions"><span class="hint">Use only details that are accurate for your project.</span><button class="btn primary" id="copy">Copy message</button></div></div>
+    <div class="message"><div class="messagebar"><b>Client message · edit before sending</b><button type="button" class="btn secondary" id="refresh">Refresh</button></div><textarea id="clientMessage"></textarea><div class="actions"><span class="hint">Use only details that are accurate for your project.</span><button type="button" class="btn primary" id="copy">Copy message</button></div></div>
     <details id="a4"><summary>Deal terms to confirm before agreeing <span class="hint">Optional</span></summary>
      <div class="grid">
       <div class="field"><label for="payment">Payment schedule</label><input id="payment" placeholder="e.g. 50% upfront, 50% on delivery"></div>
@@ -246,13 +246,13 @@ details{border:1px solid var(--line);border-radius:12px;padding:12px 13px;margin
       <div class="field full"><label for="lesson">What did you learn? (optional)</label><textarea id="lesson" rows="2" placeholder="What worked, what changed, what would you do differently?"></textarea></div>
      </div>
     </div>
-    <div class="actions"><button class="btn quiet" id="back3">← Back</button><button class="btn primary" id="makeReceipt">Create my private negotiation record →</button></div>
+    <div class="actions"><button type="button" class="btn quiet" id="back3">← Back</button><button type="button" class="btn primary" id="makeReceipt">Create my private negotiation record →</button></div>
    </section>
    <section id="s5" class="hidden">
     <div class="head"><h2>Your private negotiation record</h2><span class="step-label">FOR YOUR RECORDS</span></div>
     <div class="assess"><b id="receiptTitle">Negotiation record created</b><p id="receiptSub">This record is based on the information you entered. It is not proof of payment, an invoice or a signed contract.</p></div>
     <div class="receipt" id="receiptContent"></div>
-    <div class="actions"><button class="btn secondary" id="print">Print / Save as PDF</button><button class="btn primary" id="done">Finish</button></div>
+    <div class="actions"><button type="button" class="btn secondary" id="print">Print / Save as PDF</button><button type="button" class="btn primary" id="done">Finish</button></div>
    </section>
   </section>
   <aside class="panel aside">
@@ -314,7 +314,7 @@ function updateBatna(){
 }
 $('alternative').onchange=updateBatna;$('alternativeValue').oninput=updateBatna;$('skipBatna').onclick=()=>{updateBatna();findStrategies()};
 function chooseStrategy(s){
- strategy=s;document.querySelectorAll('[data-strategy]').forEach(b=>b.classList.toggle('selected',b.dataset.strategy===s));
+ strategy=s;document.querySelectorAll('[data-strategy]').forEach(b=>{const selected=b.dataset.strategy===s;b.classList.toggle('selected',selected);b.setAttribute('aria-pressed',String(selected));});
  const p={
  price:['Price negotiation','Ask for a higher fee while keeping the full scope. Use your target-based minimum as a boundary reference, not automatically as your opening price.'],
  scope:['Scope negotiation','If the client budget is constrained, reduce or phase deliverables so the work remains viable for you and useful to the client.'],
