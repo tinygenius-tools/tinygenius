@@ -433,13 +433,14 @@
   }
 
   function calculateRevenue() {
-    const views = Number(
-      document.getElementById("views").value
-    );
-
-    const rpm = Number(
-      document.getElementById("rpm").value
-    );
+    const viewsRaw = document.getElementById("views").value.trim();
+    const rpmRaw = document.getElementById("rpm").value.trim();
+    if (viewsRaw === "" || rpmRaw === "") {
+      alert("Please enter both monthly views and estimated RPM. Enter 0 if applicable.");
+      return;
+    }
+    const views = Number(viewsRaw);
+    const rpm = Number(rpmRaw);
 
     const currency =
       document.getElementById("currency").value;
