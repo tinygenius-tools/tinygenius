@@ -184,7 +184,7 @@
 <div class="search-band">
   <div class="search-wrap">
     <span class="search-icon" aria-hidden="true">🔎</span>
-    <input class="search" id="search" type="search" placeholder="Search calculators and tools..." oninput="filterTools()" aria-label="Search available tools">
+    <input class="search" id="search" type="search" placeholder="Search calculators and tools..." oninput="filterTools()" aria-label="Search available tools" aria-controls="toolGrid" aria-describedby="searchStatus" autocomplete="off">
   </div>
 </div>
 
@@ -209,6 +209,7 @@
       <h2 class="section-title">Explore our tools</h2>
       <p class="section-subtitle">Choose a tool to get your answer. No extra scrolling or sign-up required.</p>
     </div>
+    <p id="searchStatus" role="status" aria-live="polite" aria-atomic="true" style="margin:0 0 12px;color:var(--muted);font-size:13px">Showing all 4 tools, including Fair &amp; Just.</p>
     <div class="tools" id="toolGrid">
       <article class="card card-lavender tool-card" data-name="freelance hourly rate pricing freelancer business">
         <div class="emoji" aria-hidden="true">💼</div>
@@ -278,6 +279,8 @@
       if (matches) visibleCount++;
     });
     document.getElementById("noResults").style.display = visibleCount === 0 ? "block" : "none";
+    const status = document.getElementById("searchStatus");
+    if (status) status.textContent = query ? (visibleCount + (visibleCount === 1 ? " matching tool found." : " matching tools found.")) : "Showing all 4 tools, including Fair & Just.";
   }
 </script>
 
