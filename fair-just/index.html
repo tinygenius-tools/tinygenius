@@ -413,7 +413,7 @@ function makeMessage(){
 $('reviewDealBtn').addEventListener('click',runDealReview);$('back1').onclick=()=>go(1);$('strategies').onclick=findStrategies;$('back2').onclick=()=>go(2);
 $('draft').onclick=()=>{let q=data.min;if(strategy==='scope'||strategy==='terms')q=data.O;$('proposed').value=Number(q.toFixed(2));makeMessage();go(4)};
 $('tone').onchange=makeMessage;$('refresh').onclick=makeMessage;
-$('copy').onclick=async()=>{try{await navigator.clipboard.writeText($('clientMessage').value);toast('Message copied')}catch(e){$('clientMessage').select();document.execCommand('copy');toast('Message selected for copying')}};
+$('copy').onclick=async()=>{try{await navigator.clipboard.writeText($('clientMessage').value);if(typeof gtag==="function")gtag("event","fair_just_message_copied",{strategy:strategy});toast('Message copied')}catch(e){$('clientMessage').select();const copied=document.execCommand('copy');if(copied&&typeof gtag==="function")gtag("event","fair_just_message_copied",{strategy:strategy,copy_method:"fallback"});toast(copied?'Message copied':'Message selected for copying')}};
 function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function createReceipt(){
  const outcome=$('result').value,final=Number($('finalFee').value||0);
