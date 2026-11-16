@@ -295,6 +295,10 @@ function calculate() {
   }
 
   const total = Object.values(values).reduce((sum, value) => sum + value, 0);
+  if (!Number.isFinite(total)) {
+    alert("The combined quote is too large to calculate safely. Please enter smaller amounts.");
+    return;
+  }
   const currency = document.getElementById("currency").value;
 
   const formatter = new Intl.NumberFormat("en", {
