@@ -367,12 +367,12 @@ function findStrategies(){
  // If no risk or negotiation signal is present, do not invent a reason to push for a higher fee.
  if(sorted[0][1]===0)rec=data.rate>=data.T?'terms':(budget==='fixed'?'scope':'price');
  // Resolve ties using the commercial risk that should be addressed first.
- if(scores.scope===scores.price&&risk==='unclear'&&sorted[0][1]>0)rec='scope';
- if(scores.terms===scores.price&&$('workType').value==='ugc'&&rights==='notapplicable'&&sorted[0][1]>0)rec='terms';
+ if(scores.scope===scores.price&&scores.scope===sorted[0][1]&&sorted[0][1]>0&&risk==='unclear')rec='scope';
+ if(scores.terms===scores.price&&scores.terms===sorted[0][1]&&sorted[0][1]>0&&$('workType').value==='ugc'&&rights==='notapplicable')rec='terms';
  // Critical payment and licensing risks take priority over a price or scope tie.
  if(pay==='poor'||['paid','unlimited','whitelisting','exclusive'].includes(rights))rec='terms';
  // Avoid escalating price as the default when the client has a fixed budget and the user can adapt scope.
- if(scores.scope===scores.price&&budget==='fixed'&&sorted[0][1]>0&&pay!=='poor'&&!['paid','unlimited','whitelisting','exclusive'].includes(rights))rec='scope';
+ if(scores.scope===scores.price&&scores.scope===sorted[0][1]&&sorted[0][1]>0&&budget==='fixed'&&pay!=='poor'&&!['paid','unlimited','whitelisting','exclusive'].includes(rights))rec='scope';
  const titles={price:'Ask for a higher fee',scope:'Adjust the scope',terms:'Improve the terms'};
  const explanations={
   price:'A fee discussion is the strongest starting point from the information entered. Keep the full scope clear and propose a reasoned amount; your minimum quote is a personal boundary, not automatically your opening offer.',
