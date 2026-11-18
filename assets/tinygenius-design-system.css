@@ -1,0 +1,42 @@
+/* TinyGenius Design System — foundation v1
+   Shared tokens only in this release: intentionally non-invasive.
+   Individual pages adopt these tokens in small, verified steps. */
+:root {
+  --tg-brand-navy: #26345E;
+  --tg-brand-ink: #303653;
+  --tg-brand-muted: #69718A;
+  --tg-brand-purple: #7056C8;
+  --tg-brand-teal: #397A68;
+  --tg-page-cream: #FFF9ED;
+  --tg-surface: #FFFFFF;
+  --tg-surface-soft: #F7F8FC;
+  --tg-lavender: #F4EDFF;
+  --tg-mint: #E2F7EF;
+  --tg-yellow: #FFF1A8;
+  --tg-border: #E8E9F1;
+  --tg-shadow-sm: 0 4px 14px rgba(38,52,94,.05);
+  --tg-shadow-md: 0 10px 28px rgba(38,52,94,.08);
+  --tg-radius-sm: 9px;
+  --tg-radius-md: 12px;
+  --tg-radius-lg: 18px;
+  --tg-content-width: 1120px;
+  --tg-reading-width: 760px;
+  --tg-space-1: 4px;
+  --tg-space-2: 8px;
+  --tg-space-3: 12px;
+  --tg-space-4: 16px;
+  --tg-space-5: 24px;
+  --tg-space-6: 32px;
+}
+:focus-visible {
+  outline: 3px solid var(--tg-brand-purple);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
