@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#fff9ed"/><stop offset="1" stop-color="#eee8ff"/></linearGradient><linearGradient id="v" x2="1"><stop stop-color="#a78bfa" stop-opacity=".75"/><stop offset="1" stop-color="#5eead4" stop-opacity=".65"/></linearGradient></defs>
+<rect width="1200" height="675" fill="url(#bg)"/>
+<rect x="56" y="54" width="8" height="380" rx="4" fill="#7056c8"/>
+<text x="78" y="72" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#26345e">TinyGenius</text>
+<text x="78" y="190" font-family="Arial,sans-serif" font-size="86" font-weight="800" fill="#26345e">11 BUSINESS</text>
+<text x="78" y="284" font-family="Arial,sans-serif" font-size="86" font-weight="800" fill="#26345e">NEGOTIATION</text>
+<text x="78" y="378" font-family="Arial,sans-serif" font-size="86" font-weight="800" fill="#26345e">STRATEGIES</text>
+<rect x="78" y="405" width="640" height="66" rx="18" fill="#e9ddff"/>
+<text x="103" y="450" font-family="Arial,sans-serif" font-size="38" font-weight="700" fill="#49338c">Secure Better Deals in 2026</text>
+<circle cx="900" cy="260" r="155" fill="#a78bfa" fill-opacity=".55"/>
+<circle cx="1040" cy="260" r="155" fill="#5eead4" fill-opacity=".52"/>
+<path d="M970 122 A155 155 0 0 1 970 398 A155 155 0 0 1 970 122" fill="#7056c8" fill-opacity=".45"/>
+<text x="850" y="240" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#26345e">Your</text>
+<text x="850" y="278" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#26345e">Value</text>
+<text x="1090" y="240" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#26345e">Their</text>
+<text x="1090" y="278" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#26345e">Value</text>
+<text x="970" y="250" text-anchor="middle" font-family="Arial,sans-serif" font-size="32" font-weight="800" fill="#fff">Fair</text>
+<text x="970" y="289" text-anchor="middle" font-family="Arial,sans-serif" font-size="32" font-weight="800" fill="#fff">Deal</text>
+<path d="M800 455 H1110" stroke="#397a68" stroke-width="5" stroke-linecap="round"/>
+<path d="M800 455 l18 -13 M800 455 l18 13 M1110 455 l-18 -13 M1110 455 l-18 13" fill="none" stroke="#397a68" stroke-width="5" stroke-linecap="round"/>
+<rect x="835" y="480" width="245" height="58" rx="20" fill="#fff" stroke="#d8c9f5" stroke-width="3"/>
+<text x="957" y="517" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#26345e">Win–Win Range</text>
+<path d="M70 565 H1130" stroke="#d8d1e8" stroke-width="2"/>
+<text x="78" y="615" font-family="Arial,sans-serif" font-size="23" fill="#526078">BATNA • ZOPA • Strategic concessions • Protecting commercial value</text>
+</svg>
