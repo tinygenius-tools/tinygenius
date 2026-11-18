@@ -137,6 +137,16 @@
     .flagship p{max-width:650px;margin:0;color:#cbd5e7;font-size:14px;line-height:1.65}.flagship-points{display:flex;flex-wrap:wrap;gap:8px;margin-top:17px}.flagship-points span{padding:6px 10px;border:1px solid rgba(167,185,220,.22);border-radius:999px;background:rgba(255,255,255,.06);color:#dce6f7;font-size:11px}
     .flagship-cta{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;padding:14px 18px;border-radius:12px;background:linear-gradient(100deg,#7445dc,#5149cf);box-shadow:0 7px 20px rgba(105,76,220,.28);color:#fff;text-decoration:none;font-size:14px;font-weight:800;white-space:nowrap;transition:transform .2s ease,filter .2s ease}.flagship-cta:hover{transform:translateY(-2px);filter:brightness(1.1)}
 
+    /* Compact value-message strip: sits below the existing navigation */
+    .tg-proof-strip{max-width:1120px;margin:12px auto 0;padding:10px 18px;display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;border-radius:13px;background:linear-gradient(100deg,#4d22a4 0%,#28115f 100%);color:#fff;box-shadow:0 6px 18px rgba(54,28,112,.16)}
+    .tg-proof-line{font-size:15px;font-weight:900;letter-spacing:.35px;white-space:nowrap}.tg-proof-line strong{color:#fff}.tg-proof-line b{color:#ffe16b}.tg-proof-copy{font-size:13px;color:#f0eaff}
+    /* Give the flagship product the visual priority requested */
+    .flagship{margin:0 0 38px;padding:40px 42px;border-radius:24px;background:linear-gradient(120deg,#101a3b 0%,#172653 58%,#142b45 100%);box-shadow:0 16px 38px rgba(24,25,65,.2)}
+    .flagship-inner{gap:34px}.flagship-copy{max-width:760px}.flagship-kicker{font-size:11px;letter-spacing:1.35px;margin-bottom:15px}
+    .flagship h2{font-size:clamp(30px,4vw,43px);line-height:1.08;margin-bottom:12px}.flagship p{font-size:15px;max-width:700px}.flagship-points{margin-top:20px}.flagship-points span{font-size:12px;padding:7px 11px}.flagship-cta{padding:16px 21px;font-size:15px}
+    @media(max-width:800px){.tg-proof-strip{margin:10px 16px 0}.flagship{padding:30px 26px}}
+    @media(max-width:600px){.tg-proof-strip{margin:9px 12px 0;padding:10px 12px;gap:5px;flex-direction:column;text-align:center}.tg-proof-line{font-size:14px}.tg-proof-copy{font-size:11px}.flagship{padding:27px 20px;margin-bottom:30px}.flagship h2{font-size:30px}.flagship p{font-size:14px}}
+
     .coming-soon{margin-top:34px;padding:22px;border-radius:20px;background:var(--blue);border:1px solid #d4e4fa}
     .coming-soon h2{margin:0 0 6px;color:var(--navy);font-size:21px}
     .coming-soon-card{margin-top:14px;max-width:350px;background:rgba(255,255,255,.8);border:1px dashed #9db8dc;border-radius:15px;padding:16px}
@@ -194,6 +204,11 @@
     <a href="#about">About</a>
   </nav>
 </header>
+
+<div class="tg-proof-strip" aria-label="TinyGenius value message">
+  <span class="tg-proof-line">↗ <strong>YOU MISSED.</strong> <b>THEY HIT.</b></span>
+  <span class="tg-proof-copy">Discover the value of your work before your next deal.</span>
+</div>
 
 <section class="hero">
   <div class="eyebrow">Fair value starts with better decisions</div>
