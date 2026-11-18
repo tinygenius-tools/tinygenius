@@ -513,8 +513,10 @@
     }
   }
   trackOpen();
-  var accept = document.getElementById("tg-consent-accept");
-  if (accept) accept.addEventListener("click", function () { setTimeout(trackOpen, 0); });
+  document.addEventListener("DOMContentLoaded", function () {
+    var accept = document.getElementById("tg-consent-accept");
+    if (accept) accept.addEventListener("click", function () { setTimeout(trackOpen, 0); });
+  });
 })();
 </script>
 <section id="tg-consent-banner" role="dialog" aria-modal="false" aria-labelledby="tg-consent-title" aria-describedby="tg-consent-copy" hidden>
