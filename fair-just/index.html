@@ -353,7 +353,7 @@ function runDealReview(){
  if(data.rate>=data.T){$('assessmentTitle').textContent='The offer meets your stated earnings target';$('assessmentText').textContent='Your estimated rate is '+fmt(data.rate)+' per hour before personal income tax. Check scope, payment reliability and rights before deciding. A higher price is not automatically the best move.';strategy='terms'}
  else{$('assessmentTitle').textContent='The offer is below your stated earnings target';$('assessmentText').textContent='Your estimated rate is '+fmt(data.rate)+' per hour. Your target-based minimum quote is '+fmt(data.min)+'. This is a personal threshold, not a market benchmark.';strategy=$('clientBudget').value==='fixed'?'scope':'price'}
  updateBatna();chooseStrategy(strategy);go(2);
- if(typeof gtag==="function")gtag("event","fair_just_deal_review_completed",{work_type:$("workType").value,currency:$("currency").value});
+ if(typeof gtag==="function"){gtag("event","fair_just_deal_review_completed",{work_type:$("workType").value,currency:$("currency").value});gtag("event","tool_complete",{tool_name:"fair_just",completion_type:"deal_review",work_type:$("workType").value,currency:$("currency").value});}
 }
 function updateBatna(){
  const a=$('alternative').value,v=Number($('alternativeValue').value||0);
@@ -484,30 +484,29 @@ $('done').onclick=()=>{go(1);$('recordName').value='';toast('Your record is read
 </script>
 <footer style="max-width:1180px;margin:0 auto;padding:18px 20px 30px;text-align:center;color:var(--muted);font-size:12px"><a href="../" style="color:inherit">Return to TinyGenius home</a></footer>
 
-<script>
+
+<script id="tg-tool-usage-tracking">
 (function () {
-  document.addEventListener("click", function (event) {
-    const link = event.target.closest("a[href]");
-    if (!link || typeof gtag !== "function") return;
-    let destination;
-    try { destination = new URL(link.href, window.location.href); } catch (error) { return; }
-    if (destination.origin !== window.location.origin) return;
-    const path = destination.pathname.endsWith("/") ? destination.pathname : destination.pathname + "/";
-    const tools = {
-      "/fair-just/": "fair_just",
-      "/freelance-rate-calculator/": "freelance_rate_calculator",
-      "/youtube-revenue-calculator/": "youtube_revenue_calculator",
-      "/ugc-pricing-calculator/": "ugc_pricing_calculator"
-    };
-    const toolName = tools[path];
-    if (!toolName) return;
-    gtag("event", "tool_open", {
-      tool_name: toolName,
-      source_page: window.location.pathname,
-      destination_path: destination.pathname,
-      transport_type: "beacon"
-    });
-  }, true);
+  var path = window.location.pathname.replace(/\/$/, "") + "/";
+  var tools = {
+    "/fair-just/": "fair_just",
+    "/freelance-rate-calculator/": "freelance_rate_calculator",
+    "/youtube-revenue-calculator/": "youtube_revenue_calculator",
+    "/ugc-pricing-calculator/": "ugc_pricing_calculator"
+  };
+  var toolName = tools[path];
+  if (!toolName) return;
+  function trackOpen() {
+    try {
+      if (localStorage.getItem("tg_cookie_consent") !== "accepted") return;
+    } catch (error) { return; }
+    if (typeof gtag === "function") {
+      gtag("event", "tool_open", { tool_name: toolName, tool_path: path });
+    }
+  }
+  trackOpen();
+  var accept = document.getElementById("tg-consent-accept");
+  if (accept) accept.addEventListener("click", function () { setTimeout(trackOpen, 0); });
 })();
 </script>
 <section id="tg-consent-banner" role="dialog" aria-modal="false" aria-labelledby="tg-consent-title" aria-describedby="tg-consent-copy" hidden>
