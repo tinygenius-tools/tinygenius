@@ -487,35 +487,34 @@
       formatMoney(weeklyTarget, currency);
 
     document.getElementById("result").style.display = "block";
-    if (typeof gtag === "function") gtag("event", "freelance_rate_calculated", { currency: currency });
+    if (typeof gtag === "function") { gtag("event", "freelance_rate_calculated", { currency: currency }); gtag("event", "tool_complete", { tool_name: "freelance_rate_calculator", currency: currency }); }
   }
 </script>
 
 
-<script>
+
+<script id="tg-tool-usage-tracking">
 (function () {
-  document.addEventListener("click", function (event) {
-    const link = event.target.closest("a[href]");
-    if (!link || typeof gtag !== "function") return;
-    let destination;
-    try { destination = new URL(link.href, window.location.href); } catch (error) { return; }
-    if (destination.origin !== window.location.origin) return;
-    const path = destination.pathname.endsWith("/") ? destination.pathname : destination.pathname + "/";
-    const tools = {
-      "/fair-just/": "fair_just",
-      "/freelance-rate-calculator/": "freelance_rate_calculator",
-      "/youtube-revenue-calculator/": "youtube_revenue_calculator",
-      "/ugc-pricing-calculator/": "ugc_pricing_calculator"
-    };
-    const toolName = tools[path];
-    if (!toolName) return;
-    gtag("event", "tool_open", {
-      tool_name: toolName,
-      source_page: window.location.pathname,
-      destination_path: destination.pathname,
-      transport_type: "beacon"
-    });
-  }, true);
+  var path = window.location.pathname.replace(/\/$/, "") + "/";
+  var tools = {
+    "/fair-just/": "fair_just",
+    "/freelance-rate-calculator/": "freelance_rate_calculator",
+    "/youtube-revenue-calculator/": "youtube_revenue_calculator",
+    "/ugc-pricing-calculator/": "ugc_pricing_calculator"
+  };
+  var toolName = tools[path];
+  if (!toolName) return;
+  function trackOpen() {
+    try {
+      if (localStorage.getItem("tg_cookie_consent") !== "accepted") return;
+    } catch (error) { return; }
+    if (typeof gtag === "function") {
+      gtag("event", "tool_open", { tool_name: toolName, tool_path: path });
+    }
+  }
+  trackOpen();
+  var accept = document.getElementById("tg-consent-accept");
+  if (accept) accept.addEventListener("click", function () { setTimeout(trackOpen, 0); });
 })();
 </script>
 <section id="tg-consent-banner" role="dialog" aria-modal="false" aria-labelledby="tg-consent-title" aria-describedby="tg-consent-copy" hidden>
