@@ -181,8 +181,8 @@ details{border:1px solid var(--line);border-radius:12px;padding:12px 13px;margin
 </head>
 <body>
 <header class="top">
- <div class="brand"><div class="logo">TG</div><div><strong>TinyGenius Fair &amp; Just</strong><small>Negotiation Copilot</small></div></div>
- <div class="top-actions"><div class="topright"><a href="../" style="color:inherit;text-decoration:none;font-weight:700">← TinyGenius home</a> · Know your value · Make your move · Find a fair deal</div><label class="theme-control" for="themeSelect"><span>Theme</span><select id="themeSelect" aria-label="Color theme"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label></div>
+ <div class="brand"><a href="/" class="logo" aria-label="TinyGenius home" style="text-decoration:none">TG</a><div><strong>TinyGenius Fair &amp; Just</strong><small>Negotiation Copilot</small></div></div>
+ <div class="top-actions"><nav aria-label="Main navigation" style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:11px"><a href="/" style="color:var(--muted);text-decoration:none;font-weight:700">Home</a><a href="/#tools" style="color:var(--muted);text-decoration:none;font-weight:700">Tools</a><a href="/guides/" style="color:var(--muted);text-decoration:none;font-weight:700">Guides</a></nav><div class="topright">Know your value · Make your move · Find a fair deal</div><label class="theme-control" for="themeSelect"><span>Theme</span><select id="themeSelect" aria-label="Color theme"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label></div>
 </header>
 <main class="wrap">
  <section class="hero">
@@ -488,7 +488,10 @@ $('makeReceipt').onclick=createReceipt;
 $('print').onclick=()=>window.print();
 $('done').onclick=()=>{go(1);$('recordName').value='';toast('Your record is ready. You can start another negotiation.')};
 </script>
-<footer style="max-width:1180px;margin:0 auto;padding:18px 20px 30px;text-align:center;color:var(--muted);font-size:12px"><a href="../" style="color:inherit">Return to TinyGenius home</a></footer>
+<footer class="tg-site-footer">
+ <p>© 2026 TinyGenius. Small tools. Big answers.</p>
+ <nav aria-label="Footer navigation"><a href="/">Home</a><a href="/#tools">Tools</a><a href="/guides/">Guides &amp; Insights</a><a href="/privacy-policy/">Privacy</a><a href="/terms-of-use/">Terms</a><a href="/contact/">Contact</a></nav>
+</footer>
 
 
 <script id="tg-tool-usage-tracking">
