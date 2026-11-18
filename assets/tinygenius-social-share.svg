@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#080d20"/><stop offset=".58" stop-color="#17153c"/><stop offset="1" stop-color="#3a176d"/></linearGradient>
+ <linearGradient id="violet" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#bd68ff"/><stop offset="1" stop-color="#7650ef"/></linearGradient>
+ <radialGradient id="glow"><stop stop-color="#9b4dff" stop-opacity=".48"/><stop offset="1" stop-color="#9b4dff" stop-opacity="0"/></radialGradient>
+ </defs>
+ <rect width="1200" height="630" fill="url(#bg)"/><circle cx="1080" cy="80" r="390" fill="url(#glow)"/><path d="M0 535 Q260 450 480 540 T900 520 T1200 485 V630 H0Z" fill="#5b2bb1" opacity=".2"/>
+ <g font-family="Arial,Helvetica,sans-serif">
+ <g transform="translate(48 42)"><rect x="0" y="8" width="13" height="25" rx="4" fill="#a95aff"/><rect x="20" y="0" width="13" height="33" rx="4" fill="#c47aff"/><rect x="40" y="14" width="13" height="19" rx="4" fill="#8a5aff"/><text x="68" y="30" font-size="29" font-weight="700" fill="#fff">Tiny<tspan fill="#b879ff">Genius</tspan></text><path d="M300 2V39" stroke="#8f83bb" opacity=".7"/><text x="322" y="28" font-size="19" fill="#d8d3ee">COMMERCIAL VALUE INTELLIGENCE</text></g>
+ <text x="50" y="175" font-size="51" font-weight="700" fill="#fff">Understand Value.</text><text x="50" y="235" font-size="51" font-weight="700" fill="#fff">Negotiate Better.</text><text x="50" y="295" font-size="48" font-weight="700" fill="#c48aff">Get Fair &amp; Just Outcomes.</text>
+ <text x="52" y="350" font-size="21" fill="#d5d5e9">Tools, insights and a commercial decision platform</text><text x="52" y="380" font-size="21" fill="#d5d5e9">to price, evaluate, negotiate and make smarter deals.</text>
+ <g transform="translate(52 425)" fill="#d8c5ff" font-size="16" font-weight="700"><text x="0" y="0">PRICE INTELLIGENTLY</text><text x="0" y="26" fill="#9e9ab9" font-size="13" font-weight="400">Know what your work is worth</text><text x="0" y="72">EVALUATE THE DEAL</text><text x="0" y="98" fill="#9e9ab9" font-size="13" font-weight="400">See value, terms and trade-offs</text></g>
+ <g transform="translate(650 105) rotate(-2 240 190)">
+ <rect x="0" y="0" width="500" height="350" rx="23" fill="#090d20" stroke="#9d7cff" stroke-width="2"/><rect x="17" y="17" width="466" height="316" rx="14" fill="#111a32"/>
+ <text x="38" y="53" font-size="19" font-weight="700" fill="#fff">Fair &amp; Just</text><text x="38" y="77" font-size="12" fill="#bcb4da">COMMERCIAL DECISION WORKSPACE</text>
+ <g transform="translate(38 106)"><rect width="424" height="43" rx="9" fill="#202749"/><g fill="#c6a0ff" font-size="12" font-weight="700"><text x="15" y="27">ASSESS</text><text x="112" y="27">ANALYSE</text><text x="218" y="27">OPTIONS</text><text x="324" y="27">DECIDE</text></g></g>
+ <g transform="translate(38 167)"><rect width="128" height="75" rx="10" fill="#202949" stroke="#353d6a"/><rect x="143" width="128" height="75" rx="10" fill="#202949" stroke="#353d6a"/><rect x="286" width="138" height="75" rx="10" fill="#202949" stroke="#353d6a"/>
+ <g fill="#b8bfd9" font-size="11"><text x="13" y="22">OFFER VALUE</text><text x="156" y="22">TERMS</text><text x="299" y="22">RISK REVIEW</text></g><g fill="#fff" font-size="19" font-weight="700"><text x="13" y="51">Assess</text><text x="156" y="51">Compare</text><text x="299" y="51">Protect</text></g></g>
+ <rect x="38" y="260" width="424" height="54" rx="10" fill="#27234e" stroke="#7b55cb"/><text x="55" y="283" font-size="12" font-weight="700" fill="#d7c4ff">DECISION INSIGHT</text><text x="55" y="301" font-size="12" fill="#fff">Understand the trade-offs before you agree.</text>
+ <path d="M-35 352H535l-38 16H3Z" fill="#8d83b8" opacity=".9"/>
+ </g>
+ <g transform="translate(52 555)"><rect width="285" height="48" rx="12" fill="url(#violet)"/><text x="22" y="31" font-size="19" font-weight="700" fill="#fff">Explore TinyGenius.tools  →</text><text x="320" y="30" font-size="14" fill="#c8c2e4">Freelance • Creator • Business</text></g>
+ </g></svg>
