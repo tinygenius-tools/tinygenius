@@ -471,7 +471,7 @@
       formatMoney(daily, currency);
 
     document.getElementById("result").style.display = "block";
-    if (typeof gtag === "function") gtag("event", "youtube_revenue_estimated", { currency: currency });
+    if (typeof gtag === "function") { gtag("event", "youtube_revenue_estimated", { currency: currency }); gtag("event", "tool_complete", { tool_name: "youtube_revenue_calculator", currency: currency }); }
   }
 </script>
 <section style="max-width:850px;margin:35px auto;padding:0 22px"><h2>How much can YouTube views earn?</h2><p>Explore transparent scenarios for 1,000, 10,000, 100,000 and 1 million views in our <a href="/youtube-views-earnings/">YouTube earnings by views guide</a>.</p></section>
@@ -484,30 +484,29 @@
 </div>
   
 
-<script>
+
+<script id="tg-tool-usage-tracking">
 (function () {
-  document.addEventListener("click", function (event) {
-    const link = event.target.closest("a[href]");
-    if (!link || typeof gtag !== "function") return;
-    let destination;
-    try { destination = new URL(link.href, window.location.href); } catch (error) { return; }
-    if (destination.origin !== window.location.origin) return;
-    const path = destination.pathname.endsWith("/") ? destination.pathname : destination.pathname + "/";
-    const tools = {
-      "/fair-just/": "fair_just",
-      "/freelance-rate-calculator/": "freelance_rate_calculator",
-      "/youtube-revenue-calculator/": "youtube_revenue_calculator",
-      "/ugc-pricing-calculator/": "ugc_pricing_calculator"
-    };
-    const toolName = tools[path];
-    if (!toolName) return;
-    gtag("event", "tool_open", {
-      tool_name: toolName,
-      source_page: window.location.pathname,
-      destination_path: destination.pathname,
-      transport_type: "beacon"
-    });
-  }, true);
+  var path = window.location.pathname.replace(/\/$/, "") + "/";
+  var tools = {
+    "/fair-just/": "fair_just",
+    "/freelance-rate-calculator/": "freelance_rate_calculator",
+    "/youtube-revenue-calculator/": "youtube_revenue_calculator",
+    "/ugc-pricing-calculator/": "ugc_pricing_calculator"
+  };
+  var toolName = tools[path];
+  if (!toolName) return;
+  function trackOpen() {
+    try {
+      if (localStorage.getItem("tg_cookie_consent") !== "accepted") return;
+    } catch (error) { return; }
+    if (typeof gtag === "function") {
+      gtag("event", "tool_open", { tool_name: toolName, tool_path: path });
+    }
+  }
+  trackOpen();
+  var accept = document.getElementById("tg-consent-accept");
+  if (accept) accept.addEventListener("click", function () { setTimeout(trackOpen, 0); });
 })();
 </script>
 <section id="tg-consent-banner" role="dialog" aria-modal="false" aria-labelledby="tg-consent-title" hidden><strong id="tg-consent-title">Your privacy choices</strong><p>TinyGenius uses analytics to understand site usage and improve its tools. You can accept or reject optional analytics. Read our <a href="/privacy-policy/">Privacy Policy</a>.</p><div class="tg-consent-actions"><button id="tg-consent-accept" type="button">Accept analytics</button><button id="tg-consent-reject" type="button">Reject non-essential</button></div></section><button id="tg-consent-manage" type="button" aria-label="Change cookie preferences" hidden>Privacy choices</button>
