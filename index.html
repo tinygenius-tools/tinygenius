@@ -193,6 +193,21 @@
 
 <script id="tg-analytics-consent">(function(){var id='G-L7G530DD95',allowed=false,loaded=false;try{allowed=localStorage.getItem('tg_cookie_consent')==='accepted'}catch(e){}window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){window.dataLayer.push(arguments)};window.__tgEnableAnalytics=function(){allowed=true;if(loaded){gtag('consent','update',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});return}loaded=true;gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});gtag('consent','update',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});gtag('js',new Date());gtag('config',id);var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+id;document.head.appendChild(s)};window.__tgDisableAnalytics=function(){if(loaded)gtag('consent','update',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});allowed=false};if(allowed)window.__tgEnableAnalytics()})();</script>
   <link rel="stylesheet" href="/assets/tinygenius-design-system.css">
+
+<style id="tg-returning-feedback-styles">
+#tg-returning-feedback{display:none;position:fixed;z-index:99990;right:20px;bottom:20px;width:min(390px,calc(100vw - 32px));padding:22px;background:#fff;border:1px solid #e3def4;border-radius:18px;box-shadow:0 16px 48px rgba(28,25,60,.2);color:#303653;font:14px/1.5 Arial,sans-serif}
+#tg-returning-feedback[aria-hidden="false"]{display:block}
+#tg-returning-feedback h2{margin:0 0 8px;color:#26345e;font-size:21px}
+#tg-returning-feedback p{margin:0 0 14px;color:#69718a}
+.tg-feedback-options{display:grid;gap:8px}
+.tg-feedback-options button,.tg-feedback-submit,.tg-feedback-close{border:1px solid #dcd6ef;border-radius:10px;padding:11px 13px;background:#f8f6ff;color:#303653;font-weight:700;cursor:pointer;text-align:left}
+.tg-feedback-options button[aria-pressed="true"]{border-color:#6954cf;background:#eee9ff;color:#4937a6}
+#tg-feedback-suggestion{display:none;width:100%;margin-top:12px;padding:11px;border:1px solid #dcd6ef;border-radius:10px;font:14px Arial,sans-serif;resize:vertical}
+.tg-feedback-actions{display:flex;gap:8px;margin-top:12px}
+.tg-feedback-submit{background:#26345e;color:#fff;text-align:center;flex:1}
+.tg-feedback-close{background:#fff;text-align:center}
+#tg-returning-feedback small{display:block;margin-top:10px;color:#7a8092;font-size:11px}
+</style>
 </head>
 <body>
 <header>
@@ -294,6 +309,22 @@
 
 </main>
 
+
+<section id="tg-returning-feedback" role="dialog" aria-labelledby="tg-feedback-title" aria-hidden="true">
+  <h2 id="tg-feedback-title">Welcome back! 💜</h2>
+  <p>How was your experience with TinyGenius?</p>
+  <div class="tg-feedback-options">
+    <button type="button" data-feedback="Excellent" aria-pressed="false">Excellent</button>
+    <button type="button" data-feedback="Good" aria-pressed="false">Good</button>
+    <button type="button" data-feedback="Needs improvement" aria-pressed="false">Needs improvement</button>
+  </div>
+  <textarea id="tg-feedback-suggestion" rows="3" maxlength="1200" placeholder="We'd be happy to have your suggestions."></textarea>
+  <div class="tg-feedback-actions">
+    <button class="tg-feedback-submit" id="tg-feedback-submit" type="button" disabled>Submit</button>
+    <button class="tg-feedback-close" id="tg-feedback-close" type="button">Not now</button>
+  </div>
+  <small>Your feedback opens an email to TinyGenius; nothing is sent without your action.</small>
+</section>
 <footer>
   <h3>TinyGenius 💡</h3>
   <p>TinyGenius Negotiates for Fair and Just Value of Work.</p>
@@ -364,5 +395,38 @@
 <button id="tg-consent-manage" type="button" aria-label="Change cookie preferences">Privacy choices</button>
 
 <script id="tg-consent-controller">(function(){var b=document.getElementById('tg-consent-banner'),a=document.getElementById('tg-consent-accept'),r=document.getElementById('tg-consent-reject'),m=document.getElementById('tg-consent-manage');if(!b||!a||!r||!m)return;function get(){try{return localStorage.getItem('tg_cookie_consent')}catch(e){return null}}function set(v){try{localStorage.setItem('tg_cookie_consent',v)}catch(e){}if(v==='accepted'&&window.__tgEnableAnalytics)window.__tgEnableAnalytics();if(v==='rejected'&&window.__tgDisableAnalytics)window.__tgDisableAnalytics();b.hidden=true;m.hidden=false}a.addEventListener('click',function(){set('accepted')});r.addEventListener('click',function(){set('rejected')});m.addEventListener('click',function(){b.hidden=false;m.hidden=true;a.focus()});if(get()==='accepted'||get()==='rejected'){b.hidden=true;m.hidden=false}else{b.hidden=false;m.hidden=true}})();</script>
+
+<script id="tg-returning-feedback-controller">
+(function(){
+  var key='tg_visit_count',shown='tg_feedback_last_shown',dismiss='tg_feedback_dismissed_session';
+  var panel=document.getElementById('tg-returning-feedback'),footer=document.querySelector('footer');
+  if(!panel||!footer)return;
+  var count=0;
+  try{count=Number(localStorage.getItem(key)||0);localStorage.setItem(key,String(count+1));}catch(e){return;}
+  if(count<1)return;
+  var last=0;try{last=Number(localStorage.getItem(shown)||0);}catch(e){}
+  if(Date.now()-last<30*24*60*60*1000)return;
+  var selected='',observer;
+  function open(){if(panel.getAttribute('aria-hidden')==='false')return;panel.setAttribute('aria-hidden','false');try{localStorage.setItem(shown,String(Date.now()));}catch(e){}}
+  if('IntersectionObserver' in window){observer=new IntersectionObserver(function(entries){if(entries.some(function(x){return x.isIntersecting})){open();observer.disconnect();}},{threshold:0.15});observer.observe(footer);}
+  else{window.addEventListener('scroll',function(){if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-80)open();},{passive:true});}
+  panel.querySelectorAll('[data-feedback]').forEach(function(btn){btn.addEventListener('click',function(){
+    selected=btn.getAttribute('data-feedback');
+    panel.querySelectorAll('[data-feedback]').forEach(function(b){b.setAttribute('aria-pressed',String(b===btn));});
+    document.getElementById('tg-feedback-suggestion').style.display=selected==='Needs improvement'?'block':'none';
+    document.getElementById('tg-feedback-submit').disabled=false;
+  });});
+  document.getElementById('tg-feedback-close').addEventListener('click',function(){panel.setAttribute('aria-hidden','true');});
+  document.getElementById('tg-feedback-submit').addEventListener('click',function(){
+    if(!selected)return;
+    var suggestion=document.getElementById('tg-feedback-suggestion').value.trim();
+    if(selected==='Needs improvement'&&!suggestion){document.getElementById('tg-feedback-suggestion').focus();return;}
+    if(typeof window.gtag==='function')window.gtag('event','returning_visitor_feedback',{feedback_choice:selected});
+    var body='TinyGenius returning visitor feedback\nExperience: '+selected+(suggestion?'\nSuggestions: '+suggestion:'');
+    window.location.href='mailto:tinygenius.web@gmail.com?subject='+encodeURIComponent('TinyGenius website feedback')+'&body='+encodeURIComponent(body);
+    panel.setAttribute('aria-hidden','true');
+  });
+})();
+</script>
 </body>
 </html>
