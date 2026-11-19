@@ -259,6 +259,10 @@ details{border:1px solid var(--line);border-radius:12px;padding:12px 13px;margin
    <section id="s3" class="hidden">
     <div class="head"><h2>3. Choose a negotiation strategy</h2><span class="step-label">MUTUAL-GAIN ANALYSIS</span></div>
     <div class="assess"><b id="recommendTitle">Recommended starting point</b><p id="recommendText"></p></div>
+    <div id="ugcTradeoffInsight" class="insight hidden" aria-live="polite">
+     <h4>UGC licence trade-off review</h4>
+     <p id="ugcTradeoffText"></p>
+    </div>
     <div class="minihead"><b>Compare your three practical options</b><span>SELECT ONE TO DEVELOP</span></div>
     <div class="strategies">
      <button type="button" class="strategy selected" data-strategy="price" aria-pressed="true"><small>Option 1</small><b>Ask for a higher fee</b><span>Keep the scope and improve the price where the client's value and budget support it.</span></button>
@@ -417,6 +421,37 @@ function findStrategies(){
  if(clientNeed==='budget'){add('scope',1,'Budget certainty appears important to the client');}
  if(clientNeed==='speed'){add('scope',1,"A phased or simplified scope may help with the client's timing needs");}
  if(concession==='scope'||concession==='timeline'){add('scope',1,'You identified scope or timing as a possible trade-off');}
+ // UGC licence trade-offs: assess scope and opportunity cost, never invent a monetary licence value.
+ let ugcTradeoffText='';
+ if($('workType').value==='ugc'){
+  const duration=$('ugcDuration').value, use=$('ugcUse').value, exclusivity=$('ugcExclusivity').value, raw=$('ugcRaw').value;
+  const platform=$('ugcPlatforms').value.trim(), territory=$('ugcTerritory').value.trim();
+  const issues=[];
+  const unknown=[];
+  if(!duration)unknown.push('licence duration');
+  if(!use)unknown.push('intended use');
+  if(!platform)unknown.push('platforms / accounts');
+  if(!territory)unknown.push('territory');
+  if(!exclusivity)unknown.push('exclusivity');
+  if(!raw)unknown.push('raw footage');
+  if(duration==='Perpetual / unlimited requested'){add('terms',3,'Perpetual or unlimited usage has been requested; consider a time-limited licence or a separately negotiated renewal.');issues.push('Perpetual usage is a significant rights commitment. Consider a defined term with renewal priced separately.');}
+  else if(duration==='365 days'||duration==='180 days'){add('terms',2,'The requested licence lasts 6–12 months; confirm whether the fee reflects the full term.');issues.push('The requested licence is relatively long. Consider a shorter initial term with a renewal option.');}
+  else if(duration==='90 days'||duration==='60 days'){add('terms',1,'A fixed licence term is selected; define the start date and what happens at expiry.');issues.push('Set a clear start date, expiry date and renewal process.');}
+  if(use==='Paid advertising'||use==='Organic and paid advertising'){add('terms',2,'Paid advertising use is selected; agree ad duration, platforms and any editing or amplification permissions.');issues.push('Paid use should be expressly licensed, with platforms, duration and permitted edits specified.');}
+  if(use==='Website / email / other marketing'){add('terms',1,'Broader marketing channels are selected; define each channel and permitted use.');issues.push('Specify which website, email and other marketing placements are covered.');}
+  if(exclusivity==='Category exclusivity requested'){add('terms',2,'Category exclusivity may restrict future client work; define the category and period.');issues.push('Limit exclusivity to a precise category and period, and consider a separate fee for the opportunity cost.');}
+  if(exclusivity==='Broad exclusivity requested'){add('terms',3,'Broad exclusivity may materially restrict future work; narrow it before agreeing.');issues.push('Broad exclusivity could block unrelated opportunities. Narrow the category, territory and period or decline that restriction.');}
+  if(raw==='Separate fee to be agreed'){add('terms',1,'Raw footage is to be priced separately; clarify file types and reuse rights.');issues.push('Keep raw footage separate from the edited deliverables and define the reuse permissions.');}
+  if(raw==='Included in fee'){issues.push('Raw footage is included: list the files and clarify whether the brand may create derivative edits.');}
+  if(unknown.length)issues.push('Before agreeing, confirm: '+unknown.join(', ')+'.');
+  const trades=[];
+  if(use==='Paid advertising'||use==='Organic and paid advertising')trades.push('offer a lower-cost organic-only package');
+  if(duration==='Perpetual / unlimited requested'||duration==='365 days'||duration==='180 days')trades.push('offer a shorter initial licence with paid renewal');
+  if(exclusivity==='Category exclusivity requested'||exclusivity==='Broad exclusivity requested')trades.push('limit exclusivity by category and time, or remove it');
+  if(raw==='Separate fee to be agreed'||raw==='Included in fee')trades.push('separate raw footage and derivative-edit permissions from the base package');
+  if(!trades.length)trades.push('keep the agreed rights narrow and document any future expansion as a separately priced change');
+  ugcTradeoffText=(issues.length?issues.join(' '):'No major rights extension was selected, but confirm the licence details in writing.')+' Possible counter-trades: '+trades.join('; ')+'. This is a scope and opportunity-cost review, not an automatic valuation of the licence.';
+ }
  // Terms: protect payment, rights and boundaries before focusing on headline price.
  if(pay==='poor'){add('terms',3,'Payment reliability is a significant concern');}
  else if(pay==='mixed'){add('terms',1,'Payment reliability has some uncertainty');}
@@ -456,6 +491,9 @@ function findStrategies(){
  $('recommendTitle').textContent='Suggested starting point: '+titles[rec];
  const triggered=reasons[rec].length?' Key reasons: '+reasons[rec].join('; ')+'.':'';
  $('recommendText').textContent=explanations[rec]+triggered+' '+scoreSummary+' BATNA context: '+batna+batnaCaution+batnaValueNote+walkawayNote+' Usage-rights check: '+(rights==='notapplicable'&&$('workType').value==='ugc'?'UGC usage rights have not been specified; confirm usage type, duration, platforms and exclusivity before accepting.':rights==='notapplicable'?'No specific licensing risk was selected.':rights==='organic'?'Confirm limited organic-use scope and duration.':({'paid':'Paid advertising use selected; clarify licensing fee, duration and platforms.','unlimited':'Unlimited/perpetual use selected; do not treat this as ordinary production work.','whitelisting':'Whitelisting selected; clarify access, duration, control and payment.','exclusive':'Exclusivity selected; define category, territory and duration.'})[rights])+' Client priorities are based only on the details you entered, not assumptions about what the client is thinking.';
+ const ugcPanel=$('ugcTradeoffInsight');
+ if(ugcPanel){ugcPanel.classList.toggle('hidden',$('workType').value!=='ugc');$('ugcTradeoffText').textContent=ugcTradeoffText;}
+
  strategy=rec;chooseStrategy(rec);
  // A Nash-style lens: test whether the selected move gives each side a reason to proceed.
  const mutual={
@@ -479,6 +517,12 @@ function makeMessage(){
  if(context)body+=' The project also involves: '+context+'.';
  if(terms)body+=' I would also like to confirm: '+terms+'.';
  if(ugcTerms)body+=' For the UGC licence, please confirm: '+ugcTerms+'.';
+ if($('workType').value==='ugc'){
+  const duration=$('ugcDuration').value,use=$('ugcUse').value,ex=$('ugcExclusivity').value;
+  if(duration==='Perpetual / unlimited requested'||duration==='365 days'||duration==='180 days')body+=' I would also like to discuss a shorter initial licence term with a separately agreed renewal.';
+  if(use==='Paid advertising'||use==='Organic and paid advertising')body+=' Please confirm the paid advertising platforms, ad duration, permitted edits and any creator-handle access separately.';
+  if(ex==='Category exclusivity requested'||ex==='Broad exclusivity requested')body+=' Any exclusivity should be limited to a clearly defined category, territory and period, with its commercial impact agreed before work begins.';
+ }
  const close=tone==='firm'?'Please let me know whether these terms are acceptable so we can confirm the arrangement before work begins.':tone==='warm'?'I am happy to discuss the details and find a practical way forward.':'Please let me know which approach works best for you, and I will be happy to confirm the next steps.';
  const clientName=$('clientName').value.trim();
  const salutation=clientName?'Dear '+clientName+',':'Dear Sir/Madam,';
