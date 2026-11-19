@@ -231,6 +231,21 @@ details{border:1px solid var(--line);border-radius:12px;padding:12px 13px;margin
      <div class="field"><label for="alternativeValue">Estimated value of that alternative</label><input id="alternativeValue" type="number" min="0" step=".01" placeholder="Optional amount"></div>
     </div>
     <div class="insight"><h4>Why your alternative matters</h4><p id="batnaText">A credible alternative can reduce pressure to accept terms that do not work. Do not treat an uncertain lead as guaranteed income.</p></div>
+    <details id="offerCompare" style="margin:18px 0"><summary><strong>Compare a second offer</strong> <span class="hint">Optional · side-by-side economics and terms</span></summary>
+     <p class="hint">Compare another real offer using its own fee, workload and direct costs. Use the same currency and include only confirmed details. This is a decision aid, not a prediction of which client will accept.</p>
+     <div class="grid">
+      <div class="field"><label for="offerBName">Offer / client label</label><input id="offerBName" maxlength="60" placeholder="e.g. Brand B"></div>
+      <div class="field"><label for="offerBAmount">Second offer amount</label><input id="offerBAmount" type="number" min="0.01" step=".01" placeholder="e.g. 900"></div>
+      <div class="field"><label for="offerBHours">Estimated total hours</label><input id="offerBHours" type="number" min=".01" step=".1" placeholder="e.g. 18"></div>
+      <div class="field"><label for="offerBCosts">Direct project costs</label><input id="offerBCosts" type="number" min="0" step=".01" value="0"></div>
+      <div class="field"><label for="offerBFee">Platform / payment fees (%)</label><input id="offerBFee" type="number" min="0" max="99" step=".1" value="0"></div>
+      <div class="field"><label for="offerBPayment">Payment reliability</label><select id="offerBPayment"><option value="unknown">Unknown</option><option value="good">Known / reliable</option><option value="mixed">Some uncertainty</option><option value="poor">High uncertainty</option></select></div>
+      <div class="field"><label for="offerBRights">Usage / licensing request</label><select id="offerBRights"><option value="unknown">Not confirmed</option><option value="organic">Limited organic use</option><option value="paid">Paid advertising</option><option value="perpetual">Perpetual / unlimited</option><option value="exclusive">Exclusivity</option></select></div>
+      <div class="field"><label for="offerBScope">Scope clarity</label><select id="offerBScope"><option value="clear">Clearly defined</option><option value="some">Some open items</option><option value="unclear">Unclear / may expand</option></select></div>
+     </div>
+     <button type="button" class="btn primary" id="compareOffersBtn">Compare both offers</button>
+     <div id="offerCompareResult" class="insight hidden" aria-live="polite"><h4 id="offerCompareTitle">Offer comparison</h4><p id="offerCompareText"></p></div>
+    </details>
     <div class="skip-row"><button class="skip-btn" type="button" id="skipBatna">Skip alternatives and continue →</button></div>
     <details id="a2"><summary>Advanced financial and risk checks <span class="hint">Optional</span></summary>
      <div class="grid">
@@ -384,6 +399,23 @@ function runDealReview(){
  updateBatna();chooseStrategy(strategy);go(2);
  if(typeof gtag==="function"){gtag("event","fair_just_deal_review_completed",{work_type:$("workType").value,currency:$("currency").value});gtag("event","tool_complete",{tool_name:"fair_just",completion_type:"deal_review",work_type:$("workType").value,currency:$("currency").value});}
 }
+let offerComparisonSummary='';
+function compareOffers(){
+ if(!data){toast('Review your first offer before comparing.');return;}
+ const amount=Number($('offerBAmount').value),hours=Number($('offerBHours').value),costs=Number($('offerBCosts').value||0),fee=Number($('offerBFee').value||0)/100;
+ if(!Number.isFinite(amount)||amount<=0||!Number.isFinite(hours)||hours<=0||!Number.isFinite(costs)||costs<0||!Number.isFinite(fee)||fee<0||fee>=1){toast('Enter a valid second offer, hours, non-negative costs and fees below 100%.');return;}
+ const net=amount*(1-fee)-costs,rate=net/hours;
+ const firstRisk=($('paymentRisk').value==='poor'?2:$('paymentRisk').value==='mixed'?1:0)+(['unlimited','paid','whitelisting','exclusive'].includes($('rightsRisk').value)?2:0)+($('scopeRisk').value==='unclear'?2:$('scopeRisk').value==='some'?1:0);
+ const secondRisk=($('offerBPayment').value==='poor'?2:$('offerBPayment').value==='mixed'?1:0)+(['perpetual','paid','exclusive'].includes($('offerBRights').value)?2:0)+($('offerBScope').value==='unclear'?2:$('offerBScope').value==='some'?1:0);
+ const label=$('offerBName').value.trim()||'Offer B';
+ const economics=rate>data.rate?'Offer B has the higher estimated net hourly return.':rate<data.rate?'Offer A has the higher estimated net hourly return.':'Both offers have the same estimated net hourly return.';
+ const risk=secondRisk>firstRisk?'Offer B has more of the selected payment, rights or scope risks.':secondRisk<firstRisk?'Offer A has more of the selected payment, rights or scope risks.':'The selected risk indicators are equal.';
+ const winner=rate>data.rate&&secondRisk<=firstRisk?label:rate<data.rate&&firstRisk<=secondRisk?'Offer A':(rate===data.rate&&firstRisk===secondRisk?'No clear difference':'No automatic winner');
+ const summary='Offer A: '+fmt(data.net)+' estimated net, '+fmt(data.rate)+'/hour. '+label+': '+fmt(net)+' estimated net, '+fmt(rate)+'/hour. '+economics+' '+risk+' Indicative result: '+winner+'.';
+ $('offerCompareTitle').textContent='Comparison · '+winner;$('offerCompareText').textContent=summary+' Net figures are before personal income tax. Risk indicators reflect only the options selected; they do not verify client behaviour, legal rights or payment certainty. Compare deliverables, deadlines and licence details before deciding.';$('offerCompareResult').classList.remove('hidden');offerComparisonSummary=summary;
+ if(typeof gtag==='function')gtag('event','fair_just_offer_comparison_completed',{work_type:$('workType').value,currency:$('currency').value});
+}
+$('compareOffersBtn').addEventListener('click',compareOffers);
 function updateBatna(){
  const a=$('alternative').value,v=Number($('alternativeValue').value||0);
  const txt={none:'You may have limited leverage if no realistic alternative is available. Consider whether you can build a pipeline before accepting a poor-fit deal.',other:'Compare the certainty, expected net earnings and time commitment of the other project. Do not double-count work you cannot realistically take.',pipeline:'A promising lead can improve your options, but it is not secured income until the client commits.',wait:'Waiting may preserve capacity for better-fit work, but consider your cash-flow needs and how long you can reasonably wait.',income:'Existing income can reduce pressure to accept weak terms. Compare the real opportunity cost of taking this project.'};
@@ -542,7 +574,7 @@ function createReceipt(){
  if(proposedRaw && (!Number.isFinite(Number(proposedRaw))||Number(proposedRaw)<0)){toast('Please enter a valid proposed fee of zero or more.');return false;}
  const rows=[
  ...($('recordName').value.trim()?[['Name',$('recordName').value.trim()]]:[]),
- ['Work type',$('workType').selectedOptions[0].text],['Original offer',fmt(data.O)],['Estimated hours',data.H],['Estimated net before income tax',fmt(data.net)],['Estimated effective hourly',fmt(data.rate)],['Target-based minimum quote',fmt(data.min)],['Strategy selected',{price:'Higher fee',scope:'Adjust scope',terms:'Improve terms'}[strategy]],['Proposed fee',$('proposed').value.trim()?fmt(Number($('proposed').value)):'Not provided'],['BATNA', $('alternative').selectedOptions[0].text],['Estimated alternative value',$('alternativeValue').value.trim()?fmt(Number($('alternativeValue').value)):'Not provided'],['Walk-away condition',$('walkaway').value.trim()||'Not specified'],['Reported outcome',$('result').selectedOptions[0].text],['Reported final fee',finalRaw?fmt(final):'Not provided'],['Payment schedule',$('payment').value||'Not specified'],['Revisions',$('revisions').value||'Not specified'],['Delivery date',$('deadlineFinal').value||'Not specified'],['Usage rights',$('rightsRisk').selectedOptions[0].text+' · '+($('rights').value||'Details not provided')],...($('workType').value==='ugc'?[['UGC licence scope',ugcScopeSummary()]]:[]),['Learning',$('lesson').value||'Not provided']
+ ['Work type',$('workType').selectedOptions[0].text],['Original offer',fmt(data.O)],['Estimated hours',data.H],['Estimated net before income tax',fmt(data.net)],['Estimated effective hourly',fmt(data.rate)],['Target-based minimum quote',fmt(data.min)],['Strategy selected',{price:'Higher fee',scope:'Adjust scope',terms:'Improve terms'}[strategy]],...(offerComparisonSummary?[['Offer comparison',offerComparisonSummary]]:[]),['Proposed fee',$('proposed').value.trim()?fmt(Number($('proposed').value)):'Not provided'],['BATNA', $('alternative').selectedOptions[0].text],['Estimated alternative value',$('alternativeValue').value.trim()?fmt(Number($('alternativeValue').value)):'Not provided'],['Walk-away condition',$('walkaway').value.trim()||'Not specified'],['Reported outcome',$('result').selectedOptions[0].text],['Reported final fee',finalRaw?fmt(final):'Not provided'],['Payment schedule',$('payment').value||'Not specified'],['Revisions',$('revisions').value||'Not specified'],['Delivery date',$('deadlineFinal').value||'Not specified'],['Usage rights',$('rightsRisk').selectedOptions[0].text+' · '+($('rights').value||'Details not provided')],...($('workType').value==='ugc'?[['UGC licence scope',ugcScopeSummary()]]:[]),['Learning',$('lesson').value||'Not provided']
  ];
  $('receiptContent').innerHTML=rows.map(r=>'<div class="receipt-row"><span>'+safe(r[0])+'</span><b>'+safe(r[1])+'</b></div>').join('');
  $('receiptTitle').textContent=outcome==='success'?'You reported reaching an agreement':outcome==='declined'?'You chose to decline the deal':outcome==='lost'?'The deal did not proceed':'Your negotiation is still in progress';
