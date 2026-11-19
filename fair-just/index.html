@@ -236,6 +236,18 @@ details{border:1px solid var(--line);border-radius:12px;padding:12px 13px;margin
      <div class="grid">
       <div class="field"><label for="paymentRisk">Payment reliability</label><select id="paymentRisk"><option value="unknown">Unknown</option><option value="good">Known / reliable client</option><option value="mixed">Some uncertainty</option><option value="poor">High uncertainty</option></select></div>
       <div class="field"><label for="rightsRisk">Usage / licensing rights</label><select id="rightsRisk"><option value="notapplicable">Not applicable / not sure</option><option value="organic">Limited organic use</option><option value="paid">Paid advertising use</option><option value="unlimited">Unlimited or perpetual use</option><option value="whitelisting">Whitelisting / creator-handle ads</option><option value="exclusive">Exclusivity requested</option></select><span class="hint">For UGC, paid ads, whitelisting and exclusivity should be clearly priced and limited.</span></div>
+      <div class="field full hidden" id="ugcTermsPanel" style="background:#f5f8fb;border:1px solid var(--line);border-radius:12px;padding:13px">
+       <strong style="font-size:12px;color:var(--navy)">UGC licence scope · clarify before agreeing</strong>
+       <span class="hint">These details help turn a broad usage request into specific commercial terms. They stay in this browser and are included in your draft and negotiation record.</span>
+       <div class="grid" style="margin-top:10px">
+        <div class="field"><label for="ugcDuration">Licence duration</label><select id="ugcDuration"><option value="">Not confirmed</option><option>30 days</option><option>60 days</option><option>90 days</option><option>180 days</option><option>365 days</option><option>Perpetual / unlimited requested</option></select></div>
+        <div class="field"><label for="ugcUse">Intended use</label><select id="ugcUse"><option value="">Not confirmed</option><option>Organic social only</option><option>Paid advertising</option><option>Organic and paid advertising</option><option>Website / email / other marketing</option></select></div>
+        <div class="field"><label for="ugcPlatforms">Platforms / accounts</label><input id="ugcPlatforms" maxlength="180" placeholder="e.g. Instagram and TikTok brand accounts"></div>
+        <div class="field"><label for="ugcTerritory">Territory</label><input id="ugcTerritory" maxlength="120" placeholder="e.g. United States"></div>
+        <div class="field"><label for="ugcExclusivity">Exclusivity</label><select id="ugcExclusivity"><option value="">Not confirmed</option><option>No exclusivity</option><option>Category exclusivity requested</option><option>Broad exclusivity requested</option></select></div>
+        <div class="field"><label for="ugcRaw">Raw footage</label><select id="ugcRaw"><option value="">Not confirmed</option><option>Not included</option><option>Included in fee</option><option>Separate fee to be agreed</option></select></div>
+       </div>
+      </div>
       <div class="field"><label for="scopeRisk">Scope clarity</label><select id="scopeRisk"><option value="clear">Clearly defined</option><option value="some">Some open items</option><option value="unclear">Unclear / likely to expand</option></select></div>
       <div class="field"><label for="priority">Your most important priority</label><select id="priority"><option value="income">Protect earnings</option><option value="relationship">Preserve client relationship</option><option value="time">Protect time and capacity</option><option value="portfolio">Build portfolio / experience</option><option value="rights">Protect usage rights</option></select></div>
       <div class="field"><label for="walkaway">Your walk-away condition</label><input id="walkaway" placeholder="e.g. below 350 or unlimited ad rights"></div>
@@ -353,6 +365,13 @@ function getData(){
 function setLevel(v){level=v;document.querySelectorAll('[data-level]').forEach(b=>b.classList.toggle('active',b.dataset.level===v));['a1','a2','a3','a4'].forEach(id=>$(id).open=false);const messages={beginner:'Beginner selected: a simple guided experience with only the essential questions.',intermediate:'Intermediate selected: additional financial and risk details are available to explore when you need them.',expert:'Expert selected: all advanced analysis and strategy controls are available to explore when you need them.'};$('levelStatus').textContent=messages[v];go(1);$('workType').focus({preventScroll:true})}
 document.querySelectorAll('[data-level]').forEach(b=>b.onclick=()=>setLevel(b.dataset.level));
 document.querySelectorAll('[data-skip-details]').forEach(b=>b.addEventListener('click',()=>{const d=$(b.dataset.skipDetails);if(d)d.open=false}));
+function ugcScopeSummary(){
+ if($('workType').value!=='ugc')return '';
+ const items=[['Licence duration',$('ugcDuration').value],['Intended use',$('ugcUse').value],['Platforms / accounts',$('ugcPlatforms').value.trim()],['Territory',$('ugcTerritory').value.trim()],['Exclusivity',$('ugcExclusivity').value],['Raw footage',$('ugcRaw').value]].filter(x=>x[1]);
+ return items.length?items.map(x=>x[0]+': '+x[1]).join('; '):'UGC licence scope not yet confirmed';
+}
+function updateUgcTermsPanel(){const p=$('ugcTermsPanel');if(p)p.classList.toggle('hidden',$('workType').value!=='ugc')}
+$('workType').addEventListener('change',updateUgcTermsPanel);updateUgcTermsPanel();
 function runDealReview(){
  data=getData();if(!data)return;
  $('net').textContent=fmt(data.net);$('hourly').textContent=fmt(data.rate);$('minimum').textContent=fmt(data.min);
@@ -451,6 +470,7 @@ function findStrategies(){
 function makeMessage(){
  if(!data)return;
  const q=Number($('proposed').value||0),tone=$('tone').value,scope=$('deliverables').value.trim(),context=$('projectValue').value.trim(),terms=$('protect').value.trim();
+ const ugcTerms=ugcScopeSummary();
  const greet=tone==='warm'?'Thank you for considering me for this project. I would like to find an arrangement that works well for both of us.':tone==='firm'?'Thank you for the offer. I have reviewed the scope, time commitment and terms.':'Thank you for the offer. I have reviewed the project requirements and the work involved.';
  let body='';
  if(strategy==='price')body='For '+(scope||'the full agreed scope')+', my proposed fee is '+fmt(q)+'. This reflects the time, costs and delivery requirements involved. If this works within your budget, I would be happy to confirm the details.';
@@ -458,6 +478,7 @@ function makeMessage(){
  if(strategy==='terms')body='I would be comfortable moving forward at '+fmt(q)+', subject to confirming the project boundaries, payment schedule and any applicable usage or licensing terms.';
  if(context)body+=' The project also involves: '+context+'.';
  if(terms)body+=' I would also like to confirm: '+terms+'.';
+ if(ugcTerms)body+=' For the UGC licence, please confirm: '+ugcTerms+'.';
  const close=tone==='firm'?'Please let me know whether these terms are acceptable so we can confirm the arrangement before work begins.':tone==='warm'?'I am happy to discuss the details and find a practical way forward.':'Please let me know which approach works best for you, and I will be happy to confirm the next steps.';
  const clientName=$('clientName').value.trim();
  const salutation=clientName?'Dear '+clientName+',':'Dear Sir/Madam,';
@@ -477,7 +498,7 @@ function createReceipt(){
  if(proposedRaw && (!Number.isFinite(Number(proposedRaw))||Number(proposedRaw)<0)){toast('Please enter a valid proposed fee of zero or more.');return false;}
  const rows=[
  ...($('recordName').value.trim()?[['Name',$('recordName').value.trim()]]:[]),
- ['Work type',$('workType').selectedOptions[0].text],['Original offer',fmt(data.O)],['Estimated hours',data.H],['Estimated net before income tax',fmt(data.net)],['Estimated effective hourly',fmt(data.rate)],['Target-based minimum quote',fmt(data.min)],['Strategy selected',{price:'Higher fee',scope:'Adjust scope',terms:'Improve terms'}[strategy]],['Proposed fee',$('proposed').value.trim()?fmt(Number($('proposed').value)):'Not provided'],['BATNA', $('alternative').selectedOptions[0].text],['Estimated alternative value',$('alternativeValue').value.trim()?fmt(Number($('alternativeValue').value)):'Not provided'],['Walk-away condition',$('walkaway').value.trim()||'Not specified'],['Reported outcome',$('result').selectedOptions[0].text],['Reported final fee',finalRaw?fmt(final):'Not provided'],['Payment schedule',$('payment').value||'Not specified'],['Revisions',$('revisions').value||'Not specified'],['Delivery date',$('deadlineFinal').value||'Not specified'],['Usage rights',$('rightsRisk').selectedOptions[0].text+' · '+($('rights').value||'Details not provided')],['Learning',$('lesson').value||'Not provided']
+ ['Work type',$('workType').selectedOptions[0].text],['Original offer',fmt(data.O)],['Estimated hours',data.H],['Estimated net before income tax',fmt(data.net)],['Estimated effective hourly',fmt(data.rate)],['Target-based minimum quote',fmt(data.min)],['Strategy selected',{price:'Higher fee',scope:'Adjust scope',terms:'Improve terms'}[strategy]],['Proposed fee',$('proposed').value.trim()?fmt(Number($('proposed').value)):'Not provided'],['BATNA', $('alternative').selectedOptions[0].text],['Estimated alternative value',$('alternativeValue').value.trim()?fmt(Number($('alternativeValue').value)):'Not provided'],['Walk-away condition',$('walkaway').value.trim()||'Not specified'],['Reported outcome',$('result').selectedOptions[0].text],['Reported final fee',finalRaw?fmt(final):'Not provided'],['Payment schedule',$('payment').value||'Not specified'],['Revisions',$('revisions').value||'Not specified'],['Delivery date',$('deadlineFinal').value||'Not specified'],['Usage rights',$('rightsRisk').selectedOptions[0].text+' · '+($('rights').value||'Details not provided')],...($('workType').value==='ugc'?[['UGC licence scope',ugcScopeSummary()]]:[]),['Learning',$('lesson').value||'Not provided']
  ];
  $('receiptContent').innerHTML=rows.map(r=>'<div class="receipt-row"><span>'+safe(r[0])+'</span><b>'+safe(r[1])+'</b></div>').join('');
  $('receiptTitle').textContent=outcome==='success'?'You reported reaching an agreement':outcome==='declined'?'You chose to decline the deal':outcome==='lost'?'The deal did not proceed':'Your negotiation is still in progress';
