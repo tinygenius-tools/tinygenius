@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profit Margin Calculator: Calculate Profit, Markup & Break-Even | TinyGenius</title>
+  <meta name="description" content="Calculate gross profit, profit margin, markup, payment-fee impact, target selling price and break-even units with this free profit margin calculator.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tinygenius.tools/profit-margin-calculator/">
+  <meta property="og:site_name" content="TinyGenius">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Profit Margin Calculator | TinyGenius">
+  <meta property="og:description" content="Understand what remains after costs and fees, calculate your target price and estimate break-even sales.">
+  <meta property="og:url" content="https://tinygenius.tools/profit-margin-calculator/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Profit Margin Calculator | TinyGenius">
+  <meta name="twitter:description" content="Calculate profit, margin, markup, target price and break-even units.">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="//www.googletagmanager.com">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"Profit Margin Calculator",
+    "description":"Calculate profit margin, markup, payment fee impact, target selling price and break-even units.",
+    "url":"https://tinygenius.tools/profit-margin-calculator/",
+    "applicationCategory":"BusinessApplication",
+    "operatingSystem":"Any",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+  }
+  </script>
+  <style>
+    :root{--navy:#263765;--ink:#26324f;--muted:#68738f;--line:#e2e7f0;--paper:#fff;--lav:#f1edff;--blue:#eaf2ff;--purple:#7255c7}
+    *{box-sizing:border-box}body{margin:0;background:#fffaf0;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}
+    .tg-site-header{max-width:1080px;margin:auto;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .tg-site-brand{font-size:24px;font-weight:850;color:var(--navy);text-decoration:none;letter-spacing:-.7px}.tg-site-brand span{color:#8c69db}
+    .tg-site-nav{display:flex;gap:22px;flex-wrap:wrap}.tg-site-nav a{color:var(--navy);font-weight:650;text-decoration:none;font-size:14px}
+    .hero,.calculator,.content{max-width:900px;margin:0 auto;padding-left:24px;padding-right:24px}.hero{padding-top:36px;padding-bottom:22px}
+    .eyebrow{color:var(--purple);font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+    h1,h2,h3{color:var(--navy);line-height:1.2;letter-spacing:-.025em}h1{font-size:clamp(30px,5vw,44px);margin:10px 0 14px}h2{font-size:25px;margin:0 0 16px}h3{font-size:19px;margin:0 0 8px}
+    .hero p{max-width:760px;color:var(--muted);font-size:17px;margin:0}
+    .calculator{padding-top:10px;padding-bottom:30px}.calculator-shell{background:#fff;border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,34px);box-shadow:0 14px 38px rgba(37,54,100,.07)}
+    .intro{color:var(--muted);margin-top:-5px;margin-bottom:22px}.field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .field{display:flex;flex-direction:column;gap:6px}.field label{font-weight:700;font-size:14px;color:#344264}.field small{font-size:12px;color:var(--muted)}
+    input,select{width:100%;min-height:46px;border:1px solid #ccd4e2;border-radius:10px;padding:10px 12px;background:#fff;color:var(--ink);font:inherit}
+    input:focus,select:focus,button:focus-visible,a:focus-visible{outline:3px solid #b9a4ff;outline-offset:2px}
+    .section-label{grid-column:1/-1;font-size:14px;font-weight:850;color:var(--navy);padding-top:8px;border-top:1px solid var(--line)}
+    .actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:22px}
+    button{border:0;border-radius:11px;background:var(--navy);color:white;padding:13px 19px;font:inherit;font-weight:750;cursor:pointer}
+    button.secondary{background:#edf1fa;color:var(--navy)}.hint{font-size:12px;color:var(--muted)}
+    .results{display:none;margin-top:26px;border-radius:16px;background:var(--blue);padding:22px}.results.visible{display:block}
+    .result-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}
+    .metric{background:#fff;border:1px solid #dbe5f5;border-radius:12px;padding:14px}.metric span{display:block;color:var(--muted);font-size:12px;font-weight:700}.metric strong{display:block;color:var(--navy);font-size:24px;line-height:1.3;margin-top:4px;overflow-wrap:anywhere}
+    .results p{margin:8px 0}.result-note{font-size:13px;color:var(--muted)}
+    .content{padding-top:10px;padding-bottom:65px}.content p,.content li{color:#505d7b}.content h2{margin-top:32px}.formula{background:#f1edff;border-radius:12px;padding:16px;font-weight:750;color:var(--navy)}
+    .faq{background:#fff;border:1px solid var(--line);border-radius:12px;padding:17px;margin:12px 0}.faq p{margin-bottom:0}
+    .footer{border-top:1px solid var(--line);padding:22px 24px;text-align:center;color:var(--muted);font-size:13px}.footer a{color:var(--navy);font-weight:700}
+    @media(max-width:640px){.tg-site-header{align-items:flex-start;flex-direction:column}.field-grid,.result-grid{grid-template-columns:1fr}.hero{padding-top:24px}.calculator-shell{padding:18px}}
+  </style>
+</head>
+<body>
+<header class="tg-site-header">
+  <a class="tg-site-brand" href="/" aria-label="TinyGenius home">TinyGenius<span>.</span></a>
+  <nav class="tg-site-nav" aria-label="Main navigation">
+    <a href="/#tools">Explore tools</a>
+    <a href="/fair-just/">Fair &amp; Just</a>
+    <a href="/guides/">Guides &amp; Insights</a>
+  </nav>
+</header>
+<section class="hero">
+  <div class="eyebrow">Pricing &amp; money intelligence</div>
+  <h1>Profit Margin Calculator</h1>
+  <p>See what you actually keep after direct costs and payment fees. Calculate your profit, margin and markup, then test a target selling price and estimate how many units you need to sell to cover fixed overhead.</p>
+</section>
+<main>
+<section class="calculator" aria-labelledby="calcTitle">
+  <div class="calculator-shell">
+    <h2 id="calcTitle">Calculate your profit and selling price</h2>
+    <p class="intro">Enter figures for one product, service or project. Use the same currency for every amount.</p>
+    <div class="field-grid">
+      <div class="field">
+        <label for="currency">Currency</label>
+        <select id="currency">
+          <option value="USD">USD ($)</option><option value="INR">INR (₹)</option><option value="GBP">GBP (£)</option><option value="EUR">EUR (€)</option><option value="CAD">CAD ($)</option><option value="AUD">AUD ($)</option><option value="AED">AED (د.إ)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="price">Current selling price per unit</label>
+        <input id="price" type="number" min="0" step="0.01" value="100" inputmode="decimal">
+      </div>
+      <div class="field">
+        <label for="cost">Direct cost per unit</label>
+        <input id="cost" type="number" min="0" step="0.01" value="40" inputmode="decimal">
+        <small>Materials, labour or production cost.</small>
+      </div>
+      <div class="field">
+        <label for="other">Other variable cost per unit</label>
+        <input id="other" type="number" min="0" step="0.01" value="5" inputmode="decimal">
+        <small>Packaging, shipping or other per-sale costs.</small>
+      </div>
+      <div class="field">
+        <label for="fee">Payment or platform fee (%)</label>
+        <input id="fee" type="number" min="0" max="99.99" step="0.01" value="3" inputmode="decimal">
+        <small>Enter 0 if no percentage fee applies.</small>
+      </div>
+      <div class="section-label">Target price and monthly break-even (optional)</div>
+      <div class="field">
+        <label for="target">Target profit margin after fees (%)</label>
+        <input id="target" type="number" min="0" max="99.99" step="0.1" value="30" inputmode="decimal">
+        <small>Calculated on revenue remaining after percentage fees.</small>
+      </div>
+      <div class="field">
+        <label for="fixed">Monthly fixed overhead</label>
+        <input id="fixed" type="number" min="0" step="0.01" value="500" inputmode="decimal">
+        <small>Rent, subscriptions and other costs not tied to each sale.</small>
+      </div>
+      <div class="field">
+        <label for="volume">Expected units or projects per month</label>
+        <input id="volume" type="number" min="1" step="1" value="50" inputmode="numeric">
+        <small>Used to allocate overhead per unit for the target price.</small>
+      </div>
+    </div>
+    <div class="actions">
+      <button type="button" id="calculate">Calculate my margins</button>
+      <button type="button" class="secondary" id="reset">Reset example</button>
+      <span class="hint">Your calculations stay in this browser session.</span>
+    </div>
+    <div class="results" id="results" aria-live="polite" aria-atomic="true">
+      <h2>Your pricing snapshot</h2>
+      <div class="result-grid">
+        <div class="metric"><span>Profit per unit after fees and variable costs</span><strong id="profit">—</strong></div>
+        <div class="metric"><span>Contribution margin after fees</span><strong id="margin">—</strong></div>
+        <div class="metric"><span>Gross margin before payment fees</span><strong id="gross">—</strong></div>
+        <div class="metric"><span>Markup on direct and other variable costs</span><strong id="markup">—</strong></div>
+        <div class="metric"><span>Suggested price for target margin</span><strong id="targetPrice">—</strong></div>
+        <div class="metric"><span>Break-even sales per month</span><strong id="breakEven">—</strong></div>
+      </div>
+      <p id="breakEvenNote" class="result-note"></p>
+      <p id="targetNote" class="result-note"></p>
+      <p class="result-note">This is a simplified unit-economics estimate, not an accounting statement. It excludes taxes, refunds, discounts, financing costs and any costs you have not entered.</p>
+    </div>
+  </div>
+</section>
+<section class="content">
+  <h2>How the profit margin calculator works</h2>
+  <p>The calculator separates the amount left after each sale from the fixed costs your business must cover over a month. That distinction helps you avoid treating sales revenue as profit.</p>
+  <div class="formula">Contribution per unit = Selling price − percentage fees − direct costs − other variable costs</div>
+  <p><strong>Contribution margin</strong> is contribution per unit divided by selling price after percentage fees. <strong>Gross margin before fees</strong> is selling price minus the direct and other variable costs, divided by selling price. <strong>Markup</strong> compares the profit before percentage fees with those variable costs.</p>
+  <h2>Margin and markup are not the same</h2>
+  <p>Margin measures profit as a share of the selling price. Markup measures the amount added relative to cost. For example, a $60 profit on a $100 selling price is a 60% margin before fees. If the cost was $40, that same $60 profit is a 150% markup on cost.</p>
+  <h2>Why payment fees and fixed overhead matter</h2>
+  <p>A payment or marketplace fee reduces the revenue you retain from each sale. Fixed overhead is different: it is generally incurred whether you make one sale or many. The break-even estimate divides monthly fixed overhead by contribution per unit. It does not include a desired owner salary unless you add it to fixed overhead.</p>
+  <h2>Use the target price as a pricing test</h2>
+  <p>The target price estimate includes your entered variable costs, percentage fee and an equal allocation of monthly fixed overhead across your expected monthly sales volume. If sales volume changes, the overhead allocation and target price change too. Treat it as a planning scenario—not a guarantee that customers will accept the price.</p>
+  <h2>Before you agree to a lower price</h2>
+  <p>A discount reduces the amount available to cover costs and overhead. If a client or buyer asks for a lower price, consider trading the reduction for a smaller scope, fewer revisions, a shorter licence, a longer timeline or more favourable payment terms rather than giving away value without a change in return.</p>
+  <p>For a real client offer, use <a href="/fair-just/">Fair &amp; Just Negotiation Copilot</a> to review your alternatives, scope, leverage and possible counteroffers. TinyGenius helps you examine the commercial trade-offs—not just the headline price.</p>
+  <h2>Frequently asked questions</h2>
+  <div class="faq"><h3>What is a good profit margin?</h3><p>There is no single margin that is right for every industry, product or service. Compare like-for-like businesses and account for your costs, risk, sales channel and customer value. This calculator does not provide industry benchmarks.</p></div>
+  <div class="faq"><h3>Does this calculator include tax?</h3><p>No. It does not estimate income tax, sales tax, VAT or other statutory obligations. Add relevant costs to your own financial planning separately.</p></div>
+  <div class="faq"><h3>What if my contribution per unit is zero or negative?</h3><p>Your current price does not cover the variable costs and percentage fees entered. The calculator will not show a finite break-even sales quantity in that situation.</p></div>
+  <div class="faq"><h3>Is this suitable for freelancers and creators?</h3><p>Yes. You can treat a project as one unit, include your project labour and production expenses as direct costs, and include payment or platform fees. Add monthly business overhead to understand the sales volume needed to cover it.</p></div>
+</section>
+</main>
+<footer class="footer">TinyGenius — Negotiates for Fair and Just Value of Work. · <a href="/">Home</a> · <a href="/privacy-policy/">Privacy</a> · <a href="/terms-of-use/">Terms</a></footer>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const defaults={currency:"USD",price:"100",cost:"40",other:"5",fee:"3",target:"30",fixed:"500",volume:"50"};
+  const symbols={USD:"$",INR:"₹",GBP:"£",EUR:"€",CAD:"$",AUD:"$",AED:"د.إ"};
+  const money=n=>symbols[$("currency").value]+Number(n).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+  function calculate(){
+    const price=Number($("price").value),cost=Number($("cost").value),other=Number($("other").value),fee=Number($("fee").value),target=Number($("target").value),fixed=Number($("fixed").value),volume=Number($("volume").value);
+    const fields=[price,cost,other,fee,target,fixed,volume];
+    if(fields.some(n=>!Number.isFinite(n)||n<0)||price<=0||fee>=100||target>=100||volume<1||!Number.isInteger(volume)){
+      alert("Please enter valid non-negative amounts. Price must be above zero, fee and target margin below 100%, and monthly volume a whole number of at least 1.");return;
+    }
+    const variable=cost+other,feeAmount=price*fee/100,netRevenue=price-feeAmount,contribution=netRevenue-variable;
+    const grossProfit=price-variable,grossMargin=grossProfit/price*100;
+    const contributionMargin=netRevenue>0?contribution/netRevenue*100:NaN;
+    const markup=variable>0?grossProfit/variable*100:NaN;
+    const overheadPerUnit=fixed/volume,denominator=1-fee/100-target/100;
+    const targetSellingPrice=denominator>0?(variable+overheadPerUnit)/denominator:NaN;
+    const breakEven=contribution>0?Math.ceil(fixed/contribution):null;
+    $("profit").textContent=money(contribution);
+    $("margin").textContent=Number.isFinite(contributionMargin)?contributionMargin.toFixed(2)+"%":"Not available";
+    $("gross").textContent=grossMargin.toFixed(2)+"%";
+    $("markup").textContent=Number.isFinite(markup)?markup.toFixed(2)+"%":"Not available";
+    $("targetPrice").textContent=Number.isFinite(targetSellingPrice)?money(targetSellingPrice):"Not achievable";
+    $("breakEven").textContent=breakEven===null?"Not reached":breakEven.toLocaleString()+" units";
+    $("breakEvenNote").textContent=breakEven===null?"At the current price, each sale does not generate a positive contribution after variable costs and fees. Reduce costs or increase price before fixed overhead can be covered.": "At the current contribution, approximately "+breakEven.toLocaleString()+" sales per month cover "+money(fixed)+" in fixed overhead. This is a simplified break-even estimate.";
+    $("targetNote").textContent="Target price includes "+money(overheadPerUnit)+" fixed overhead allocated per unit across "+volume.toLocaleString()+" expected monthly sales.";
+    $("results").classList.add("visible");
+    if(typeof window.gtag==="function")window.gtag("event","profit_margin_calculated",{currency:$("currency").value,has_positive_contribution:contribution>0});
+  }
+  $("calculate").addEventListener("click",calculate);
+  $("reset").addEventListener("click",function(){Object.keys(defaults).forEach(k=>$(k).value=defaults[k]);$("results").classList.remove("visible");});
+  calculate();
+})();
+</script>
+</body>
+</html>
