@@ -181,7 +181,7 @@
     const grossProfit=price-variable,grossMargin=grossProfit/price*100;
     const contributionMargin=netRevenue>0?contribution/netRevenue*100:NaN;
     const markup=variable>0?grossProfit/variable*100:NaN;
-    const overheadPerUnit=fixed/volume,denominator=1-fee/100-target/100;
+    const overheadPerUnit=fixed/volume,denominator=(1-fee/100)*(1-target/100);
     const targetSellingPrice=denominator>0?(variable+overheadPerUnit)/denominator:NaN;
     const breakEven=contribution>0?Math.ceil(fixed/contribution):null;
     $("profit").textContent=money(contribution);
